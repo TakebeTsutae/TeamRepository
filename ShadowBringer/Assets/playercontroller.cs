@@ -7,10 +7,10 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
 
     // ジャンプ力
-    public float jumpForce = 7f;
+    Rigidbody2D rigid2D;
+    float jumpForce = 300f;
 
     // Rigidbody2D
-    private Rigidbody2D rb;
 
     // 入力値
     private float moveInput;
@@ -20,7 +20,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        Application.targetFrameRate = 60;
+        rigid2D = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -38,18 +39,18 @@ public class PlayerController : MonoBehaviour
         {
             moveInput = 0f;
         }
-
-        // ジャンプ
-        if (Keyboard.current.spaceKey.wasPressedThisFrame && isGrounded)
+      // space
+        if(Keyboard.current.spaceKey.wasPressedThisFrame &&
+                this.rigid2D.linearVelocityY == 0)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            this.rigid2D.AddForce(transform.up * this.jumpForce);
         }
     }
 
     void FixedUpdate()
     {
         // 左右移動
-        rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+       rigid2D.linearVelocity = new Vector2(moveInput * moveSpeed, rigid2D.linearVelocity.y);
     }
 
     // 地面に触れた
