@@ -26,7 +26,11 @@ public class AttackController : MonoBehaviour
     public float attackCooldown = 0.5f;
 
     private float lastAttackTime = 0f;
-
+    public kenncontroller kenattack;
+    private void Start()
+    {
+        kenattack = GetComponent<kenncontroller>();
+    }
     void Update()
     {
         bool canAttack = Time.time >= lastAttackTime + attackCooldown;
@@ -43,6 +47,9 @@ public class AttackController : MonoBehaviour
 
     void Attack()
     {
+
+        kenattack.PlayerAttack();
+
         // 攻撃範囲内の敵をまとめて取得
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(
             attackPoint.position,
