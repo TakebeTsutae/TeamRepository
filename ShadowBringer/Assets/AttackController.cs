@@ -3,6 +3,22 @@ using UnityEngine.InputSystem;
 
 public class AttackController : MonoBehaviour
 {
+    //ゲームマネージャーにぶち込む
+
+
+
+
+
+
+
+    //=============================================
+
+
+
+
+
+
+
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayer;
@@ -21,6 +37,7 @@ public class AttackController : MonoBehaviour
         {
             Attack();
             lastAttackTime = Time.time;
+            Debug.Log("攻撃");
         }
     }
 
