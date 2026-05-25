@@ -4,16 +4,23 @@ public class EnemyController : MonoBehaviour
 {
     // 左に動く→攻撃
     // 左に動く→ジャンプ
-    Vector3 speed;
+    // 移動速度
+    float _speed;
+
+    // 更新後の位置
+    Vector3 _inputVelocity;
+    Rigidbody2D _rigid;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        speed = new Vector3(-0.01f, 0, 0);
+        _speed = 0.01f;
+        _inputVelocity = transform.position;
+        _rigid = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.position = transform.position + speed;
+        transform.position = _inputVelocity + _speed;
     }
 }
