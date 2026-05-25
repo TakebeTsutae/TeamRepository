@@ -13,7 +13,7 @@ public class kenncontroller : MonoBehaviour
     {
         Vector2 playerPos = new Vector2(playerTransform.transform.position.x +1, playerTransform.transform.position.y);
         GameObject kennhannteiPre = Instantiate(kennhanntei, playerPos, Quaternion.identity);
-        Destroy(kennhannteiPre, 0.2f);
+        Destroy(kennhannteiPre, 0.1f); // ←攻撃判定の残る長さ
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
@@ -22,6 +22,7 @@ public class kenncontroller : MonoBehaviour
         {
             // 敵を消す
             Destroy(collision.gameObject);
+            Debug.Log("当たった");
         }
     }
 }

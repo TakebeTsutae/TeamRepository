@@ -68,12 +68,12 @@ public class AttackController : MonoBehaviour
     }
 
     // エディタ上で攻撃範囲を表示
-    void OndrawGizmosSelected()
+    /*void OnDrawGizmosSelected()
     {
         if(attackPoint!=null)
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(attackPoint.position, attackRange);
         }
-    }
+    }*/
 }
