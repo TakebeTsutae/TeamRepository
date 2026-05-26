@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
 
     // 入力値
     private float moveInput;
+    public bool isFacingRight = true;
 
     // 地面にいるか
     private bool isGrounded;
@@ -31,10 +32,12 @@ public class PlayerController : MonoBehaviour
         if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
         {
             moveInput = -1f;
+            isFacingRight = false;
         }
         else if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
         {
             moveInput = 1f;
+            isFacingRight=true;
         }
         else
         {
