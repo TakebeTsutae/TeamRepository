@@ -9,6 +9,7 @@ public class PlayerControl : MonoBehaviour
     private Vector2 movement;
 
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,15 +26,13 @@ public class PlayerControl : MonoBehaviour
 
         // 移動する方向をVector2に格納
         movement = new Vector2(moveX, moveY).normalized;
-       }
+    }
 
 
-        void FixedUpdate()
-        {
-            // 物理演算に基づいた移動処理
-            rb2d.linearVelocity = movement * moveSpeed;
-
-
-        }
+    void FixedUpdate()
+    {
+        // 物理演算に基づいた移動処理
+        rb2d.linearVelocity = movement * moveSpeed;
+    }
 }
     
