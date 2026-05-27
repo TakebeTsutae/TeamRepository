@@ -33,11 +33,13 @@ public class PlayerController : MonoBehaviour
         {
             moveInput = -1f;
             isFacingRight = false;
+            transform.localScale=new Vector3(-1, 1, 1);
         }
         else if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
         {
             moveInput = 1f;
             isFacingRight=true;
+            transform.localScale = new Vector3(1, 1, 1);
         }
         else
         {

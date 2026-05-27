@@ -23,25 +23,44 @@ public class AttackController : MonoBehaviour
     public float attackRange = 0.5f;
     public LayerMask enemyLayer;
     public int attackDamage = 10;
-    public float attackCooldown = 0.5f;
-
+    public float attackCooldown = 3f;
+    //public float attackCooldownSub = 0.5f; 
+    //bool canAttack = true;
+    int time = 0;
     private float lastAttackTime = 0f;
     public kenncontroller kenattack;
     private void Start()
     {
         kenattack = GetComponent<kenncontroller>();
     }
-    void Update()
+    void FixedUpdate()
     {
-        bool canAttack = Time.time >= lastAttackTime + attackCooldown;
+        // canAttackをtrueにする
+       /* time++;
+        if (time>= 50)
+        {
+            attackCooldown -= attackCooldownSub;
+            time = 0;
+        }
+        if(attackCooldown<=0)
+        {
+            canAttack = true;
+        }
+        else
+        {
+            canAttack = false;
+        }
+       */
+        // 今攻撃できるか？
+        bool canAttack =
+            Time.time >= lastAttackTime + attackCooldown;
 
-
-        // 攻撃ボタンが押され、クールタイムも経過している時だけ攻撃
-        if(Keyboard.current.jKey.isPressed && canAttack)
+        // J押し中 ＆ 攻撃可能
+        if (Keyboard.current.jKey.wasPressedThisFrame && canAttack)
         {
             Attack();
+            // 攻撃した時間を保存
             lastAttackTime = Time.time;
-            Debug.Log("攻撃");
         }
     }
 
@@ -65,6 +84,7 @@ public class AttackController : MonoBehaviour
                 health.TakeDamage(attackDamage);
             }
         }
+        Debug.Log("Attack実行");
     }
 
     // エディタ上で攻撃範囲を表示

@@ -13,30 +13,44 @@ public class kenncontroller : MonoBehaviour
     {
         playerTransform = GameObject.Find("player");
     }
-    public void PlayerAttack() 
+    public void PlayerAttack()
+    {
+        Vector2 playerPos;
+
+        // 右向きなら
+        if (isFacingRight)
+        {
+            playerPos = new Vector2(
+                playerTransform.transform.position.x + 1,
+                playerTransform.transform.position.y
+            );
+        }
+
+        // 左向きなら
+        else
+        {
+            playerPos = new Vector2(
+                playerTransform.transform.position.x - 1,
+                playerTransform.transform.position.y
+            );
+        }
+
+        GameObject kennhannteiPre =
+            Instantiate(kennhanntei, playerPos, Quaternion.identity);
+
+        Destroy(kennhannteiPre, 0.1f);
+    }
+
+    void Update()
     {
         if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
         {
             isFacingRight = false;
-            if (isFacingRight == false)
-            {
-                Vector2 playerPos = new Vector2(playerTransform.transform.position.x - 1, playerTransform.transform.position.y);
-                GameObject kennhannteiPre = Instantiate(kennhanntei, playerPos, Quaternion.identity);
-                Destroy(kennhannteiPre, 0.1f); // ←攻撃判定の残る長さ
-            }
         }
-        
         if (Keyboard.current.dKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
         {
-            isFacingRight = true;
-            if (isFacingRight == true)
-            {
-                Vector2 playerPos = new Vector2(playerTransform.transform.position.x + 1, playerTransform.transform.position.y);
-                GameObject kennhannteiPre = Instantiate(kennhanntei, playerPos, Quaternion.identity);
-                Destroy(kennhannteiPre, 0.1f); // ←攻撃判定の残る長さ
-            }
+            isFacingRight= true;
         }
-        
     }
         
 public void OnTriggerEnter2D(Collider2D collision)

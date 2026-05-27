@@ -308,7 +308,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   attackDamage: 10
-  attackCooldown: 0.5
+  attackCooldown: 3
   kenattack: {fileID: 0}
 --- !u!4 &1039244974
 Transform:
@@ -957,6 +957,14 @@ PrefabInstance:
     - target: {fileID: 9220060815963998398, guid: 421e64fce844fbb4b9d233353066b6c2, type: 3}
       propertyPath: attackPoint
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9220060815963998398, guid: 421e64fce844fbb4b9d233353066b6c2, type: 3}
+      propertyPath: attackRange
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9220060815963998398, guid: 421e64fce844fbb4b9d233353066b6c2, type: 3}
+      propertyPath: attackCooldown
+      value: 10000
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1674750889098773534, guid: 421e64fce844fbb4b9d233353066b6c2, type: 3}
