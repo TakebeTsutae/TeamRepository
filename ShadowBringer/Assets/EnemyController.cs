@@ -21,6 +21,6 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.position = _inputVelocity + _speed;
+     //   transform.position = _inputVelocity + _speed;
     }
 }
