@@ -19,10 +19,11 @@ public class Item : MonoBehaviour
         // 追加↓
         if(isPlayerNear && Input.GetKeyDown(KeyCode.E))
         {
-            Destroy(gameObject);
+            GetItem();
         }
     }
 
+    /*
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("Player"))
@@ -34,6 +35,30 @@ public class Item : MonoBehaviour
             Debug.Log("アイテム拾った!");
         }
     }
+    */
+
+    // 追加↓
+    void GetItem()
+    {
+        Debug.Log("アイテムをゲットした!");
+        Destroy(gameObject); // アイテム消す
+    }
+   
     
-    
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            isPlayerNear = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            isPlayerNear = false;
+        }
+    }
+
 }
