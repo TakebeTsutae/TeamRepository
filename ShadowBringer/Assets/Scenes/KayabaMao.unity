@@ -532,10 +532,10 @@ GameObject:
   m_Component:
   - component: {fileID: 873346416}
   - component: {fileID: 873346415}
-  - component: {fileID: 873346414}
   - component: {fileID: 873346417}
   - component: {fileID: 873346418}
   - component: {fileID: 873346419}
+  - component: {fileID: 873346420}
   m_Layer: 0
   m_Name: kyuu_0
   m_TagString: Player
@@ -543,20 +543,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &873346414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 873346413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b96c443b96577a945ab41f5a28c2652f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  moveSpeed: 5
-  isFacingRight: 1
 --- !u!212 &873346415
 SpriteRenderer:
   serializedVersion: 2
@@ -710,6 +696,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSwitcher
   sword: {fileID: 488032014}
   staff: {fileID: 555201278}
+--- !u!114 &873346420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873346413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adfa45c687c79184eb6876ba5bb492b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerControl
+  moveSpeed: 5
 --- !u!1 &880903352
 GameObject:
   m_ObjectHideFlags: 0
