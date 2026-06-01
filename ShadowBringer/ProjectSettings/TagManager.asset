@@ -4,6 +4,8 @@
 TagManager:
   serializedVersion: 3
   tags:
+  - hari
+  - jumpdai
   - Ground
   - enemy
   layers:
@@ -42,6 +44,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: New Layer 1
+    uniqueID: 2004385273
     locked: 0
   m_RenderingLayers:
   - Default
