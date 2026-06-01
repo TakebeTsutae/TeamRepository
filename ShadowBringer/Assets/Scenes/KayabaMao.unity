@@ -555,7 +555,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b96c443b96577a945ab41f5a28c2652f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  speed: 5
+  moveSpeed: 5
+  isFacingRight: 1
 --- !u!212 &873346415
 SpriteRenderer:
   serializedVersion: 2
