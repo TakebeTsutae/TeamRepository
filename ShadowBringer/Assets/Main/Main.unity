@@ -1438,7 +1438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneHenkou
   timeUntilNextMap: 40
-  nextSceneName: BossScene
+  nextSceneName: BossMainScene
 --- !u!4 &258202538
 Transform:
   m_ObjectHideFlags: 0

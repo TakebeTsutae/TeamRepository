@@ -6,10 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Hirayama1.unity
+    path: Assets/Mitsuha/Hirayama1.unity
     guid: 58c2e16bfd9d4074dbc8206908e1d1ad
   - enabled: 1
-    path: Assets/Scenes/BossScene.unity
+    path: Assets/Mitsuha/BossScene.unity
     guid: 4c882cad2bffdbf429e659c4087fcb51
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
