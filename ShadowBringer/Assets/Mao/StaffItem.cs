@@ -3,7 +3,13 @@ using UnityEngine;
 public class StaffItem : MonoBehaviour
 {
     GameObject player;
-    
+
+   
+
+    void Update()
+    {
+        
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -24,6 +30,13 @@ public class StaffItem : MonoBehaviour
             
         }
     }
+    void GetItem()
+    {
+        Debug.Log("アイテムをゲットした!");
+        Destroy(gameObject); // アイテム消す
+    }
+
+
     
-    
+
 }
