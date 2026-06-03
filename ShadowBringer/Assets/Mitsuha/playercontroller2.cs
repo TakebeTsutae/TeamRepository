@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController2 : MonoBehaviour
 {
     // 移動速度
-    public float moveSpeed = 7f;
+    public float moveSpeed = 5f;
 
     // ジャンプ力
     Rigidbody2D rigid2D;
-    float jumpForce = 300f;
+    float jumpForce = 350f;
 
     // 入力値
     private float moveInput;
@@ -39,13 +39,13 @@ public class PlayerController : MonoBehaviour
         {
             moveInput = -1f;
             isFacingRight = false;
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-0.3f, 0.3f, 1);
         }
         else if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
         {
             moveInput = 1f;
             isFacingRight = true;
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(0.3f, 0.3f, 1);
         }
         else
         {

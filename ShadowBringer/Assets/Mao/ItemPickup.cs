@@ -6,6 +6,9 @@ public class Item : MonoBehaviour
 
     //追加↓
     private bool isPlayerNear = false;
+    // インスペクターで、プレイヤーと武器のオブジェクトを登録する
+//  public PlayerAttack player;
+//  public Equipment weapoonOnGround;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,6 +22,10 @@ public class Item : MonoBehaviour
         // 追加↓
         if(isPlayerNear && Input.GetKeyDown(KeyCode.E))
         {
+            // ここでPlayerAttack のEnquipWaeponを「呼び出している!」
+            // 引数(かっこの中)に、地面にある武器のデータを渡す
+//          player.Equals(weaponOnGroud);
+
             GetItem();
         }
     }
