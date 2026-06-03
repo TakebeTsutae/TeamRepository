@@ -194,7 +194,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::tueController
   bulletPrefab: {fileID: 0}
   firePoint: {fileID: 0}
-  bulletSpeed: 10
+  cooldownTime: 1
+  maxSpeed: 15
+  powerMultiplier: 3
 --- !u!1 &364235494 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3364349390796009511, guid: f85fd6c4518ca924994a8c3e69f3c925, type: 3}
@@ -385,7 +387,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::tueController
   bulletPrefab: {fileID: 0}
   firePoint: {fileID: 0}
-  bulletSpeed: 10
+  cooldownTime: 1
+  maxSpeed: 15
+  powerMultiplier: 3
 --- !u!70 &1007902061
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1289,11 +1293,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8439415603473020957, guid: 8cdc1b954887f814d96a6a2a3aff6fff, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.75
+      value: -0.73
       objectReference: {fileID: 0}
     - target: {fileID: 8439415603473020957, guid: 8cdc1b954887f814d96a6a2a3aff6fff, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.95
+      value: -2.7
       objectReference: {fileID: 0}
     - target: {fileID: 8439415603473020957, guid: 8cdc1b954887f814d96a6a2a3aff6fff, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1444,6 +1448,10 @@ PrefabInstance:
       propertyPath: kennhanntei
       value: 
       objectReference: {fileID: 5462687660474636958, guid: 16a8bbcd0e4fc334da6d73581a46296e, type: 3}
+    - target: {fileID: 9012805826484682625, guid: 421e64fce844fbb4b9d233353066b6c2, type: 3}
+      propertyPath: m_GravityScale
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 9220060815963998398, guid: 421e64fce844fbb4b9d233353066b6c2, type: 3}
       propertyPath: attackPoint
       value: 
@@ -1549,11 +1557,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 12068451871943066, guid: a3bc20d0ce733804480f1563a101f285, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.01
+      value: -4.3
       objectReference: {fileID: 0}
     - target: {fileID: 12068451871943066, guid: a3bc20d0ce733804480f1563a101f285, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.4
+      value: -1.74
       objectReference: {fileID: 0}
     - target: {fileID: 12068451871943066, guid: a3bc20d0ce733804480f1563a101f285, type: 3}
       propertyPath: m_LocalPosition.z
