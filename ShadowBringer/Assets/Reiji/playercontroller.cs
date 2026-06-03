@@ -4,11 +4,11 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     // 移動速度
-    public float moveSpeed = 5f;
+    public float moveSpeed = 7f;
 
     // ジャンプ力
     Rigidbody2D rigid2D;
-    float jumpForce = 400f;
+    float jumpForce = 300f;
 
     // 入力値
     private float moveInput;
