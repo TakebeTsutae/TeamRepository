@@ -5,6 +5,7 @@ public class SwordItem : MonoBehaviour
     GameObject player;
 
     private bool playerInRange = false;
+    private WeaponManager ws;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,6 +19,12 @@ public class SwordItem : MonoBehaviour
        // 範囲内にいてEキーおしたら
        if(playerInRange && Input.GetKeyDown(KeyCode.E))
         {
+            // 追加
+            if(ws != null)
+            {
+                ws.SwitchToSword();
+            }
+
             Debug.Log("剣を拾った!");
 
             // 剣を消す
@@ -25,7 +32,25 @@ public class SwordItem : MonoBehaviour
         }
     }
 
-    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            playerInRange = true;
+
+            // WeaponManagerを取得して保存
+            ws = other.GetComponent<WeaponManager>();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            playerInRange = false;
+            ws = null;
+        }
+    }
 
     // 触れたらアイテムが消える↓
     /*
@@ -50,5 +75,5 @@ public class SwordItem : MonoBehaviour
         }
     }
     */
-   
+
 }
