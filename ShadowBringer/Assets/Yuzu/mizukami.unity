@@ -199,7 +199,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
@@ -504,6 +504,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2798314952289807375, guid: e916771eda0509f449fb2f3e5d0d8bdd, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6137875044373409476, guid: e916771eda0509f449fb2f3e5d0d8bdd, type: 3}
       propertyPath: m_Name
       value: enemy
@@ -620,7 +624,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c48d1c9fc5d52e34e85aea2a7c54cc1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemy
-  moveSpeed: 5
+  _attack: {fileID: 452060731}
+  moveSpeed: 0.01
+  jumpForceX: 2
+  jumpForceY: 5
 --- !u!4 &1413160261 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1725480354337845401, guid: e916771eda0509f449fb2f3e5d0d8bdd, type: 3}
