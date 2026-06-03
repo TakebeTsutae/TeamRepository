@@ -3,15 +3,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-
     // 移動速度
     public float moveSpeed = 5f;
 
     // ジャンプ力
     Rigidbody2D rigid2D;
-    float jumpForce = 300f;
-
-    // Rigidbody2D
+    float jumpForce = 400f;
 
     // 入力値
     private float moveInput;
@@ -19,6 +16,15 @@ public class PlayerController : MonoBehaviour
 
     // 地面にいるか
     private bool isGrounded;
+
+    [Header("Jump Settings")]
+    // --- 追加: コヨーテタイムの設定 (秒) ---
+    [SerializeField] private float coyoteTime = 0.2f;
+    private float coyoteCounter;
+
+    // --- 追加: クールタイムの設定 (秒) ---
+    [SerializeField] private float jumpCooldown = 0.5f;
+    private float jumpCooldownCounter;
 
     void Start()
     {
@@ -33,30 +39,52 @@ public class PlayerController : MonoBehaviour
         {
             moveInput = -1f;
             isFacingRight = false;
-            transform.localScale=new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-1, 1, 1);
         }
         else if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
         {
             moveInput = 1f;
-            isFacingRight=true;
+            isFacingRight = true;
             transform.localScale = new Vector3(1, 1, 1);
         }
         else
         {
             moveInput = 0f;
         }
-      // space
-        if(Keyboard.current.spaceKey.wasPressedThisFrame &&
-                this.rigid2D.linearVelocityY == 0)
+
+        // --- タイマーの更新処理 ---
+        // 1. コヨーテタイムの計算
+        if (isGrounded)
+        {
+            coyoteCounter = coyoteTime; // 地面にいる間は常に満タン(0.2秒)
+        }
+        else
+        {
+            coyoteCounter -= Time.deltaTime; // 地面から離れたらカウントダウン
+        }
+
+        // 2. クールタイムの計算
+        if (jumpCooldownCounter > 0)
+        {
+            jumpCooldownCounter -= Time.deltaTime; // クールタイムを減らす
+        }
+
+        // --- ジャンプ処理 ---
+        // 条件：スペースが押された ＆ コヨーテタイム内 ＆ クールタイムが終わっている
+        if (Keyboard.current.spaceKey.wasPressedThisFrame && coyoteCounter > 0f && jumpCooldownCounter <= 0f)
         {
             this.rigid2D.AddForce(transform.up * this.jumpForce);
+
+            // ジャンプ成功時の処理
+            coyoteCounter = 0f; // 空中での連続ジャンプを防ぐため、猶予をゼロにする
+            jumpCooldownCounter = jumpCooldown; // クールタイム(0.5秒)をセット
         }
     }
 
     void FixedUpdate()
     {
         // 左右移動
-       rigid2D.linearVelocity = new Vector2(moveInput * moveSpeed, rigid2D.linearVelocity.y);
+        rigid2D.linearVelocity = new Vector2(moveInput * moveSpeed, rigid2D.linearVelocity.y);
     }
 
     // 地面に触れた
