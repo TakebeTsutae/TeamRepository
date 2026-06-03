@@ -1,22 +1,16 @@
 using UnityEngine;
 
-public class StaffItem : MonoBehaviour
+public class StaffItem1 : MonoBehaviour
 {
     GameObject player;
-
-   
-
-    void Update()
-    {
-        
-    }
+    
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("Player"))
         {
             // Playerのスクリプトを所得
-            WeaponManager ws = other.GetComponent<WeaponManager>();
+            WeaponManager1 ws = other.GetComponent<WeaponManager1>();
 
             if (ws != null)
             {
@@ -30,13 +24,6 @@ public class StaffItem : MonoBehaviour
             
         }
     }
-    void GetItem()
-    {
-        Debug.Log("アイテムをゲットした!");
-        Destroy(gameObject); // アイテム消す
-    }
-
-
     
-
+    
 }

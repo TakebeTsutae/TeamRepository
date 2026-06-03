@@ -1,11 +1,8 @@
 using UnityEngine;
 
-public class SwordItem : MonoBehaviour
+public class SwordItem1 : MonoBehaviour
 {
     GameObject player;
-
-    private bool playerInRange = false;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,25 +12,14 @@ public class SwordItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // 範囲内にいてEキーおしたら
-       if(playerInRange && Input.GetKeyDown(KeyCode.E))
-        {
-            Debug.Log("剣を拾った!");
-
-            // 剣を消す
-            Destroy(gameObject);
-        }
+        
     }
 
-    
-
-    // 触れたらアイテムが消える↓
-    /*
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("Player"))
         {
-            WeaponManager ws = other.GetComponent<WeaponManager>();
+            WeaponManager1 ws = other.GetComponent<WeaponManager1>();
 
             if(ws != null )
             {
@@ -49,6 +35,6 @@ public class SwordItem : MonoBehaviour
 
         }
     }
-    */
-   
+    
+    
 }
