@@ -27,6 +27,10 @@ public class WeaponManager : MonoBehaviour
         staff.SetActive(false);
     }
     
+    public void ItemAttack() // 装備を装着
+    {
+
+    }
 
     // Update is called once per frame
     void Update()
