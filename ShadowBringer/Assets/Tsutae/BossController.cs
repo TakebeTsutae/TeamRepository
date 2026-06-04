@@ -12,11 +12,18 @@ public class BossController : MonoBehaviour
     int _attackNum = 0;
 
     // 通常攻撃
-    GameObject _nomalAttack;
+    public GameObject nomalAttackPre;
+    GameObject _boss;
+    // 判定を表示している時間
+    float _desTime = 0.1f;
 
     // 突進のための変数
     public float _moveSpeed = 2.0f;
     public float _moveRange = 3.0f;
+    // Bossのポジション
+    private Vector3 _bossPos;
+    // nomalAttackPreを発生させる場所の距離
+    float _bossDel = 1.0f;
     private Vector3 _startPos;
     private int derection = 1;
 
@@ -25,10 +32,9 @@ public class BossController : MonoBehaviour
     {
         // PlayerオブジェクトからPlayerControllerスクリプトを取得
         //playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        _boss = GameObject.Find("Boss");
 
-        _nomalAttack = GameObject.Find("NomalAttack");
-        _nomalAttack.SetActive(false);
-        
+
         _startPos = transform.position;
 
         Debug.Log(bossHp);
@@ -36,13 +42,29 @@ public class BossController : MonoBehaviour
 
     private void Update()
     {
+        // 通常攻撃
+        if (_attackNum == 0)
+        {
+            // _nomalAttackを出現させる位置
+            _bossPos = new Vector3(_boss.transform.position.x + _bossDel, _boss.transform.position.y, 0);
+            GameObject nomalAttack = Instantiate(nomalAttackPre, _bossPos, Quaternion.identity);
+            // _nomalAttackPreを_desTime後に消す
+            Destroy(nomalAttack, _desTime);
+            _attackNum++;
+        }
+
+        /*
         if (Input.GetKeyDown(KeyCode.Space))
         {
             OnNomalAttack();
         }
+        */
     }
 
+
+
     // 通常攻撃
+    /*
     public void OnNomalAttack()
     {
         if(_nomalAttack != null)
@@ -52,6 +74,7 @@ public class BossController : MonoBehaviour
             _nomalAttack.SetActive(!isActive);
         }
     }
+    */
 
     // Update is called once per frame
     void FixedUpdate()
@@ -63,7 +86,7 @@ public class BossController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             // _bossHpからtotalAttackを減らす
             //_bossHp -= playerController.totalAttack;
