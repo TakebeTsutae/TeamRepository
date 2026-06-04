@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3611ab40521ba16498697c3a6b41b813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagicBullet
-  explosionPrefab: {fileID: 0}
+  explosionPrefab: {fileID: 7969285379404461186, guid: a3bc20d0ce733804480f1563a101f285, type: 3}
   lifeTime: 0.2
 --- !u!50 &-2625745756829402637
 Rigidbody2D:
