@@ -12,7 +12,7 @@ public class BossController : MonoBehaviour
     int _attackNum = 0;
 
     // 通常攻撃
-    public GameObject nomalAttackPre;
+    public GameObject nomalAttackPre;   // プレハブを入れる
     GameObject _boss;
     // 判定を表示している時間
     float _desTime = 0.1f;
@@ -47,7 +47,10 @@ public class BossController : MonoBehaviour
         {
             // _nomalAttackを出現させる位置
             _bossPos = new Vector3(_boss.transform.position.x + _bossDel, _boss.transform.position.y, 0);
+           
+            // nomalAttackPreを_bossPosの位置に無回転で出現
             GameObject nomalAttack = Instantiate(nomalAttackPre, _bossPos, Quaternion.identity);
+
             // _nomalAttackPreを_desTime後に消す
             Destroy(nomalAttack, _desTime);
             _attackNum++;
