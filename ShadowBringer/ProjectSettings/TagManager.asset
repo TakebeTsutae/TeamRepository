@@ -8,6 +8,7 @@ TagManager:
   - jumpdai
   - Ground
   - enemy
+  - _enemyFoot
   layers:
   - Default
   - TransparentFX
