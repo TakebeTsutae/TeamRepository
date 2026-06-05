@@ -3,77 +3,33 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-
-    // ç§»å‹•é€Ÿåº¦
-    public float moveSpeed = 5f;
-
-    // ã‚¸ãƒ£ãƒ³ãƒ—åŠ›
-    Rigidbody2D rigid2D;
-    float jumpForce = 300f;
-
-    // Rigidbody2D
-
-    // å…¥åŠ›å€¤
-    private float moveInput;
-    public bool isFacingRight = true;
-
-    // åœ°é¢ã«ã„ã‚‹ã‹
-    private bool isGrounded;
-
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Application.targetFrameRate = 60;
-        rigid2D = GetComponent<Rigidbody2D>();
+        
     }
 
+    public float speed = 5.0f;
+
+    // Update is called once per frame
     void Update()
     {
-        // A,Dã‚­ãƒ¼ / â†â†’ã‚­ãƒ¼
-        if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
-        {
-            moveInput = -1f;
-            isFacingRight = false;
-            transform.localScale=new Vector3(-1, 1, 1);
-        }
-        else if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
+        float moveInput = 0f;
+
+        // DƒL[‚ª‰Ÿ‚³‚ê‚½‚Æ‚«‰E‚ÉˆÚ“®
+        if(Input.GetKey(KeyCode.D))
         {
             moveInput = 1f;
-            isFacingRight=true;
-            transform.localScale = new Vector3(1, 1, 1);
         }
-        else
+        // AƒL[‚ª‰Ÿ‚³‚ê‚½‚Æ‚«¶‚ÉˆÚ“®
+        else if(Input.GetKey(KeyCode.D))
         {
-            moveInput = 0f;
-        }
-      // space
-        if(Keyboard.current.spaceKey.wasPressedThisFrame &&
-                this.rigid2D.linearVelocityY == 0)
-        {
-            this.rigid2D.AddForce(transform.up * this.jumpForce);
-        }
-    }
+            moveInput = -1f;
 
-    void FixedUpdate()
-    {
-        // å·¦å³ç§»å‹•
-       rigid2D.linearVelocity = new Vector2(moveInput * moveSpeed, rigid2D.linearVelocity.y);
-    }
-
-    // åœ°é¢ã«è§¦ã‚ŒãŸ
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
         }
-    }
 
-    // åœ°é¢ã‹ã‚‰é›¢ã‚ŒãŸ
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = false;
-        }
+        // ¶‰E‚ÌˆÚ“®—Ê‚ğŒvZ‚µ‚ÄˆÚ“®
+        Vector3 moveDistance = new Vector3(moveInput, 0, 0) * speed * Time.deltaTime;
+        transform.Translate(moveDistance);
     }
 }
