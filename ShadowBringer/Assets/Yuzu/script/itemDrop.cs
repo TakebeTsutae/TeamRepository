@@ -4,10 +4,14 @@ using UnityEngine;
 public class itemDrop : MonoBehaviour
 {
     public GameObject itemPrefab;
+    private int enemyHp;
+    void Start()
+    {
+        //enemy _enemy = GetComponent<enemy>;
+    }
     void Update()
     {
-        print(enemy._enemyHp);
-        Debug.Log("enemy._enemyHp");
+        
         
     }
     private void OnTriggerEnter2D(Collider2D other)
