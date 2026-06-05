@@ -20,13 +20,13 @@ public class tuecontroller : MonoBehaviour
         {
             cooldownTimer -= Time.deltaTime;
         }
-        if()
-        {
+      
+        
             if (Input.GetMouseButtonDown(0) && cooldownTimer <= 0)
             {
                 ShootMagic();
             }
-        }
+        
         // 左クリックが「押された瞬間」かつ「砂時計が0以下」なら発射
         
     }
