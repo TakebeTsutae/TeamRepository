@@ -23,7 +23,7 @@ public class BossController : MonoBehaviour
     // Bossのポジション
     private Vector3 _bossPos;
     // nomalAttackPreを発生させる場所の距離
-    float _bossDel = 1.0f;
+    float _bossDel = 1.5f;
     private Vector3 _startPos;
     private int derection = 1;
 
