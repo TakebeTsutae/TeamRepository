@@ -51,7 +51,7 @@ public class enemy : MonoBehaviour
             velocity.x = moveSpeed;
             rb.linearVelocity = velocity;
         }
-        print(kabe);
+        
 
         
         
@@ -131,7 +131,7 @@ public class enemy : MonoBehaviour
             if (Mathf.Abs(contact.normal.x) > 0.7f)
             {
                 kabe++;
-                Debug.Log(kabe);
+                
                 _moveSpeed *= -1f;
                 if (moveSpeed != 0f)
                 {
