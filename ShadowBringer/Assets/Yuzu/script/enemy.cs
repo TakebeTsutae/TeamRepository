@@ -17,7 +17,7 @@ public class enemy : MonoBehaviour
     private int kabe = 0;
     private int _countFoot = 0;    // 足がいくつ離れているかのカウント
 
-    private int _enemyHp = 8;
+    public static int _enemyHp = 8;
 
     private Rigidbody2D rb;
     private bool isJumping = false;
@@ -28,6 +28,7 @@ public class enemy : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        _enemyHp = 8;
         kabe = 0;
         _attackLeft.SetActive(false);
         _attackRight.SetActive(false);
