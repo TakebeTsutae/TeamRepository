@@ -427,9 +427,10 @@ GameObject:
   - component: {fileID: 5103812263116453014}
   - component: {fileID: 1243292392265532765}
   - component: {fileID: 1571418328768329871}
+  - component: {fileID: 5275038423919892952}
   m_Layer: 0
-  m_Name: enemy 1
-  m_TagString: Untagged
+  m_Name: enemy1
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -597,7 +598,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6692394789741281334}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c48d1c9fc5d52e34e85aea2a7c54cc1e, type: 3}
   m_Name: 
@@ -610,6 +611,20 @@ MonoBehaviour:
   _moveSpeed: 0
   jumpForceX: 2
   jumpForceY: 5
+  _enemyHp: 8
+--- !u!114 &5275038423919892952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6692394789741281334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a440bf12339d62d4bb06495c6d6a1f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::itemDrop
+  itemPrefab: {fileID: 8190286975052938766, guid: 8228da3e2e4b1e244b785975ebae44cd, type: 3}
 --- !u!1 &8566036807444224699
 GameObject:
   m_ObjectHideFlags: 0

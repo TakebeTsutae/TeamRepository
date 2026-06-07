@@ -4,29 +4,39 @@ using UnityEngine;
 public class itemDrop : MonoBehaviour
 {
     public GameObject itemPrefab;
-    private int enemyHp;
+    private int _enemyHp;
+    private int _count;
+
     void Start()
     {
-        //enemy _enemy = GetComponent<enemy>;
+        _count = 0;
     }
+   
+
     void Update()
     {
-        
-        
+        GameObject obj = GameObject.Find("enemy");
+        enemy enemy = obj.GetComponent<enemy>();
+        _enemyHp = enemy._enemyHp;
+        Debug.Log(_enemyHp);
+
+        if (_enemyHp <= 0 && _count == 0)
+        {
+            _count++;
+            DropItem(); // アイテムを出す
+            this.gameObject.SetActive(false);
+
+
+        }
     }
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
-       
-
+        
+        
         // プレイヤーに触れたら
-        if(other.CompareTag("Player"))
-        {
-
-            DropItem(); // アイテムを出す
-            Destroy(gameObject); // 敵を消す
-
-            Debug.Log("敵を倒した！");
-        }
+        
+        
     }
 
     void DropItem()

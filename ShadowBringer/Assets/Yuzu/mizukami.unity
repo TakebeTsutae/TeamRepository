@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: spawn
       objectReference: {fileID: 0}
+    - target: {fileID: 3548656163119702788, guid: 0c9ad6182f410c64f96d2f742384fb85, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5579476454537175074, guid: 0c9ad6182f410c64f96d2f742384fb85, type: 3}
       propertyPath: m_LocalPosition.x
       value: -53.7
@@ -629,6 +633,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1571418328768329871, guid: 07feb7923f0cf2c4891656c2b58a988e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1571418328768329871, guid: 07feb7923f0cf2c4891656c2b58a988e, type: 3}
       propertyPath: itemPrefab
       value: 
       objectReference: {fileID: 938071854}
@@ -676,20 +684,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5275038423919892952, guid: 07feb7923f0cf2c4891656c2b58a988e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6692394789741281334, guid: 07feb7923f0cf2c4891656c2b58a988e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6137875045112329217}
+      addedObject: {fileID: 6137875045112329223}
   m_SourcePrefab: {fileID: 100100000, guid: 07feb7923f0cf2c4891656c2b58a988e, type: 3}
 --- !u!1 &6137875045112329211 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6692394789741281334, guid: 07feb7923f0cf2c4891656c2b58a988e, type: 3}
   m_PrefabInstance: {fileID: 5488150067319190527}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6137875045112329217
+--- !u!114 &6137875045112329223
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -698,9 +707,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6137875045112329211}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caa7b7fe05d5366409afd585ca45d320, type: 3}
+  m_Script: {fileID: 11500000, guid: a440bf12339d62d4bb06495c6d6a1f42, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyKillOnTouch
+  m_EditorClassIdentifier: Assembly-CSharp::itemDrop
   itemPrefab: {fileID: 938071854}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

@@ -17,7 +17,7 @@ public class enemy : MonoBehaviour
     private int kabe = 0;
     private int _countFoot = 0;    // 足がいくつ離れているかのカウント
 
-    public static int _enemyHp = 8;
+    public int _enemyHp = 8;
 
     private Rigidbody2D rb;
     private bool isJumping = false;
@@ -28,7 +28,11 @@ public class enemy : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _enemyHp = 8;
+        if (this.gameObject.tag == "enemy") 
+        {
+            _enemyHp = 8;
+        }
+        
         kabe = 0;
         _attackLeft.SetActive(false);
         _attackRight.SetActive(false);
@@ -52,8 +56,8 @@ public class enemy : MonoBehaviour
             velocity.x = moveSpeed;
             rb.linearVelocity = velocity;
         }
-        
 
+      
         
         
 
@@ -76,6 +80,7 @@ public class enemy : MonoBehaviour
             moveSpeed = _moveSpeed;
             yield return new WaitForSeconds(3f);
             moveSpeed = 0f;
+            _enemyHp--;
             if (kabe % 2 == 0)
             {
                 _attackLeft.SetActive(true);
@@ -92,6 +97,7 @@ public class enemy : MonoBehaviour
             
             moveSpeed = _moveSpeed;
             yield return new WaitForSeconds(3f);
+            _enemyHp--;
             isJumping = true;
             if (kabe % 2 == 0)
             {
@@ -110,11 +116,11 @@ public class enemy : MonoBehaviour
             
             // _enemyHp = _enemyHp - プレイヤーの攻撃       
             
-            if (_enemyHp <= 0)
+            /*if (_enemyHp <= 0)
             {
                 this.gameObject.SetActive(false);
             }
-
+            */
         }
 
 
@@ -132,7 +138,6 @@ public class enemy : MonoBehaviour
             if (Mathf.Abs(contact.normal.x) > 0.7f)
             {
                 kabe++;
-                
                 _moveSpeed *= -1f;
                 if (moveSpeed != 0f)
                 {
@@ -152,7 +157,7 @@ public class enemy : MonoBehaviour
             if (this.gameObject.tag == "_enemyFoot")
             {
 
-                this.gameObject.SetActive(true);
+                //this.gameObject.SetActive(true);
             }
         }
             
@@ -162,7 +167,7 @@ public class enemy : MonoBehaviour
         _countFoot++;
         if(this.gameObject.tag == "_enemyFoot") 
         {
-            this.gameObject.SetActive(false) ;
+           // this.gameObject.SetActive(false) ;
         }
         kabe++;
         if (kabe % 2 == 0)

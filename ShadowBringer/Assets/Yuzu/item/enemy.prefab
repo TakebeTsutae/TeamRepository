@@ -10,9 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1725480354337845401}
   - component: {fileID: 2798314952289807375}
+  - component: {fileID: -8057547330740569959}
+  - component: {fileID: -8398821817950715886}
   m_Layer: 0
   m_Name: enemy
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,3 +93,37 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &-8057547330740569959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6137875044373409476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c48d1c9fc5d52e34e85aea2a7c54cc1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::enemy
+  _attackLeft: {fileID: 0}
+  _attackRight: {fileID: 0}
+  _footRight: {fileID: 0}
+  _footLeft: {fileID: 0}
+  moveSpeed: -1
+  _moveSpeed: 1
+  jumpForceX: 2
+  jumpForceY: 5
+  _enemyHp: 8
+--- !u!114 &-8398821817950715886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6137875044373409476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a440bf12339d62d4bb06495c6d6a1f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::itemDrop
+  itemPrefab: {fileID: 0}
