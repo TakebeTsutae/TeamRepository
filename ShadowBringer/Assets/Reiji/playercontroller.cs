@@ -29,11 +29,11 @@ public class PlayerController : MonoBehaviour
 
     [Header("Dash Settings")]
     [SerializeField] private float dashForce = 25f;
-        private bool isDashing = false;
+    private bool isDashing = false;
 
     // ダッシュのクールタイム用の箱(関数)
     [SerializeField] private float dashCooldown = 1.0f;  // ダッシュの待ち時間(１秒)
-    private float dashCoodownCounter;                    // 残り時間を数えるタイマー
+    private float dashCooldownCounter;                    // 残り時間を数えるタイマー
 
     // -----------------------------------------------------------------------
     void Start()
@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
             coyoteCounter -= Time.deltaTime; // 地面から離れたらカウントダウン
         }
 
-        // 2. クールタイムの計算
+        // 2. ジャンプのクールタイムの計算
         if (jumpCooldownCounter > 0)
         {
             jumpCooldownCounter -= Time.deltaTime; // クールタイムを減らす
@@ -89,19 +89,22 @@ public class PlayerController : MonoBehaviour
             coyoteCounter = 0f; // 空中での連続ジャンプを防ぐため、猶予をゼロにする
             jumpCooldownCounter = jumpCooldown; // クールタイム(0.5秒)をセット
         }
-        if(Mouse.current.rightButton.wasPressedThisFrame)
+        if (Mouse.current.rightButton.wasPressedThisFrame)
         {
             StartCoroutine(DashRoutine());
         }
 
-        if(dashCoodownCounter>0)
+        // ダッシュのクールタイムの計算
+        if (dashCooldownCounter > 0)
         {
-            dashCooldown -= Time.deltaTime;
+            dashCooldownCounter -= Time.deltaTime; // タイマーが0になるまで毎フレーム減速する
         }
+
     }
 
     // ダッシュ
-    public void OnDash(InputAction.CallbackContext context)
+    /*
+      public void OnDash(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
 
@@ -109,6 +112,7 @@ public class PlayerController : MonoBehaviour
        // Animator.SetTrigger(dashParamHash);
         StartCoroutine(DashRoutine());
     }
+    */
 
     // ダッシュ用コルーチン
     private IEnumerator DashRoutine()
@@ -119,7 +123,7 @@ public class PlayerController : MonoBehaviour
 
         float i = 0;
         float deltaTime = 0;
-        while(deltaTime<0.2f)
+        while (deltaTime < 0.2f)
         {
             if (isFacingRight) rigid2D.MovePosition(rigid2D.position += new Vector2((dashForce - i) * Time.deltaTime, 0));  // 右を向いてるとき
             else rigid2D.MovePosition(rigid2D.position -= new Vector2((dashForce - i) * Time.deltaTime, 0));             // 左を向いてるとき
@@ -135,6 +139,12 @@ public class PlayerController : MonoBehaviour
         if (isDashing) return;
         // 左右移動
         rigid2D.linearVelocity = new Vector2(moveInput * moveSpeed, rigid2D.linearVelocity.y);
+
+        if (Mouse.current.rightButton.wasPressedThisFrame && dashCooldownCounter <= 0f)
+        {
+            dashCooldownCounter = dashCooldown; // タイマーを1秒満タンにセットする
+            StartCoroutine(DashRoutine());
+        }
     }
 
     // 地面に触れた
