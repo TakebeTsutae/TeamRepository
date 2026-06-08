@@ -56,7 +56,7 @@ public class AttackController : MonoBehaviour
             Time.time >= lastAttackTime + attackCooldown;
 
         // J押し中 ＆ 攻撃可能
-        if (Input.GetKeyDown(KeyCode.J) && canAttack)
+        if (Input.GetMouseButtonDown(0) && canAttack)
         {
             Attack();
             // 攻撃した時間を保存
