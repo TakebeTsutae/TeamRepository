@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - enemy
   - _enemyFoot
+  - bounce
   layers:
   - Default
   - TransparentFX
