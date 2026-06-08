@@ -28,10 +28,11 @@ public class enemy : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (this.gameObject.tag == "enemy") 
+        this._enemyHp = 8;
+        /*if (this.gameObject.tag == "enemy") 
         {
             _enemyHp = 8;
-        }
+        }*/
         
         kabe = 0;
         _attackLeft.SetActive(false);
@@ -46,10 +47,11 @@ public class enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
     }
     void FixedUpdate()
     {
-
+        Debug.Log(_enemyHp);
         if (!isJumping)
         {
             velocity = rb.linearVelocity;

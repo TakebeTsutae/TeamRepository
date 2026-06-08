@@ -15,10 +15,10 @@ public class itemDrop : MonoBehaviour
 
     void Update()
     {
-        GameObject obj = GameObject.Find("enemy");
+        GameObject obj = GameObject.FindWithTag("enemy");
         enemy enemy = obj.GetComponent<enemy>();
         _enemyHp = enemy._enemyHp;
-        Debug.Log(_enemyHp);
+        
 
         if (_enemyHp <= 0 && _count == 0)
         {
