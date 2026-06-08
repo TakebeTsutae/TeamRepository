@@ -8,7 +8,7 @@ public class PlayerController2 : MonoBehaviour
 
     // ジャンプ力
     Rigidbody2D rigid2D;
-    float jumpForce = 700f;
+    float jumpForce = 300f;
 
     // 入力値
     private float moveInput;
