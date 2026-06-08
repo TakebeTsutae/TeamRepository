@@ -146,15 +146,15 @@ public class PlayerOtamesi : MonoBehaviour
     }
 
     // アクセサリーによるステータス処理
-    private void Status(string _accessories) 
+    private void Status(string accessories) 
     {
         
-        if(_accessories == "Up") 
+        if(accessories == "Up") 
         {
             
             _attack += 2;
         }
-        else if (_accessories == "Speed")
+        else if (accessories == "Speed")
         {
             Debug.Log("hai");
             _accessoriesMoveSpeed += 0.2f;
@@ -166,16 +166,16 @@ public class PlayerOtamesi : MonoBehaviour
         _Gettag = false;
         if (_arrayElement >= 3)
         {
-            _firstItem = _accessories;
-            if (_accessories == "Up")
+            _firstItem = _accessories[0];
+            if (_firstItem == "Up")
             {
 
-                _attack += 2;
+                _attack -= 2;
             }
-            else if (_accessories == "Speed")
+            else if (_firstItem == "Speed")
             {
                 Debug.Log("hai");
-                _accessoriesMoveSpeed += 0.2f;
+                _accessoriesMoveSpeed -= 0.2f;
             }
             else
             {
