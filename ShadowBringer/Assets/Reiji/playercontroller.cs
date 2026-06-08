@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,7 +9,7 @@ public class PlayerController : MonoBehaviour
 
     // ジャンプ力
     Rigidbody2D rigid2D;
-    float jumpForce = 300f;
+    float jumpForce = 370f;
 
     // 入力値
     private float moveInput;
@@ -26,6 +27,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpCooldown = 0.5f;
     private float jumpCooldownCounter;
 
+    [Header("Dash Settings")]
+    [SerializeField] private float dashForce = 25f;
+        private bool isDashing = false;
+
+    // ダッシュのクールタイム用の箱(関数)
+    [SerializeField] private float dashCooldown = 1.0f;  // ダッシュの待ち時間(１秒)
+    private float dashCoodownCounter;                    // 残り時間を数えるタイマー
+
+    // -----------------------------------------------------------------------
     void Start()
     {
         Application.targetFrameRate = 60;
@@ -79,10 +89,50 @@ public class PlayerController : MonoBehaviour
             coyoteCounter = 0f; // 空中での連続ジャンプを防ぐため、猶予をゼロにする
             jumpCooldownCounter = jumpCooldown; // クールタイム(0.5秒)をセット
         }
+        if(Mouse.current.rightButton.wasPressedThisFrame)
+        {
+            StartCoroutine(DashRoutine());
+        }
+
+        if(dashCoodownCounter>0)
+        {
+            dashCooldown -= Time.deltaTime;
+        }
+    }
+
+    // ダッシュ
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+
+        // ↓ダッシュのアニメーションを追加するためのコード
+       // Animator.SetTrigger(dashParamHash);
+        StartCoroutine(DashRoutine());
+    }
+
+    // ダッシュ用コルーチン
+    private IEnumerator DashRoutine()
+    {
+        isDashing = true;
+
+        rigid2D.linearVelocity = new Vector2(0, rigid2D.linearVelocity.y);
+
+        float i = 0;
+        float deltaTime = 0;
+        while(deltaTime<0.2f)
+        {
+            if (isFacingRight) rigid2D.MovePosition(rigid2D.position += new Vector2((dashForce - i) * Time.deltaTime, 0));  // 右を向いてるとき
+            else rigid2D.MovePosition(rigid2D.position -= new Vector2((dashForce - i) * Time.deltaTime, 0));             // 左を向いてるとき
+            i += Time.deltaTime * 20f;
+            deltaTime += Time.deltaTime;
+            yield return null;
+        }
+        isDashing = false;
     }
 
     void FixedUpdate()
     {
+        if (isDashing) return;
         // 左右移動
         rigid2D.linearVelocity = new Vector2(moveInput * moveSpeed, rigid2D.linearVelocity.y);
     }
