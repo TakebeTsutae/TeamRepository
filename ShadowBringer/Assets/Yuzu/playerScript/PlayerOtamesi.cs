@@ -64,12 +64,24 @@ public class PlayerOtamesi : MonoBehaviour
         GameObject obj = GameObject.Find("Item");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
         ItemPickup accessories = obj.GetComponent<ItemPickup>();  // タグ取得しているスクリプトを取得する
         _arrayElement = accessories._getAccessoriesCount;
-        _accessories[_arrayElement] = accessories._item;   // タグの取得をする
-        Debug.Log(_accessories[_arrayElement]);
+        /*if(_arrayElement > 0) 
+        {
+            _accessories[_arrayElement - 1] = accessories._item;   // タグの取得をする
+        }
+        
+        
         if(_Gettag == true) 
         {
-            Status(_accessories[_arrayElement]);
-        }
+            
+            Status(_accessories[_arrayElement-1]);
+            if(_arrayElement >= 3)
+            {
+                List(_accessories[0]);
+            }
+            _Gettag = false;
+
+        }*/
+        
         
         
 
@@ -163,16 +175,20 @@ public class PlayerOtamesi : MonoBehaviour
         {
             return;
         }
-        _Gettag = false;
-        if (_arrayElement >= 3)
-        {
-            _firstItem = _accessories[0];
-            if (_firstItem == "Up")
+        
+        
+
+    }
+    private void List(string accessories) 
+    {
+        
+            
+            if (accessories == "Up")
             {
 
                 _attack -= 2;
             }
-            else if (_firstItem == "Speed")
+            else if (accessories == "Speed")
             {
                 Debug.Log("hai");
                 _accessoriesMoveSpeed -= 0.2f;
@@ -181,7 +197,10 @@ public class PlayerOtamesi : MonoBehaviour
             {
                 return;
             }
-        }
+            print("貫通してる？");
+            _accessories[0] = _accessories[1];
+            _accessories[1] = _accessories[2];
+            _arrayElement = 2;
 
     }
 }
