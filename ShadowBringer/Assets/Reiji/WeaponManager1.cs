@@ -6,13 +6,14 @@ public class WeaponManager1 : MonoBehaviour
     public GameObject sword;
     public GameObject staff;
 
-    
+    int playerAttack = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         sword.SetActive(true); // 剣を表示
         staff.SetActive(false); // 杖は非表示
+        playerAttack = 3;
     }
 
     public void SwitchToStaff() //杖を拾ったら杖になる

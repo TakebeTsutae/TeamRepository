@@ -14,6 +14,9 @@ public class WeaponManager : MonoBehaviour
     public Sprite swordSprite;
     public Sprite staffSprite;
 
+    // プレイヤーの攻撃力を設定しました by零士
+    int playerAttack = 0;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,7 +25,9 @@ public class WeaponManager : MonoBehaviour
 
         // 最初は剣アイコン
         weaponSlot.sprite = swordSprite;
-        
+
+        // プレイヤーの攻撃力を3にする by零士
+        playerAttack = 3;
     }
 
     public void SwitchToStaff() //杖を拾ったら杖になる
