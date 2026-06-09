@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Mitsuha/TitleScene.unity
+    guid: ee51ac360cafa654697cc2f76618c31e
+  - enabled: 1
     path: Assets/Mitsuha/Hirayama1.unity
     guid: 58c2e16bfd9d4074dbc8206908e1d1ad
   - enabled: 1
@@ -14,7 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Main/Main.unity
     guid: b8c3216fe0192af4abd37d5660bf689b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Main/BossMainScene.unity
     guid: adea26f3175e85242a5eaf10f577f2e9
   m_configObjects:
