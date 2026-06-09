@@ -116,13 +116,7 @@ public class enemy : MonoBehaviour
 
             isJumping = false;
             
-            // _enemyHp = _enemyHp - プレイヤーの攻撃       
             
-            /*if (_enemyHp <= 0)
-            {
-                this.gameObject.SetActive(false);
-            }
-            */
         }
 
 
@@ -151,17 +145,41 @@ public class enemy : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        _countFoot--;
-        
-        if (_countFoot <= 0) 
+        if (other.CompareTag("kenAttack")) 
         {
-            _countFoot = 0;
-            if (this.gameObject.tag == "_enemyFoot")
-            {
+            _enemyHp = _enemyHp - 3;
 
-                //this.gameObject.SetActive(true);
+            if (_enemyHp <= 0)
+            {
+                this.gameObject.SetActive(false);
             }
         }
+        if (other.CompareTag("tueAttack"))
+        {
+            _enemyHp = _enemyHp - 2;
+            // トータルアタック　＝ 剣の攻撃力　+杖の攻撃力　+アクセサリーのバフ
+            // 
+
+            if (_enemyHp <= 0)
+            {
+                this.gameObject.SetActive(false);
+            }
+        }
+        if (other.CompareTag("Ground"))
+        {
+            _countFoot--;
+
+            if (_countFoot <= 0)
+            {
+                _countFoot = 0;
+                if (this.gameObject.tag == "_enemyFoot")
+                {
+
+                    //this.gameObject.SetActive(true);
+                }
+            }
+        }
+        
             
     }
     private void OnTriggerExit2D(Collider2D other) // Exit -> 離れた瞬間

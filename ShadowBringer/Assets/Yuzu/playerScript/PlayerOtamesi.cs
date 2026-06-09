@@ -64,7 +64,8 @@ public class PlayerOtamesi : MonoBehaviour
         GameObject obj = GameObject.Find("Item");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
         ItemPickup accessories = obj.GetComponent<ItemPickup>();  // タグ取得しているスクリプトを取得する
         _arrayElement = accessories._getAccessoriesCount;
-        /*if(_arrayElement > 0) 
+        Debug.Log(_arrayElement);
+        if(_arrayElement > 0) 
         {
             _accessories[_arrayElement - 1] = accessories._item;   // タグの取得をする
         }
@@ -80,7 +81,7 @@ public class PlayerOtamesi : MonoBehaviour
             }
             _Gettag = false;
 
-        }*/
+        }
         
         
         
@@ -201,6 +202,8 @@ public class PlayerOtamesi : MonoBehaviour
             _accessories[0] = _accessories[1];
             _accessories[1] = _accessories[2];
             _arrayElement = 2;
+        Debug.Log(_arrayElement);
+        
 
     }
 }
