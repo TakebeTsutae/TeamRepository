@@ -6,7 +6,7 @@ public class BossController : MonoBehaviour
     //PlayerController playerController;    // 取得したスクリプトを入れる変数
 
     // ボスの体力
-    int bossHp = 500;
+    int _bossHp = 500;
 
     // 攻撃パターンの管理番号
     int _attackNum = 0;
@@ -20,7 +20,7 @@ public class BossController : MonoBehaviour
     Rigidbody2D _rb2D;
     Vector3 _velocity; // PlayerとBossの距離
     GameObject _player;
-    Vector3 _playerPos;
+    Vector3 _playerPos; // Playerのポジション
 
    
 
@@ -171,10 +171,14 @@ public class BossController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "tueAttack")
         {
-            // _bossHpからtotalAttackを減らす
-            //_bossHp -= playerController.totalAttack;
+            // _bossHpから2(totalAttack)を減らす
+            _bossHp -= 2;
+        }
+        if(collision.gameObject.tag == "kenAttack")
+        {
+            _bossHp -= 3;
         }
     }
 }
