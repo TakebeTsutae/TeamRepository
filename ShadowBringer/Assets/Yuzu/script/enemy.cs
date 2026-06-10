@@ -15,6 +15,7 @@ public class enemy : MonoBehaviour
     public float jumpForceY = 5f;
 
     private int kabe = 0;
+    private int _playerAttack;
     private int _countFoot = 0;    // 足がいくつ離れているかのカウント
 
     public int _enemyHp = 8;
@@ -40,7 +41,9 @@ public class enemy : MonoBehaviour
         _footLeft.SetActive(true);
         _footRight.SetActive(true);
         rb = GetComponent<Rigidbody2D>();
-
+        GameObject obj = GameObject.Find("player");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
+        PlayerOtamesi _playerOtamesi = obj.GetComponent<PlayerOtamesi>();
+        _playerAttack = _playerOtamesi._attack;
         StartCoroutine(Action());
     }
 
@@ -156,8 +159,8 @@ public class enemy : MonoBehaviour
         }
         if (other.CompareTag("tueAttack"))
         {
-            _enemyHp = _enemyHp - 2;
-            // トータルアタック　＝ 剣の攻撃力　+杖の攻撃力　+アクセサリーのバフ
+           // _enemyHp = _enemyHp - ;
+            
             // 
 
             if (_enemyHp <= 0)

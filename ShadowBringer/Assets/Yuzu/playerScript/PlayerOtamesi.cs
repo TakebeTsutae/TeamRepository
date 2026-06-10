@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerOtamesi : MonoBehaviour
 {
     // 攻撃力
-    int _attack = 0;
+    public int _attack = 3;
 
     // 移動速度
     public float moveSpeed = 7f;
@@ -170,7 +170,7 @@ public class PlayerOtamesi : MonoBehaviour
         else if (accessories == "Speed")
         {
             Debug.Log("hai");
-            _accessoriesMoveSpeed += 0.2f;
+            _accessoriesMoveSpeed += 2f;
         }
         else 
         {
@@ -192,7 +192,7 @@ public class PlayerOtamesi : MonoBehaviour
             else if (accessories == "Speed")
             {
                 Debug.Log("hai");
-                _accessoriesMoveSpeed -= 0.2f;
+                _accessoriesMoveSpeed -= 2f;
             }
             else
             {
@@ -201,8 +201,7 @@ public class PlayerOtamesi : MonoBehaviour
             print("貫通してる？");
             _accessories[0] = _accessories[1];
             _accessories[1] = _accessories[2];
-            _arrayElement = 2;
-        Debug.Log(_arrayElement);
+            Debug.Log(_arrayElement);
         
 
     }

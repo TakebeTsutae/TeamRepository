@@ -21,6 +21,10 @@ public class ItemPickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(_getAccessoriesCount == 3) 
+        {
+            _getAccessoriesCount = 2;
+        }
         // アクセサリーの情報
         GameObject obj = GameObject.Find("player");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
         PlayerOtamesi _booltag = obj.GetComponent<PlayerOtamesi>();  // タグ取得しているスクリプトを取得する
