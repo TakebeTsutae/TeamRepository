@@ -4,6 +4,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    private const int kMaxHp= 3;
+
+    //  プレイヤーのHP
+    private int _playerHp = kMaxHp;
+
     // 攻撃力
     public int _attack = 3;
 
@@ -64,13 +69,13 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // アクセサリーの情報
-      //  GameObject obj = GameObject.Find("Item");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
-      //  ItemP accessories = obj.GetComponent<ItemP>();  // タグ取得しているスクリプトを取得する
-      //  _arrayElement = accessories._getAccessoriesCount;
+        GameObject obj = GameObject.Find("Item");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
+        ItemP accessories = obj.GetComponent<ItemP>();  // タグ取得しているスクリプトを取得する
+        _arrayElement = accessories._getAccessoriesCount;
         Debug.Log(_arrayElement);
         if (_arrayElement > 0)
         {
-      //      _accessories[_arrayElement - 1] = accessories._item;   // タグの取得をする
+            _accessories[_arrayElement - 1] = accessories._item;   // タグの取得をする
         }
 
 
@@ -144,6 +149,15 @@ public class PlayerController : MonoBehaviour
         }
 
         if (isDashing) return;
+
+        if(isDead())
+        {
+            _playerHp = kMaxHp;
+            
+        }
+        // Debug.Log(isDead());
+        Debug.Log(_playerHp);
+
     }
 
     // ダッシュ
@@ -198,6 +212,20 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = true;
         }
+        if(collision.gameObject.CompareTag("hari"))
+        {
+            isGrounded = true;
+            _playerHp -= 1;
+        }
+        if(collision.gameObject.CompareTag("enemy"))
+        {
+            _playerHp -= 1;
+        }
+        if(collision.gameObject.CompareTag("enemyAttack"))
+        {  
+            _playerHp -= 1;
+        }
+
     }
 
     // 地面から離れた
@@ -255,5 +283,14 @@ public class PlayerController : MonoBehaviour
       
 
 
+    }
+
+    public int GetHP()
+    {
+        return _playerHp;
+    }
+    public bool isDead()
+    {
+        return _playerHp <= 0;
     }
 }
