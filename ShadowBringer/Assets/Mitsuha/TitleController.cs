@@ -2,8 +2,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class TitleController : MonoBehaviour
 {
-   public void OnStarButton()
+    [SerializeField] private string nextSceneName = "Hirayama1";
+
+    public void OnStarButton()
     {
-        SceneManager.LoadScene("Hirayama1");
+        SceneManager.LoadScene(nextSceneName);
     }
 }
