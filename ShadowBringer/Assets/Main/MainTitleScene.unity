@@ -717,6 +717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a636e7ba086ec1f458b2482701f94b39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TitleController
+  nextSceneName: Main
 --- !u!4 &1326671099
 Transform:
   m_ObjectHideFlags: 0
