@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -205,4 +205,4 @@ public class PlayerOtamesi : MonoBehaviour
         
 
     }
-}
+}*/

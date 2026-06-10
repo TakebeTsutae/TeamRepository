@@ -4,8 +4,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    // 攻撃力
+    public int _attack = 3;
+
     // 移動速度
     public float moveSpeed = 7f;
+
+    // アクセサリーによる追加移動速度
+    private float _accessoriesMoveSpeed;
 
     // ジャンプ力
     Rigidbody2D rigid2D;
@@ -17,6 +23,18 @@ public class PlayerController : MonoBehaviour
 
     // 地面にいるか
     private bool isGrounded;
+
+    // リスト要素
+    private int _arrayElement;
+
+    // リスト1番目の情報取得用変数
+    private string _firstItem;
+
+    // タグの取得変数
+    private string[] _accessories = new string[3];
+
+    // tagを取得したか(ItemPickupにてtrueとfalseをいじる)
+    public bool _Gettag = false;
 
     [Header("Jump Settings")]
     // --- 追加: コヨーテタイムの設定 (秒) ---
@@ -38,22 +56,46 @@ public class PlayerController : MonoBehaviour
     // -----------------------------------------------------------------------
     void Start()
     {
+        _accessoriesMoveSpeed = 0f;
         Application.targetFrameRate = 60;
         rigid2D = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
+        // アクセサリーの情報
+        GameObject obj = GameObject.Find("Item");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
+        ItemP accessories = obj.GetComponent<ItemP>();  // タグ取得しているスクリプトを取得する
+        _arrayElement = accessories._getAccessoriesCount;
+        Debug.Log(_arrayElement);
+        if (_arrayElement > 0)
+        {
+            _accessories[_arrayElement - 1] = accessories._item;   // タグの取得をする
+        }
+
+
+        if (_Gettag == true)
+        {
+
+            Status(_accessories[_arrayElement - 1]);
+            if (_arrayElement >= 3)
+            {
+                List(_accessories[0]);
+            }
+            _Gettag = false;
+
+        }
+
         // A,Dキー / ←→キー
         if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
         {
-            moveInput = -1f;
+            moveInput = -1f-_accessoriesMoveSpeed;
             isFacingRight = false;
             transform.localScale = new Vector3(-1, 1, 1);
         }
         else if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
         {
-            moveInput = 1f;
+            moveInput = 1f+ _accessoriesMoveSpeed;
             isFacingRight = true;
             transform.localScale = new Vector3(1, 1, 1);
         }
@@ -89,8 +131,9 @@ public class PlayerController : MonoBehaviour
             coyoteCounter = 0f; // 空中での連続ジャンプを防ぐため、猶予をゼロにする
             jumpCooldownCounter = jumpCooldown; // クールタイム(0.5秒)をセット
         }
-        if (Mouse.current.rightButton.wasPressedThisFrame)
+        if (Mouse.current.rightButton.wasPressedThisFrame&&dashCooldownCounter<=0f)
         {
+            dashCooldownCounter = dashCooldown;
             StartCoroutine(DashRoutine());
         }
 
@@ -100,6 +143,7 @@ public class PlayerController : MonoBehaviour
             dashCooldownCounter -= Time.deltaTime; // タイマーが0になるまで毎フレーム減速する
         }
 
+        if (isDashing) return;
     }
 
     // ダッシュ
@@ -163,5 +207,53 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+    // アクセサリーによるステータス処理
+    private void Status(string accessories)// アイテムをゲットした
+    {
+
+        if (accessories == "Up")
+        {
+
+            _attack += 2;
+        }
+        else if (accessories == "Speed")
+        {
+            
+            _accessoriesMoveSpeed += 1.2f;
+        }
+        else
+        {
+            return;
+        }
+
+
+
+    }
+    private void List(string accessories)　// アイテムを失い効果が消える
+    {
+
+
+        if (accessories == "Up")
+        {
+
+            _attack -= 2;
+        }
+        else if (accessories == "Speed")
+        {
+  
+            _accessoriesMoveSpeed -= 1.2f;
+        }
+        else
+        {
+            return;
+        }
+  
+        _accessories[0] = _accessories[1];
+        _accessories[1] = _accessories[2];
+      
+
+
     }
 }

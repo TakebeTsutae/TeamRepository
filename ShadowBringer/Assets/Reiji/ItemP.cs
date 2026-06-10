@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ItemPickup : MonoBehaviour
+public class ItemP : MonoBehaviour
 {
     GameObject player;
     public string _item;
@@ -27,7 +27,7 @@ public class ItemPickup : MonoBehaviour
         }
         // アクセサリーの情報
         GameObject obj = GameObject.Find("player");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
-        PlayerOtamesi _booltag = obj.GetComponent<PlayerOtamesi>();  // タグ取得しているスクリプトを取得する
+        PlayerController _booltag = obj.GetComponent<PlayerController>();  // タグ取得しているスクリプトを取得する
         if (Input.GetKeyDown(KeyCode.E)) 
         {
             _item = "Up";
