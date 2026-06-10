@@ -1,8 +1,9 @@
-using System.Collections;
+/*using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+
+public class PlayerOtamesi : MonoBehaviour
 {
     // 攻撃力
     public int _attack = 3;
@@ -13,16 +14,10 @@ public class PlayerController : MonoBehaviour
     // アクセサリーによる追加移動速度
     private float _accessoriesMoveSpeed;
 
+
     // ジャンプ力
     Rigidbody2D rigid2D;
-    float jumpForce = 370f;
-
-    // 入力値
-    private float moveInput;
-    public bool isFacingRight = true;
-
-    // 地面にいるか
-    private bool isGrounded;
+    float jumpForce = 300f;
 
     // リスト要素
     private int _arrayElement;
@@ -33,8 +28,19 @@ public class PlayerController : MonoBehaviour
     // タグの取得変数
     private string[] _accessories = new string[3];
 
+    // 入力値
+    private float moveInput;
+    public bool isFacingRight = true;
+
+    // 地面にいるか
+    private bool isGrounded;
+
     // tagを取得したか(ItemPickupにてtrueとfalseをいじる)
     public bool _Gettag = false;
+
+
+
+    
 
     [Header("Jump Settings")]
     // --- 追加: コヨーテタイムの設定 (秒) ---
@@ -45,15 +51,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpCooldown = 0.5f;
     private float jumpCooldownCounter;
 
-    [Header("Dash Settings")]
-    [SerializeField] private float dashForce = 25f;
-    private bool isDashing = false;
-
-    // ダッシュのクールタイム用の箱(関数)
-    [SerializeField] private float dashCooldown = 1.0f;  // ダッシュの待ち時間(１秒)
-    private float dashCooldownCounter;                    // 残り時間を数えるタイマー
-
-    // -----------------------------------------------------------------------
     void Start()
     {
         _accessoriesMoveSpeed = 0f;
@@ -65,31 +62,35 @@ public class PlayerController : MonoBehaviour
     {
         // アクセサリーの情報
         GameObject obj = GameObject.Find("Item");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
-        ItemP accessories = obj.GetComponent<ItemP>();  // タグ取得しているスクリプトを取得する
+        ItemPickup accessories = obj.GetComponent<ItemPickup>();  // タグ取得しているスクリプトを取得する
         _arrayElement = accessories._getAccessoriesCount;
         Debug.Log(_arrayElement);
-        if (_arrayElement > 0)
+        if(_arrayElement > 0) 
         {
             _accessories[_arrayElement - 1] = accessories._item;   // タグの取得をする
         }
-
-
-        if (_Gettag == true)
+        
+        
+        if(_Gettag == true) 
         {
-
-            Status(_accessories[_arrayElement - 1]);
-            if (_arrayElement >= 3)
+            
+            Status(_accessories[_arrayElement-1]);
+            if(_arrayElement >= 3)
             {
                 List(_accessories[0]);
             }
             _Gettag = false;
 
         }
+        
+        
+        
+
 
         // A,Dキー / ←→キー
         if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
         {
-            moveInput = -1f-_accessoriesMoveSpeed;
+            moveInput = -1f- _accessoriesMoveSpeed;
             isFacingRight = false;
             transform.localScale = new Vector3(-1, 1, 1);
         }
@@ -115,7 +116,7 @@ public class PlayerController : MonoBehaviour
             coyoteCounter -= Time.deltaTime; // 地面から離れたらカウントダウン
         }
 
-        // 2. ジャンプのクールタイムの計算
+        // 2. クールタイムの計算
         if (jumpCooldownCounter > 0)
         {
             jumpCooldownCounter -= Time.deltaTime; // クールタイムを減らす
@@ -131,62 +132,12 @@ public class PlayerController : MonoBehaviour
             coyoteCounter = 0f; // 空中での連続ジャンプを防ぐため、猶予をゼロにする
             jumpCooldownCounter = jumpCooldown; // クールタイム(0.5秒)をセット
         }
-        if (Mouse.current.rightButton.wasPressedThisFrame)
-        {
-            StartCoroutine(DashRoutine());
-        }
-
-        // ダッシュのクールタイムの計算
-        if (dashCooldownCounter > 0)
-        {
-            dashCooldownCounter -= Time.deltaTime; // タイマーが0になるまで毎フレーム減速する
-        }
-
-    }
-
-    // ダッシュ
-    /*
-      public void OnDash(InputAction.CallbackContext context)
-    {
-        if (!context.performed) return;
-
-        // ↓ダッシュのアニメーションを追加するためのコード
-       // Animator.SetTrigger(dashParamHash);
-        StartCoroutine(DashRoutine());
-    }
-    */
-
-    // ダッシュ用コルーチン
-    private IEnumerator DashRoutine()
-    {
-        isDashing = true;
-
-        rigid2D.linearVelocity = new Vector2(0, rigid2D.linearVelocity.y);
-
-        float i = 0;
-        float deltaTime = 0;
-        while (deltaTime < 0.2f)
-        {
-            if (isFacingRight) rigid2D.MovePosition(rigid2D.position += new Vector2((dashForce - i) * Time.deltaTime, 0));  // 右を向いてるとき
-            else rigid2D.MovePosition(rigid2D.position -= new Vector2((dashForce - i) * Time.deltaTime, 0));             // 左を向いてるとき
-            i += Time.deltaTime * 20f;
-            deltaTime += Time.deltaTime;
-            yield return null;
-        }
-        isDashing = false;
     }
 
     void FixedUpdate()
     {
-        if (isDashing) return;
         // 左右移動
         rigid2D.linearVelocity = new Vector2(moveInput * moveSpeed, rigid2D.linearVelocity.y);
-
-        if (Mouse.current.rightButton.wasPressedThisFrame && dashCooldownCounter <= 0f)
-        {
-            dashCooldownCounter = dashCooldown; // タイマーを1秒満タンにセットする
-            StartCoroutine(DashRoutine());
-        }
     }
 
     // 地面に触れた
@@ -208,50 +159,50 @@ public class PlayerController : MonoBehaviour
     }
 
     // アクセサリーによるステータス処理
-    private void Status(string accessories)// アイテムをゲットした
+    private void Status(string accessories) 
     {
-
-        if (accessories == "Up")
+        
+        if(accessories == "Up") 
         {
-
+            
             _attack += 2;
         }
         else if (accessories == "Speed")
         {
-            
-            _accessoriesMoveSpeed += 1.4f;
+            Debug.Log("hai");
+            _accessoriesMoveSpeed += 2f;
         }
-        else
+        else 
         {
             return;
         }
-
-
+        
+        
 
     }
-    private void List(string accessories)　// アイテムを失い効果が消える
+    private void List(string accessories) 
     {
+        
+            
+            if (accessories == "Up")
+            {
 
-
-        if (accessories == "Up")
-        {
-
-            _attack -= 2;
-        }
-        else if (accessories == "Speed")
-        {
-  
-            _accessoriesMoveSpeed -= 1.4f;
-        }
-        else
-        {
-            return;
-        }
-  
-        _accessories[0] = _accessories[1];
-        _accessories[1] = _accessories[2];
-      
-
+                _attack -= 2;
+            }
+            else if (accessories == "Speed")
+            {
+                Debug.Log("hai");
+                _accessoriesMoveSpeed -= 2f;
+            }
+            else
+            {
+                return;
+            }
+            print("貫通してる？");
+            _accessories[0] = _accessories[1];
+            _accessories[1] = _accessories[2];
+            Debug.Log(_arrayElement);
+        
 
     }
-}
+}*/
