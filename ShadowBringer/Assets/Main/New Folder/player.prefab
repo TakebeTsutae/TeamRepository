@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1093288671617118147}
   - component: {fileID: 826956470462584046}
   - component: {fileID: 2612720927200350443}
-  - component: {fileID: 8014332303623314601}
+  - component: {fileID: 4774039456785569102}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -192,8 +192,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7776948aab786f94d8bc068079c28580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::tueController
-  bulletPrefab: {fileID: 2277781174339061302, guid: 7233429f8ef9bac458bd104fc6104c73, type: 3}
-  firePoint: {fileID: 8108844620102104877}
+  bulletPrefab: {fileID: 0}
+  firePoint: {fileID: 0}
   cooldownTime: 1
   maxSpeed: 15
   powerMultiplier: 3
@@ -234,7 +234,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0.07753518, y: 0}
   m_Size: {x: 0.4949296, y: 0.88}
   m_Direction: 0
---- !u!114 &8014332303623314601
+--- !u!114 &4774039456785569102
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -243,14 +243,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8083566602219989951}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1893cb7b350699c46b30850c44728ce8, type: 3}
+  m_Script: {fileID: 11500000, guid: 8dfb53808292d214187f60e9156a0d51, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MainWeaponManager
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponManager
   sword: {fileID: 7165188873973751963}
   staff: {fileID: 83695154965861067}
   weaponSlot: {fileID: 0}
-  swordSprite: {fileID: 21300000, guid: 30d12856d0ba07248abc697a72c7b333, type: 2}
-  staffSprite: {fileID: 21300000, guid: fdbec0627729f664a90c0b8ce4c5477c, type: 2}
+  swordSprite: {fileID: -278335149916310281, guid: 47542df91514f8941853cbb9fc6598ad, type: 3}
+  staffSprite: {fileID: 1769139453556492977, guid: ddf6779c92f031040979400e4dbad76c, type: 3}
 --- !u!1001 &2272230851461442926
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -323,7 +323,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5671733165438246427, guid: 7d365fd15d2036c46a3d7bcd69a113d2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7998659928897034819, guid: 7d365fd15d2036c46a3d7bcd69a113d2, type: 3}
@@ -474,7 +475,7 @@ PrefabInstance:
     - target: {fileID: 1723786748142808347, guid: d8dba9d1757c7904580dce2849e1bdac, type: 3}
       propertyPath: attackPoint
       value: 
-      objectReference: {fileID: 7718053830042913985, guid: 16a8bbcd0e4fc334da6d73581a46296e, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 1723786748142808347, guid: d8dba9d1757c7904580dce2849e1bdac, type: 3}
       propertyPath: attackCooldown
       value: 0.3
