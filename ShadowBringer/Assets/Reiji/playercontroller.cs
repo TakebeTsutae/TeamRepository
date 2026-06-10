@@ -64,13 +64,13 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // アクセサリーの情報
-        GameObject obj = GameObject.Find("Item");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
-        ItemP accessories = obj.GetComponent<ItemP>();  // タグ取得しているスクリプトを取得する
-        _arrayElement = accessories._getAccessoriesCount;
+      //  GameObject obj = GameObject.Find("Item");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
+      //  ItemP accessories = obj.GetComponent<ItemP>();  // タグ取得しているスクリプトを取得する
+      //  _arrayElement = accessories._getAccessoriesCount;
         Debug.Log(_arrayElement);
         if (_arrayElement > 0)
         {
-            _accessories[_arrayElement - 1] = accessories._item;   // タグの取得をする
+      //      _accessories[_arrayElement - 1] = accessories._item;   // タグの取得をする
         }
 
 

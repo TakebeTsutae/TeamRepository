@@ -14,10 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Mitsuha/BossScene.unity
     guid: 4c882cad2bffdbf429e659c4087fcb51
-  - enabled: 0
+  - enabled: 1
+    path: Assets/Main/MainTitleScene.unity
+    guid: 67da86c71d87ee448a7a602f0a049ede
+  - enabled: 1
     path: Assets/Main/Main.unity
     guid: b8c3216fe0192af4abd37d5660bf689b
-  - enabled: 0
+  - enabled: 1
     path: Assets/Main/BossMainScene.unity
     guid: adea26f3175e85242a5eaf10f577f2e9
   m_configObjects:
