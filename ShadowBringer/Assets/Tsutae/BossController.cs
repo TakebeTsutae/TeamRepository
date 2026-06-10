@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossController : MonoBehaviour
@@ -9,11 +10,14 @@ public class BossController : MonoBehaviour
     int _bossHp = 500;
 
     // 攻撃パターンの管理番号
-    int _attackNum = 0;
+    int _attackNum = 0;     // 0: 移動
+                            // 1: 通常攻撃
+                            // 2: 移動と通常攻撃の間
+    float _startBossPlayerDel = 20.0f; // Bossが動き出すPlayerとBossの距離 ※要調整
     float _attackCount; // 次の攻撃までの時間をカウントする
-    float _moveTime = 0.5f; // 始めの移動行動に移る
+    float _moveTime = 1.0f; // 始めの移動行動に移る
     float _attackTime = 2.0f; // 次の攻撃に行くまでの時間
-    bool _bossMove = true;
+    bool _bossMove;
     bool _attackNomal = false;  // これがtrueになったら通常攻撃
 
     // 移動
@@ -22,7 +26,15 @@ public class BossController : MonoBehaviour
     GameObject _player;
     Vector3 _playerPos; // Playerのポジション
 
-   
+    // 突進のための変数
+    bool _moveChenge; // ちょっと後退するスイッチ
+    bool _tossin; // 突進を開始するスイッチ
+    float _tossinMaeTime = 0.5f; // 後退を始める時間
+    float _tossinTime = 1.0f;   // 突進をする時間
+    float _tossinSpeed = 20.0f;
+    float _moveSpeed = -1f;
+    public float _moveRange = 3.0f;
+
 
     // 通常攻撃
     public GameObject nomalAttackPre;   // プレハブを入れる
@@ -32,9 +44,7 @@ public class BossController : MonoBehaviour
     // 判定を表示している時間
     float _desTime = 0.03f;
 
-    // 突進のための変数
-    float _moveSpeed = -1f;
-    public float _moveRange = 3.0f;
+    
     // Bossのポジション
     private Vector3 _bossPos;
     // nomalAttackPreを発生させる場所の距離
@@ -52,10 +62,10 @@ public class BossController : MonoBehaviour
         // PlayerオブジェクトからPlayerControllerスクリプトを取得
         //playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         _boss = GameObject.Find("Boss");    // ボスオブジェクトを取得
-        _player = GameObject.Find("Player"); // Playerオブジェクトを取得
+        _player = GameObject.Find("player"); // Playerオブジェクトを取得
         _rb2D = GetComponent<Rigidbody2D>();
 
-        _playerPos = new Vector3(_player.transform.position.x, _player.transform.position.y, 0);
+        
        // スタート位置を指定
         _startPos = new Vector3(4, -4, 0);
         transform.position = _startPos;
@@ -65,29 +75,11 @@ public class BossController : MonoBehaviour
 
     private void Update()
     {
-       
-        /*
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            OnNomalAttack();
-        }
-        */
+        _playerPos = new Vector3(_player.transform.position.x, _player.transform.position.y, 0);
+        
     }
 
 
-
-    // 通常攻撃
-    /*
-    public void OnNomalAttack()
-    {
-        if(_nomalAttack != null)
-        {
-            // 現在の状態を反転
-            bool isActive = _nomalAttack.activeSelf;
-            _nomalAttack.SetActive(!isActive);
-        }
-    }
-    */
 
     // Update is called once per frame
     void FixedUpdate()
@@ -98,86 +90,137 @@ public class BossController : MonoBehaviour
         // 時間を加算していく
         _attackCount += Time.deltaTime;
 
-        // 移動
-        if( _attackNum == 0)
+        // PlayerとBossの距離の計算
+        float _distance = Vector3.Distance(_playerPos, _bossPos);
+        Debug.Log(_distance);
+
+        // PlayerとBossの距離が一定距離以内に入ったら
+        if( _distance < _startBossPlayerDel)
         {
             
-          //  Debug.Log(transform.position);
-            if (_attackCount < _attackTime && _bossMove)
+            // 突進前にちょっと後退する
+            if(_moveChenge)
             {
-               
+                _moveSpeed = 1;
+            }
+            if(!_moveChenge)
+            {
+                _moveSpeed = -1;
+            }
+            if (_attackNum == 0 && _attackCount < _tossinMaeTime)
+            {
+                _moveChenge = true;　// 壁に当たったらの判定をする
                 _velocity = _rb2D.linearVelocity;
                 _velocity.x = _moveSpeed;
                 _rb2D.linearVelocity = _velocity;
-
             }
-            else if(_attackCount >= _attackTime)
+            else if (_attackNum == 0 && _attackCount >= _tossinMaeTime)
             {
-                _bossMove = false;
-                _attackNomal = true;
-                _attackCount = 0;
                 _attackNum++;
-            }
-            
-        }
-
-        // 通常攻撃
-        if (_attackNum == 1)
-        { 
-            if (_attackCount < _desTime && _attackNomal && _moveSpeed < 0)
-            {
-                
-                // _nomalAttackを出現させる位置
-                _bossPos = new Vector3(_boss.transform.position.x - _bossDel, _boss.transform.position.y, 0);
-                // nomalAttackPreを_bossPosの位置に無回転で出現
-                GameObject nomalAttack = Instantiate(nomalAttackPre, _bossPos, Quaternion.identity);
-                // _nomalAttackPreを_desTime後に消す
-                Destroy(nomalAttack, _desTime);
-            }
-            else if(_attackCount < _desTime && _attackNomal && _moveSpeed > 0)
-            {
-                Debug.Log(_attackCount);
-                // _nomalAttackを出現させる位置
-                _bossPos = new Vector3(_boss.transform.position.x + _bossDel, _boss.transform.position.y, 0);
-                // nomalAttackPreを_bossPosの位置に無回転で出現
-                GameObject nomalAttack = Instantiate(nomalAttackPre, _bossPos, Quaternion.identity);
-                // _nomalAttackPreを_desTime後に消す
-                Destroy(nomalAttack, _desTime);
-            }
-            else if(_attackCount >= _desTime)
-            {
-                _attackNum ++;
-                _attackNomal = false;
                 _attackCount = 0;
-            } 
+                _moveChenge = false; // 壁に当たったらの判定をする
+                _tossin = true;
+            }
+
+            // 突進
+            if(_attackNum == 1)
+            {
+                if (_attackCount < _tossinTime && _tossin)
+                {
+                    _velocity = _rb2D.linearVelocity;
+                    _velocity.x = _moveSpeed * _tossinSpeed;
+                    _rb2D.linearVelocity = _velocity;
+                }
+                else if (_attackCount >= _tossinTime)
+                {
+                    _attackNum++;
+                    _attackCount = 0;
+                    _moveChenge = true; // 壁に当たったらの判定をする
+                    _bossMove = true;
+                }
+            }
+
+            // 移動
+            if (_attackNum == 2)
+            {
+
+                //  Debug.Log(transform.position);
+                if (_attackCount < _attackTime && _bossMove)
+                {
+
+                    _velocity = _rb2D.linearVelocity;
+                    _velocity.x = _moveSpeed;
+                    _rb2D.linearVelocity = _velocity;
+
+                }
+                else if (_attackCount >= _attackTime)
+                {
+                    _bossMove = false;
+                    _attackNomal = true;
+                    _attackCount = 0;
+                    _attackNum++;
+                }
+
+            }
+
+            // 通常攻撃
+            if (_attackNum == 3)
+            {
+                if (_attackCount < _desTime && _attackNomal && _moveSpeed < 0)
+                {
+                    // _nomalAttackを出現させる位置
+                    _bossPos = new Vector3(_boss.transform.position.x - _bossDel, _boss.transform.position.y, 0);
+                    // nomalAttackPreを_bossPosの位置に無回転で出現
+                    GameObject nomalAttack = Instantiate(nomalAttackPre, _bossPos, Quaternion.identity);
+                    // _nomalAttackPreを_desTime後に消す
+                    Destroy(nomalAttack, _desTime);
+                }
+                else if (_attackCount < _desTime && _attackNomal && _moveSpeed > 0)
+                {
+                    Debug.Log(_attackCount);
+                    // _nomalAttackを出現させる位置
+                    _bossPos = new Vector3(_boss.transform.position.x + _bossDel, _boss.transform.position.y, 0);
+                    // nomalAttackPreを_bossPosの位置に無回転で出現
+                    GameObject nomalAttack = Instantiate(nomalAttackPre, _bossPos, Quaternion.identity);
+                    // _nomalAttackPreを_desTime後に消す
+                    Destroy(nomalAttack, _desTime);
+                }
+                else if (_attackCount >= _desTime)
+                {
+                    _attackNum++;
+                    _attackNomal = false;
+                    _attackCount = 0;
+                }
+            }
+
+            // 通常攻撃と移動のいい感じの間
+            if (_attackNum == 4)
+            {
+                if (_attackCount < _moveTime)
+                {
+                    _moveChenge = false;    // 壁に当たったらの判定をする
+                }
+                else if (_attackCount >= _moveTime)
+                {
+                    _attackNum = 0;
+                    _attackCount = 0;
+                    _moveChenge = false;   // 壁に当たったらの判定をする
+                }
+            }
         }
 
-        // 通常攻撃と移動のいい感じの間
-        if(_attackNum == 2)
+        if(_bossHp <= 0)
         {
-            if (_attackCount < _moveTime) 
-            {
-                _bossMove = false;
-            }
-            else if(_attackCount >= _moveTime)
-            {
-                _attackNum = 0;
-                _attackCount = 0;
-                _bossMove = true;
-            }
+            Destroy(gameObject);
         }
     }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "tueAttack")
+        if (collision.gameObject.tag == "wepon")
         {
             // _bossHpから2(totalAttack)を減らす
-            _bossHp -= 2;
-        }
-        if(collision.gameObject.tag == "kenAttack")
-        {
             _bossHp -= 3;
         }
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class enemy : MonoBehaviour
+public class enemy2 : MonoBehaviour
 {
     public GameObject _attackLeft;
     public GameObject _attackRight;
@@ -34,7 +34,7 @@ public class enemy : MonoBehaviour
         {
             _enemyHp = 8;
         }*/
-        
+
         kabe = 0;
         _attackLeft.SetActive(false);
         _attackRight.SetActive(false);
@@ -42,8 +42,8 @@ public class enemy : MonoBehaviour
         _footRight.SetActive(true);
         rb = GetComponent<Rigidbody2D>();
         GameObject obj = GameObject.Find("player");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
-       // PlayerOtamesi _playerOtamesi = obj.GetComponent<PlayerOtamesi>();  // 統合したときに使用（プレイヤーの攻撃力取得のためのやつ）
-       // _playerAttack = _playerOtamesi._attack;
+                                                       // PlayerOtamesi _playerOtamesi = obj.GetComponent<PlayerOtamesi>();  // 統合したときに使用（プレイヤーの攻撃力取得のためのやつ）
+                                                       // _playerAttack = _playerOtamesi._attack;
         StartCoroutine(Action());
     }
 
@@ -51,11 +51,11 @@ public class enemy : MonoBehaviour
     void Update()
     {
         print(_enemyHp);
-        
+
     }
     void FixedUpdate()
     {
-        
+
         if (!isJumping)
         {
             velocity = rb.linearVelocity;
@@ -63,9 +63,9 @@ public class enemy : MonoBehaviour
             rb.linearVelocity = velocity;
         }
 
-      
-        
-        
+
+
+
 
 
     }
@@ -85,6 +85,18 @@ public class enemy : MonoBehaviour
 
             moveSpeed = _moveSpeed;
             yield return new WaitForSeconds(3f);
+            isJumping = true;
+            if (kabe % 2 == 0)
+            {
+                rb.AddForce(new Vector2(-jumpForceX, jumpForceY), ForceMode2D.Impulse);
+            }
+            else
+            {
+                rb.AddForce(new Vector2(jumpForceX, jumpForceY), ForceMode2D.Impulse);
+            }
+            moveSpeed = _moveSpeed;
+            yield return new WaitForSeconds(1f);
+            isJumping = false;
             moveSpeed = 0f;
             if (kabe % 2 == 0)
             {
@@ -95,17 +107,17 @@ public class enemy : MonoBehaviour
                 _attackRight.SetActive(true);
             }
             yield return new WaitForSeconds(1f);
-            
-                _attackLeft.SetActive(false);
-            
-                _attackRight.SetActive(false);
-            
+
+            _attackLeft.SetActive(false);
+
+            _attackRight.SetActive(false);
+
             moveSpeed = _moveSpeed;
             yield return new WaitForSeconds(3f);
             isJumping = true;
             if (kabe % 2 == 0)
             {
-                rb.AddForce(new  Vector2(-jumpForceX, jumpForceY),ForceMode2D.Impulse);
+                rb.AddForce(new Vector2(-jumpForceX, jumpForceY), ForceMode2D.Impulse);
             }
             else
             {
@@ -117,8 +129,8 @@ public class enemy : MonoBehaviour
             yield return new WaitForSeconds(1f);
 
             isJumping = false;
-            
-            
+
+
         }
 
 
@@ -145,11 +157,11 @@ public class enemy : MonoBehaviour
             }
         }
     }
-    private void OnTriggerEnter2D(Collider2D other) 
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("kenAttack")) 
+        if (other.CompareTag("kenAttack"))
         {
-           // _enemyHp = _enemyHp - player._attack;
+            // _enemyHp = _enemyHp - player._attack;
 
             if (_enemyHp <= 0)
             {
@@ -181,15 +193,15 @@ public class enemy : MonoBehaviour
                 }
             }
         }
-        
-            
+
+
     }
     private void OnTriggerExit2D(Collider2D other) // Exit -> 離れた瞬間
     {
         _countFoot++;
-        if(this.gameObject.tag == "_enemyFoot") 
+        if (this.gameObject.tag == "_enemyFoot")
         {
-           // this.gameObject.SetActive(false) ;
+            // this.gameObject.SetActive(false) ;
         }
         kabe++;
         if (kabe % 2 == 0)

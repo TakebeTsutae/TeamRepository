@@ -131,8 +131,9 @@ public class PlayerController : MonoBehaviour
             coyoteCounter = 0f; // 空中での連続ジャンプを防ぐため、猶予をゼロにする
             jumpCooldownCounter = jumpCooldown; // クールタイム(0.5秒)をセット
         }
-        if (Mouse.current.rightButton.wasPressedThisFrame)
+        if (Mouse.current.rightButton.wasPressedThisFrame&&dashCooldownCounter<=0f)
         {
+            dashCooldownCounter = dashCooldown;
             StartCoroutine(DashRoutine());
         }
 
@@ -142,6 +143,7 @@ public class PlayerController : MonoBehaviour
             dashCooldownCounter -= Time.deltaTime; // タイマーが0になるまで毎フレーム減速する
         }
 
+        if (isDashing) return;
     }
 
     // ダッシュ
@@ -219,7 +221,7 @@ public class PlayerController : MonoBehaviour
         else if (accessories == "Speed")
         {
             
-            _accessoriesMoveSpeed += 1.4f;
+            _accessoriesMoveSpeed += 1.2f;
         }
         else
         {
@@ -241,7 +243,7 @@ public class PlayerController : MonoBehaviour
         else if (accessories == "Speed")
         {
   
-            _accessoriesMoveSpeed -= 1.4f;
+            _accessoriesMoveSpeed -= 1.2f;
         }
         else
         {
