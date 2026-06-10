@@ -13,6 +13,8 @@ TagManager:
   - kenAttack
   - tueAttack
   - weponAttack
+  - retry
+  - title
   layers:
   - Default
   - TransparentFX
