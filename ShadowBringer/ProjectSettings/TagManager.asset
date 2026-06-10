@@ -12,6 +12,7 @@ TagManager:
   - bounce
   - kenAttack
   - tueAttack
+  - weponAttack
   layers:
   - Default
   - TransparentFX

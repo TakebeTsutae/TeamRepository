@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -6757572780930296147}
   m_Layer: 0
   m_Name: bakuhuucollider
-  m_TagString: tueAttack
+  m_TagString: weponAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
