@@ -30,7 +30,7 @@ public class BossController : MonoBehaviour
     bool _moveChenge; // ちょっと後退するスイッチ
     bool _tossin; // 突進を開始するスイッチ
     float _tossinMaeTime = 0.5f; // 後退を始める時間
-    float _tossinTime = 1.0f;   // 突進をする時間
+    float _tossinTime = 0.7f;   // 突進をする時間
     float _tossinSpeed = 20.0f;
     float _moveSpeed = -1f;
     public float _moveRange = 3.0f;
@@ -67,7 +67,7 @@ public class BossController : MonoBehaviour
 
         
        // スタート位置を指定
-        _startPos = new Vector3(4, -4, 0);
+        _startPos = new Vector3(7, -4, 0);
         transform.position = _startPos;
 
        // Debug.Log(bossHp);

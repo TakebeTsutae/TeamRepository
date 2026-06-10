@@ -13453,7 +13453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneHenkou
   timeUntilNextMap: 180
-  nextSceneName: MainBossScene
+  nextSceneName: BossMainScene
 --- !u!4 &1194032259
 Transform:
   m_ObjectHideFlags: 0
@@ -24323,6 +24323,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4774039456785569102, guid: 49c6512dbab6538439a7641d45118fbd, type: 3}
+      propertyPath: weaponSlot
+      value: 
+      objectReference: {fileID: 165117154}
     - target: {fileID: 7303878458350083818, guid: 49c6512dbab6538439a7641d45118fbd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.56
@@ -24363,17 +24367,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8014332303623314601, guid: 49c6512dbab6538439a7641d45118fbd, type: 3}
-      propertyPath: weaponSlot
-      value: 
-      objectReference: {fileID: 165117154}
     - target: {fileID: 8083566602219989951, guid: 49c6512dbab6538439a7641d45118fbd, type: 3}
       propertyPath: m_Name
       value: player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8285650318883520174, guid: 49c6512dbab6538439a7641d45118fbd, type: 3}
-      propertyPath: attackPoint
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
