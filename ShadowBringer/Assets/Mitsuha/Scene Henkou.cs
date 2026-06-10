@@ -11,15 +11,25 @@ public class SceneHenkou : MonoBehaviour
 
     private float timer = 0f;
 
+    bool _moveBossScene = true; 
+
     void Update()
     {
         // 経過時間を加算
         timer += Time.deltaTime;
 
         // 設定した時間を超えたらシーンを切り替える
-        if (timer >= timeUntilNextMap)
+        if (timer >= timeUntilNextMap && _moveBossScene )
         {
-            SceneManager.LoadScene(nextSceneName);
+            OnBossScene();
+            _moveBossScene=false;
         }
     }
+
+    void OnBossScene()
+    {
+        SceneManager.LoadScene(nextSceneName);
+    }
+
+
 }
