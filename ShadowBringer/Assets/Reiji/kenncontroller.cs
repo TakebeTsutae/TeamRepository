@@ -57,17 +57,5 @@ public class kenncontroller : MonoBehaviour
             isFacingRight= true;
         }
     }
-        
-public void OnTriggerEnter2D(Collider2D collision)
-    {
-        // 相手のTagがEnemyなら
-        if (collision.gameObject.tag == "enemy")
-        {
-            // 敵を消す
-            Destroy(collision.gameObject);
-            Debug.Log("当たった");
-
-            // ゲームマネージャーからエネミーにダメージを与える関数を呼び出す↓
-        }
-    }
+       
 }

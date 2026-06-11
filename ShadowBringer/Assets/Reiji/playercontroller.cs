@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
         GameObject obj = GameObject.Find("Item");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
         ItemP accessories = obj.GetComponent<ItemP>();  // タグ取得しているスクリプトを取得する
         _arrayElement = accessories._getAccessoriesCount;
-        Debug.Log(_arrayElement);
+       // Debug.Log(_arrayElement);
         if (_arrayElement > 0)
         {
             _accessories[_arrayElement - 1] = accessories._item;   // タグの取得をする
@@ -156,7 +156,7 @@ public class PlayerController : MonoBehaviour
             
         }
         // Debug.Log(isDead());
-        Debug.Log(_playerHp);
+      //  Debug.Log(_playerHp);
 
     }
 
@@ -220,13 +220,21 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.CompareTag("enemy"))
         {
             _playerHp -= 1;
+            Debug.Log("敵にぶつかった！");
+            Debug.Log(_playerHp);
         }
         if(collision.gameObject.CompareTag("enemyAttack"))
         {  
             _playerHp -= 1;
         }
+        
+    }
+
+    void OnTriggerEnter2D(Collision collision)
+    {
 
     }
+
 
     // 地面から離れた
     private void OnCollisionExit2D(Collision2D collision)

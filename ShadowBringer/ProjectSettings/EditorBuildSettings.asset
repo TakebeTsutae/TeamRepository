@@ -17,12 +17,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Main/MainTitleScene.unity
     guid: 67da86c71d87ee448a7a602f0a049ede
-  - enabled: 1
+  - enabled: 0
     path: Assets/Main/Main.unity
     guid: b8c3216fe0192af4abd37d5660bf689b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Main/BossMainScene.unity
     guid: adea26f3175e85242a5eaf10f577f2e9
+  - enabled: 1
+    path: Assets/Mitsuha/ClearScene.unity
+    guid: 605179636e22f934d899c4e8a49788a2
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
