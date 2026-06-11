@@ -52,7 +52,9 @@ public class BossController : MonoBehaviour
     private Vector3 _startPos;
     private int derection = 1;
 
-    
+    // ClearScene遷移用オブジェクトの取得
+    GameObject _moveClear;
+    ClearSceneController _clearScene;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -63,6 +65,7 @@ public class BossController : MonoBehaviour
         //playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         _boss = GameObject.Find("Boss");    // ボスオブジェクトを取得
         _player = GameObject.Find("player"); // Playerオブジェクトを取得
+        _moveClear = GameObject.Find("MoveClearScene"); // ClearScene遷移用オブジェクトの取得
         _rb2D = GetComponent<Rigidbody2D>();
 
         
@@ -211,7 +214,9 @@ public class BossController : MonoBehaviour
 
         if(_bossHp <= 0)
         {
+            _clearScene = GetComponent<ClearSceneController>();
             Destroy(gameObject);
+            
         }
     }
 
