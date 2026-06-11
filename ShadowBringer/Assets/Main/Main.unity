@@ -4555,6 +4555,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4938248353800607747, guid: 6b2bee77e7795ca4b8a2146b49c73379, type: 3}
   m_PrefabInstance: {fileID: 452389704}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &452951952 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8190286975052938766, guid: 140257b7e6c52724fa51c1243e4bef08, type: 3}
+  m_PrefabInstance: {fileID: 2099864955}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &452951958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452951952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af359ddf209fe71458b13b6ee0fdbef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemP
+  _item: 
+  _getAccessoriesCount: 0
 --- !u!1001 &455573268
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24247,8 +24266,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8190286975052938766, guid: 140257b7e6c52724fa51c1243e4bef08, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 452951958}
   m_SourcePrefab: {fileID: 100100000, guid: 140257b7e6c52724fa51c1243e4bef08, type: 3}
+--- !u!4 &2138921899 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5308267444551592359, guid: 49c6512dbab6538439a7641d45118fbd, type: 3}
+  m_PrefabInstance: {fileID: 3929978927150022683}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2146593774
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24323,6 +24350,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1093288671617118147, guid: 49c6512dbab6538439a7641d45118fbd, type: 3}
+      propertyPath: attackPoint
+      value: 
+      objectReference: {fileID: 2138921899}
+    - target: {fileID: 1093288671617118147, guid: 49c6512dbab6538439a7641d45118fbd, type: 3}
+      propertyPath: enemyLayer.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489063275037157093, guid: 49c6512dbab6538439a7641d45118fbd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4774039456785569102, guid: 49c6512dbab6538439a7641d45118fbd, type: 3}
       propertyPath: weaponSlot
       value: 
@@ -24370,6 +24409,10 @@ PrefabInstance:
     - target: {fileID: 8083566602219989951, guid: 49c6512dbab6538439a7641d45118fbd, type: 3}
       propertyPath: m_Name
       value: player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285650318883520174, guid: 49c6512dbab6538439a7641d45118fbd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
