@@ -10085,7 +10085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c57e51f7029192b4783efb04ad47f1cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneHenkou
-  timeUntilNextMap: 180
+  timeUntilNextMap: 5
   nextSceneName: BossScene
 --- !u!4 &878558079
 Transform:
