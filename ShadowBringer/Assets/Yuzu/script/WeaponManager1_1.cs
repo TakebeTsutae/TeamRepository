@@ -21,8 +21,8 @@ public class WeaponManager1_1 : MonoBehaviour
     {
         // 最初は剣アイコン
         weaponSlot.sprite = swordSprite;
-        weaponSlot1.sprite = _up;
-        weaponSlot2.sprite = _speed;
+        weaponSlot1.sprite = null;
+        weaponSlot2.sprite = null;
 
         // Start時にプレイヤーのスクリプトを1回だけ取得しておく
         GameObject obj = GameObject.Find("Player");
@@ -46,7 +46,7 @@ public class WeaponManager1_1 : MonoBehaviour
     {
         // プレイヤーのスクリプトが取得できていない場合は何もしない
         if (playerScript == null) return;
-
+        print(playerScript._accessories);
         // 【1つ目のアクセサリー（weaponSlot1）の判定】
         if (playerScript._accessories[0] == "Up")
         {

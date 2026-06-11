@@ -55,12 +55,12 @@ public class GameOver : MonoBehaviour
         if(this.gameObject.tag == "title")
         {
             //SceneManager.LoadScene("");   //タイトルのシーン名記入
-            Debug.Log("title");
+            
         }
         else if (this.gameObject.tag == "retry") 
         {
             //SceneManager.LoadScene("");   //リトライのシーン名記入
-            Debug.Log("retry");
+            
         }
     }
 
