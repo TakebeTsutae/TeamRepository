@@ -30,13 +30,13 @@ public class ItemP : MonoBehaviour
         PlayerController _booltag = obj.GetComponent<PlayerController>();  // タグ取得しているスクリプトを取得する
         if (Input.GetKeyDown(KeyCode.E)) 
         {
-            _item = "Up";
+            _item = "Up";   // 文字列の変数_itemに文字列"Up"を代入する
             _getAccessoriesCount++;
             _booltag._Gettag = true;
         }
         else if (Input.GetKeyDown(KeyCode.Q))
         {
-            _item = "Speed";
+            _item = "Speed";    // 文字列の変数_itemに文字列"Speed"を代入する
             _getAccessoriesCount++;
             _booltag._Gettag = true;
         }
