@@ -3,10 +3,6 @@ using UnityEngine.UI;
 
 public class WeaponManager1_1 : MonoBehaviour
 {
-    
-    /*public GameObject sword;
-    public GameObject staff;*/
-
     // UI画像
     public Image weaponSlot;
     public Image weaponSlot1;
@@ -18,71 +14,65 @@ public class WeaponManager1_1 : MonoBehaviour
     public Sprite _up;
     public Sprite _speed;
 
-    private string[] _item = new string[2];
+    // プレイヤーの参照を保存する変数（処理の軽量化用）
+    private PlayerOtamesi playerScript;
 
-    // プレイヤーの攻撃力を設定しました by零士
-    int playerAttack = 0;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       /* sword.SetActive(true); // 剣を表示
-        staff.SetActive(false); // 杖は非表示*/
-
         // 最初は剣アイコン
         weaponSlot.sprite = swordSprite;
         weaponSlot1.sprite = _up;
         weaponSlot2.sprite = _speed;
 
-        // プレイヤーの攻撃力を3にする by零士
-        // playerAttack = 3;
+        // Start時にプレイヤーのスクリプトを1回だけ取得しておく
+        GameObject obj = GameObject.Find("Player");
+        if (obj != null)
+        {
+            playerScript = obj.GetComponent<PlayerOtamesi>();
+        }
     }
 
-    public void SwitchToStaff() //杖を拾ったら杖になる
+    public void SwitchToStaff()
     {
-        /*sword.SetActive(false); // 剣を消す
-        staff.SetActive(true);  // 杖を表示*/
-
-        // アイコン変更
         weaponSlot.sprite = staffSprite;
-
     }
 
-    public void SwitchToSword() // 剣を拾ったら剣になる
+    public void SwitchToSword()
     {
-        /*sword.SetActive(true);
-        staff.SetActive(false);*/
-
-        // アイコン変更
         weaponSlot.sprite = swordSprite;
+    }
 
-    }  
-
-    // Update is called once per frame
     void Update()
     {
-        GameObject obj = GameObject.Find("Player");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
-        PlayerOtamesi list = obj.GetComponent<PlayerOtamesi>();  // タグ取得しているスクリプトを取得する
+        // プレイヤーのスクリプトが取得できていない場合は何もしない
+        if (playerScript == null) return;
 
-        _item[0] = list._accessories[0];
-        _item[1] = list._accessories[1];
-        if (list._accessories[0] == "Up")
+        // 【1つ目のアクセサリー（weaponSlot1）の判定】
+        if (playerScript._accessories[0] == "Up")
         {
             weaponSlot1.sprite = _up;
         }
-        else if(list._accessories[0] == "Speed")
+        else if (playerScript._accessories[0] == "Speed")
         {
             weaponSlot1.sprite = _speed;
         }
-        else if (list._accessories[1] == "Up")
+        else // null、またはそれ以外の文字のときは画像を消す
         {
-            weaponSlot1.sprite = _up;
+            weaponSlot1.sprite = null;
         }
-        else if (list._accessories[1] == "Speed")
-        {
-            weaponSlot1.sprite = _speed;
-        }
-        else if (list._accessories[0] == null) { }
 
+        // 【2つ目のアクセサリー（weaponSlot2）の判定】
+        if (playerScript._accessories[1] == "Up")
+        {
+            weaponSlot2.sprite = _up;
+        }
+        else if (playerScript._accessories[1] == "Speed")
+        {
+            weaponSlot2.sprite = _speed;
+        }
+        else // null、またはそれ以外の文字のときは画像を消す
+        {
+            weaponSlot2.sprite = null;
+        }
     }
 }
