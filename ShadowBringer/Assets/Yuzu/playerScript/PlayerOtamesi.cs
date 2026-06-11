@@ -26,7 +26,7 @@ public class PlayerOtamesi : MonoBehaviour
     private string _firstItem;
 
     // タグの取得変数
-    private string[] _accessories = new string[3];
+    public string[] _accessories = new string[3];
 
     // 入力値
     private float moveInput;
