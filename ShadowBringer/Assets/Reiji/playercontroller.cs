@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
     {
         // アクセサリーの情報
         GameObject obj = GameObject.Find("Item");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
-        ItemP accessories = obj.GetComponent<ItemP>();  // タグ取得しているスクリプトを取得する
+        ItemPickup accessories = obj.GetComponent<ItemPickup>();  // タグ取得しているスクリプトを取得する
         _arrayElement = accessories._getAccessoriesCount;
        Debug.Log(_arrayElement);
         if (_arrayElement > 0)
