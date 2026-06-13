@@ -205,7 +205,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // 地面に触れた
+    // tagにぶつかったときの処理たち
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -288,7 +288,7 @@ public class PlayerController : MonoBehaviour
   
         _accessories[0] = _accessories[1];
         _accessories[1] = _accessories[2];
-      
+
 
 
     }
