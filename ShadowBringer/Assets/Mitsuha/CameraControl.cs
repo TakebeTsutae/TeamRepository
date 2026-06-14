@@ -25,7 +25,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         
         // プレイヤーの現在位置関係から新しいカメラ位置を作成
-        Vector3 vector = player.transform.position + offset;
+        Vector3 vector = new Vector3(player.transform.position.x + offset.x, player.transform.position.y + offset.y - 3, -10);
         
         
         // カメラの位置を移動

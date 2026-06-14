@@ -8,11 +8,11 @@ public class WeaponManager : MonoBehaviour
     public GameObject staff;
 
     // UI画像
-    public Image weaponSlot;
+   // public Image weaponSlot;
 
     // 武器アイコン
-    public Sprite swordSprite;
-    public Sprite staffSprite;
+   // public Sprite swordSprite;
+   // public Sprite staffSprite;
 
     // プレイヤーの攻撃力を設定しました by零士
     int playerAttack = 0;
@@ -24,7 +24,7 @@ public class WeaponManager : MonoBehaviour
         staff.SetActive(false); // 杖は非表示
 
         // 最初は剣アイコン
-        weaponSlot.sprite = swordSprite;
+        //weaponSlot.sprite = swordSprite;
 
         // プレイヤーの攻撃力を3にする by零士
         playerAttack = 3;
@@ -36,7 +36,7 @@ public class WeaponManager : MonoBehaviour
         staff.SetActive(true);  // 杖を表示
 
         // アイコン変更
-        weaponSlot.sprite = staffSprite;
+       // weaponSlot.sprite = staffSprite;
 
     }
 
@@ -46,7 +46,7 @@ public class WeaponManager : MonoBehaviour
         staff.SetActive(false);
 
         // アイコン変更
-        weaponSlot.sprite = swordSprite;
+        //weaponSlot.sprite = swordSprite;
 
     }  
 

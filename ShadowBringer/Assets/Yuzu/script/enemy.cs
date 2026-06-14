@@ -147,6 +147,8 @@ public class enemy : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other) 
     {
+        // タグの判定をweponAttackに変えてHPを減らしてください　byつたえ
+        // kenAttack, tueAttackは要りません。廃止タグです。　byつたえ
         if (other.CompareTag("kenAttack")) 
         {
            // _enemyHp = _enemyHp - player._attack;

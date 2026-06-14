@@ -13,7 +13,7 @@ public class BossController : MonoBehaviour
     int _attackNum = 0;     // 0: 移動
                             // 1: 通常攻撃
                             // 2: 移動と通常攻撃の間
-    float _startBossPlayerDel = 20.0f; // Bossが動き出すPlayerとBossの距離 ※要調整
+    float _startBossPlayerDel = 8.0f; // Bossが動き出すPlayerとBossの距離 ※要調整
     float _attackCount; // 次の攻撃までの時間をカウントする
     float _moveTime = 1.0f; // 始めの移動行動に移る
     float _attackTime = 2.0f; // 次の攻撃に行くまでの時間
@@ -73,7 +73,7 @@ public class BossController : MonoBehaviour
         _moveChenge = false;
         
        // スタート位置を指定
-        _startPos = new Vector3(7, -4, 0);
+        _startPos = new Vector3(20, -3, 0);
         transform.position = _startPos;
 
        // Debug.Log(bossHp);
@@ -240,10 +240,11 @@ public class BossController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "wepon")
+        if (collision.gameObject.tag == "weponAttack")
         {
             // _bossHpから2(totalAttack)を減らす
             _bossHp -= 3;
+            Debug.Log(_bossHp);
         }
 
         // 壁に当たった時に_moveChengeを変える
