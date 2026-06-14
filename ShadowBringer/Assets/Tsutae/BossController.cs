@@ -27,8 +27,8 @@ public class BossController : MonoBehaviour
     Vector3 _playerPos; // Playerのポジション
 
     // 突進のための変数
-    bool _moveChenge; // ちょっと後退するスイッチ
-    bool _tossinMae;
+    bool _moveChenge; // 進む向きを決めるスイッチ
+    bool _tossinMae;    // ちょっと後退するスイッチ
     bool _tossin; // 突進を開始するスイッチ
     float _tossinMaeTime = 0.5f; // 後退を始める時間
     float _tossinTime = 0.7f;   // 突進をする時間
@@ -70,7 +70,7 @@ public class BossController : MonoBehaviour
         _rb2D = GetComponent<Rigidbody2D>();
 
         //右に動く
-        _moveChenge = true;
+        _moveChenge = false;
         
        // スタート位置を指定
         _startPos = new Vector3(7, -4, 0);
@@ -104,10 +104,20 @@ public class BossController : MonoBehaviour
         if( _distance < _startBossPlayerDel)
         {
             
+            if(_moveChenge)
+            {
+                _moveSpeed = 1;
+                
+            }
+            else
+            {
+                _moveSpeed = -1;
+            }
+
             // 突進前にちょっと後退する
             if (_attackNum == 0 && _attackCount < _tossinMaeTime && _tossinMae)
             {
-                _moveChenge = true;　// 壁に当たったらの判定をする
+               // _moveChenge = true;　// 壁に当たったらの判定をする
                 _velocity = _rb2D.linearVelocity;
                 _velocity.x = _moveSpeed;
                 _rb2D.linearVelocity = _velocity;
@@ -207,7 +217,7 @@ public class BossController : MonoBehaviour
             {
                 if (_attackCount < _moveTime)
                 {
-                    _moveChenge = false;    // 壁に当たったらの判定をする
+                    //_moveChenge = false;    // 壁に当たったらの判定をする
                 }
                 else if (_attackCount >= _moveTime)
                 {
