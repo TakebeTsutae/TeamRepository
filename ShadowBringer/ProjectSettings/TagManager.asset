@@ -10,11 +10,10 @@ TagManager:
   - enemy
   - _enemyFoot
   - bounce
-  - kenAttack
-  - tueAttack
   - weponAttack
   - retry
   - title
+  - Wall
   layers:
   - Default
   - TransparentFX

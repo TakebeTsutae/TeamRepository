@@ -28,6 +28,7 @@ public class BossController : MonoBehaviour
 
     // 突進のための変数
     bool _moveChenge; // ちょっと後退するスイッチ
+    bool _tossinMae;
     bool _tossin; // 突進を開始するスイッチ
     float _tossinMaeTime = 0.5f; // 後退を始める時間
     float _tossinTime = 0.7f;   // 突進をする時間
@@ -68,6 +69,8 @@ public class BossController : MonoBehaviour
         _moveClear = GameObject.Find("MoveClearScene"); // ClearScene遷移用オブジェクトの取得
         _rb2D = GetComponent<Rigidbody2D>();
 
+        //右に動く
+        _moveChenge = true;
         
        // スタート位置を指定
         _startPos = new Vector3(7, -4, 0);
@@ -102,15 +105,7 @@ public class BossController : MonoBehaviour
         {
             
             // 突進前にちょっと後退する
-            if(_moveChenge)
-            {
-                _moveSpeed = 1;
-            }
-            if(!_moveChenge)
-            {
-                _moveSpeed = -1;
-            }
-            if (_attackNum == 0 && _attackCount < _tossinMaeTime)
+            if (_attackNum == 0 && _attackCount < _tossinMaeTime && _tossinMae)
             {
                 _moveChenge = true;　// 壁に当たったらの判定をする
                 _velocity = _rb2D.linearVelocity;
@@ -121,7 +116,18 @@ public class BossController : MonoBehaviour
             {
                 _attackNum++;
                 _attackCount = 0;
-                _moveChenge = false; // 壁に当たったらの判定をする
+
+                // 後退が終わったときにtrueだったらfalseに
+                // falseだったらtrueに
+                if (_moveChenge)
+                {
+                    _moveChenge = false;
+                }
+                else
+                {
+                    _moveChenge = true;
+                }
+                _tossinMae = false;
                 _tossin = true;
             }
 
@@ -138,7 +144,7 @@ public class BossController : MonoBehaviour
                 {
                     _attackNum++;
                     _attackCount = 0;
-                    _moveChenge = true; // 壁に当たったらの判定をする
+                 //   _moveChenge = true; // 壁に当たったらの判定をする
                     _bossMove = true;
                 }
             }
@@ -207,7 +213,8 @@ public class BossController : MonoBehaviour
                 {
                     _attackNum = 0;
                     _attackCount = 0;
-                    _moveChenge = false;   // 壁に当たったらの判定をする
+                    _tossinMae = true;
+                   // _moveChenge = false;   // 壁に当たったらの判定をする
                 }
             }
         }
@@ -227,6 +234,19 @@ public class BossController : MonoBehaviour
         {
             // _bossHpから2(totalAttack)を減らす
             _bossHp -= 3;
+        }
+
+        // 壁に当たった時に_moveChengeを変える
+        if(collision.gameObject.tag == "Wall")
+        {
+            if(_moveChenge)
+            {
+                _moveChenge = false;
+            }
+            else
+            {
+                _moveChenge = true;
+            }
         }
     }
 }
