@@ -1,4 +1,6 @@
+using JetBrains.Annotations;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -58,6 +60,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float dashCooldown = 1.0f;  // ダッシュの待ち時間(１秒)
     private float dashCooldownCounter;                    // 残り時間を数えるタイマー
 
+    [Header("Damage Settings")]
+    [SerializeField] private float invincibleTime = 1.0f;
+    private float invincibleCounter;
+
     // -----------------------------------------------------------------------
     void Start()
     {
@@ -71,14 +77,15 @@ public class PlayerController : MonoBehaviour
         // アクセサリーの情報
         GameObject obj = GameObject.Find("Item");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
         ItemPickup accessories = obj.GetComponent<ItemPickup>();  // タグ取得しているスクリプトを取得する
-        _arrayElement = accessories._getAccessoriesCount;
-       Debug.Log(_arrayElement);
+        // ↓いったんコメントアウトしただけ
+       // _arrayElement = accessories._getAccessoriesCount;
+       //Debug.Log(_arrayElement);
         if (_arrayElement > 0)
         {
             _accessories[_arrayElement - 1] = accessories._item;   // タグの取得をする
         }
-
-
+        // ↓いったんコメントアウトしただけ
+        /*
         if (_Gettag == true)
         {
 
@@ -90,6 +97,7 @@ public class PlayerController : MonoBehaviour
             _Gettag = false;
 
         }
+        */
 
         // A,Dキー / ←→キー
         if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
@@ -158,6 +166,35 @@ public class PlayerController : MonoBehaviour
         // Debug.Log(isDead());
       //  Debug.Log(_playerHp);
 
+        if(invincibleCounter>0)
+        {
+            invincibleCounter -= Time.deltaTime;
+        }
+
+        if (isDashing) return;
+
+        if(isDead())
+        {
+            _playerHp = kMaxHp;
+        }
+
+        
+
+    }
+
+    public void TakeDamage(int damageAmount)
+    {
+        if (invincibleCounter > 0f)
+        {
+            return;
+        }
+
+        // ダメージを適用
+        _playerHp -= damageAmount;
+        Debug.Log($"ダメージを{damageAmount}受けた！残りHP:{_playerHp}");
+
+        // 無敵タイマーをセット(満タンにする)
+        invincibleCounter = invincibleTime;
     }
 
     // ダッシュ
@@ -215,24 +252,24 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.CompareTag("hari"))
         {
             isGrounded = true;
-            _playerHp -= 1;
+            TakeDamage(1);
         }
         if(collision.gameObject.CompareTag("enemy"))
         {
-            _playerHp -= 1;
-            Debug.Log("敵にぶつかった！");
+            TakeDamage(1);
+        Debug.Log("敵にぶつかった！");
             Debug.Log(_playerHp);
         }
-        if(collision.gameObject.CompareTag("enemyAttack"))
-        {  
-            _playerHp -= 1;
-        }
+        
         
     }
 
-    void OnTriggerEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-
+        if (collision.gameObject.CompareTag("enemyAttack"))
+        {
+            TakeDamage(1);
+    }
     }
 
 
