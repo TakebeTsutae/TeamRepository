@@ -230,7 +230,7 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    void OnTriggerEnter2D(Collision collision)
+    void OnTriggerEnter2D(Collision2D collision)
     {
 
     }
@@ -301,4 +301,5 @@ public class PlayerController : MonoBehaviour
     {
         return _playerHp <= 0;
     }
+
 }

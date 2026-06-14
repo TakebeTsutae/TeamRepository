@@ -25,7 +25,7 @@ public class WeaponManager1_1 : MonoBehaviour
         weaponSlot2.sprite = null;
 
         // Start時にプレイヤーのスクリプトを1回だけ取得しておく
-        GameObject obj = GameObject.Find("Player");
+        GameObject obj = GameObject.Find("player");
         if (obj != null)
         {
             playerScript = obj.GetComponent<PlayerOtamesi>();
