@@ -4,12 +4,16 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class PlayerController : MonoBehaviour
 {
+
+    private GameObject _itemManager;
+
     private const int kMaxHp= 3;
 
     //  プレイヤーのHP
-    private int _playerHp = kMaxHp;
+    public int _playerHp = kMaxHp;
 
     // 攻撃力
     public int _attack = 3;
@@ -38,10 +42,12 @@ public class PlayerController : MonoBehaviour
     private string _firstItem;
 
     // タグの取得変数
-    private string[] _accessories = new string[3];
+    public string[] _accessories = new string[3];
 
     // tagを取得したか(ItemPickupにてtrueとfalseをいじる)
     public bool _Gettag = false;
+
+    private bool _item = false;
 
     [Header("Jump Settings")]
     // --- 追加: コヨーテタイムの設定 (秒) ---
@@ -70,36 +76,48 @@ public class PlayerController : MonoBehaviour
         _accessoriesMoveSpeed = 0f;
         Application.targetFrameRate = 60;
         rigid2D = GetComponent<Rigidbody2D>();
+        _itemManager = GameObject.Find("ItemManager");
+
+
     }
 
     void Update()
     {
+        
         // アクセサリーの情報
         GameObject obj = GameObject.Find("Item");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
-     //   ItemPickup accessories = obj.GetComponent<ItemPickup>();  // タグ取得しているスクリプトを取得する
+        Item accessories = obj.GetComponent<Item>();  // タグ取得しているスクリプトを取得する
+
+        Debug.Log("item = " + accessories._item);
         // ↓いったんコメントアウトしただけ
-       // _arrayElement = accessories._getAccessoriesCount;
-       //Debug.Log(_arrayElement);
-        /*
-        if (_arrayElement > 0)
-        {
-            _accessories[_arrayElement - 1] = accessories._item;   // タグの取得をする
-        }
-        */
+
+        //現在の取得アイテム数
+        int numItem = _itemManager.GetComponent<Itemgetcount>().GetCount();
+        
+       _arrayElement = numItem;
+
+        
         // ↓いったんコメントアウトしただけ
-        /*
+
         if (_Gettag == true)
         {
-
-            Status(_accessories[_arrayElement - 1]);
+            
+            Debug.Log(_arrayElement);
+            
             if (_arrayElement >= 3)
             {
                 List(_accessories[0]);
             }
+            Status(_accessories[_arrayElement - 1]);
+            if (_arrayElement > 0)
+            {
+                _accessories[_arrayElement - 1] = accessories._item;   // タグの取得をする
+            }
+            
             _Gettag = false;
 
         }
-        */
+        
 
         // A,Dキー / ←→キー
         if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
@@ -165,8 +183,6 @@ public class PlayerController : MonoBehaviour
             _playerHp = kMaxHp;
             
         }
-        // Debug.Log(isDead());
-      //  Debug.Log(_playerHp);
 
         if(invincibleCounter>0)
         {
@@ -259,7 +275,7 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.CompareTag("enemy"))
         {
             TakeDamage(1);
-        Debug.Log("敵にぶつかった！");
+            Debug.Log("敵にぶつかった！");
             Debug.Log(_playerHp);
         }
         
@@ -295,8 +311,8 @@ public class PlayerController : MonoBehaviour
         }
         else if (accessories == "Speed")
         {
-            
             _accessoriesMoveSpeed += 1.2f;
+            
         }
         else
         {
@@ -319,6 +335,7 @@ public class PlayerController : MonoBehaviour
         {
   
             _accessoriesMoveSpeed -= 1.2f;
+            
         }
         else
         {

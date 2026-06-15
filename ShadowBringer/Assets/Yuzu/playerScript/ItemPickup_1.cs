@@ -1,10 +1,10 @@
 using UnityEngine;
-
-public class ItemPickup : MonoBehaviour
+// ゆず
+public class ItemPickup_1 : MonoBehaviour
 {
     GameObject player;
     public string _item;
-    public int _getAccessoriesCount;
+    private int _getAccessoriesCount;
 
     //追加↓
     private bool isPlayerNear = false;

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class playerhp : MonoBehaviour
 {
-    private int _playerhp=3;
+    private int _playerhp;
     public GameObject hp_Max1;
     public GameObject hp_Max2;
     public GameObject hp_Max3;
@@ -17,7 +17,9 @@ public class playerhp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(_playerhp);
+        GameObject obj = GameObject.Find("player");
+        PlayerController hp = obj.GetComponent<PlayerController>();
+        _playerhp = hp._playerHp;
         if (_playerhp < 4)
         {
             hp_Max1.SetActive(true);
@@ -40,7 +42,7 @@ public class playerhp : MonoBehaviour
             hp_Max1.SetActive(false);
         }
 
-        if (Input.GetKeyUp(KeyCode.E)) 
+        /*if (Input.GetKeyUp(KeyCode.E)) 
         {
             if(_playerhp > 0) 
             {
@@ -55,6 +57,6 @@ public class playerhp : MonoBehaviour
                 _playerhp++;
             }
             
-        }
+        }*/
     }
 }

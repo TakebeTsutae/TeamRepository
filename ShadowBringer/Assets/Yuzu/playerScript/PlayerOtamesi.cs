@@ -62,11 +62,11 @@ public class PlayerOtamesi : MonoBehaviour
     {
         // アクセサリーの情報
         GameObject obj = GameObject.Find("Item");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
-        ItemPickup accessories = obj.GetComponent<ItemPickup>();  // タグ取得しているスクリプトを取得する
-        _arrayElement = accessories._getAccessoriesCount;
+        //ItemPickup accessories = obj.GetComponent<ItemPickup>();  // タグ取得しているスクリプトを取得する
+        //_arrayElement = accessories._getAccessoriesCount;
         if(_arrayElement > 0) 
         {
-            _accessories[_arrayElement - 1] = accessories._item;   // タグの取得をする
+           // _accessories[_arrayElement - 1] = accessories._item;   // タグの取得をする
         }
         
         

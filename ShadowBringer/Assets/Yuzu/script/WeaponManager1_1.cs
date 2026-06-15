@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-
+// yuzu
 public class WeaponManager1_1 : MonoBehaviour
 {
     // UI画像
@@ -25,11 +25,7 @@ public class WeaponManager1_1 : MonoBehaviour
         weaponSlot2.sprite = null;
 
         // Start時にプレイヤーのスクリプトを1回だけ取得しておく
-        GameObject obj = GameObject.Find("player");
-        if (obj != null)
-        {
-            playerScript = obj.GetComponent<PlayerOtamesi>();
-        }
+        
     }
 
     public void SwitchToStaff()
@@ -44,9 +40,15 @@ public class WeaponManager1_1 : MonoBehaviour
 
     void Update()
     {
+        GameObject obj = GameObject.Find("player");
+        if (obj != null)
+        {
+           PlayerController playerScript = obj.GetComponent<PlayerController>();
+        }
+        Debug.Log(playerScript._accessories[0]);
         // プレイヤーのスクリプトが取得できていない場合は何もしない
         if (playerScript == null) return;
-        print(playerScript._accessories);
+        
         // 【1つ目のアクセサリー（weaponSlot1）の判定】
         if (playerScript._accessories[0] == "Up")
         {
