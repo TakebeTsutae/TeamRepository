@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
             {
                 _accessories[_arrayElement - 1] = destro._item;   // タグの取得をする
             }*/
-
+            Debug.Log(destro._item);
             
             if (_arrayElement > 0)
             {

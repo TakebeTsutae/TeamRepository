@@ -27,5 +27,6 @@ public class destro : MonoBehaviour
         {
             _item = childTag;
         }
+        Debug.Log(_item);
     }
 }

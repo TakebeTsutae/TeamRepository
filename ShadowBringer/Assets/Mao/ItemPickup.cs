@@ -226,6 +226,7 @@ public class Item : MonoBehaviour
         destro parent = GetComponentInParent<destro>();
         if (parent != null)
         {
+
             parent.OnChildDestroyed(gameObject);
         }
     }
