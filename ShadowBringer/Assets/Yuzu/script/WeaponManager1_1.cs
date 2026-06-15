@@ -40,22 +40,30 @@ public class WeaponManager1_1 : MonoBehaviour
 
     void Update()
     {
+
         GameObject obj = GameObject.Find("player");
         if (obj != null)
         {
            PlayerController playerScript = obj.GetComponent<PlayerController>();
         }
-        Debug.Log(playerScript._accessories[0]);
+        
         // プレイヤーのスクリプトが取得できていない場合は何もしない
         if (playerScript == null) return;
-        
+
+
+
+        Debug.Log(playerScript._accessories[0]);
+
+
         // 【1つ目のアクセサリー（weaponSlot1）の判定】
         if (playerScript._accessories[0] == "Up")
         {
+
             weaponSlot1.sprite = _up;
         }
         else if (playerScript._accessories[0] == "Speed")
         {
+            
             weaponSlot1.sprite = _speed;
         }
         else // null、またはそれ以外の文字のときは画像を消す

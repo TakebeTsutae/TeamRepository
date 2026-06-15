@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 // まお
 public class Item : MonoBehaviour
 {
@@ -7,7 +7,8 @@ public class Item : MonoBehaviour
     public string _item;
     public int _getAccessoriesCount;
 
-    public bool _itemSyutoku;
+    static public bool _itemSyutoku;
+
 
 
 
@@ -36,6 +37,7 @@ public class Item : MonoBehaviour
         // 追加↓
         if (isPlayerNear && Input.GetKeyDown(KeyCode.E))
         {
+            /*
             if (this.gameObject.tag == "Up")
             {
                 itemManager.GetComponent<Itemgetcount>().AddCount();
@@ -56,67 +58,200 @@ public class Item : MonoBehaviour
 
                 _booltag._Gettag = true;
 
-            }
-
-            /*if (this.gameObject.tag =="Up")
-            {
-                _item = "Up";
-                //_getAccessoriesCount++;
-                itemManager.GetComponent<Itemgetcount>().AddCount();
-                Debug.Log("tete"+itemManager.GetComponent<Itemgetcount>().GetCount());
-                _booltag._Gettag = true;
-            }
-            else if (this.gameObject.tag == "Speed")
-            {
-                _item = "Speed";
-                //_getAccessoriesCount++;
-                itemManager.GetComponent<Itemgetcount>().AddCount();
-                _booltag._Gettag = true;
             }*/
-            // ここでPlayerAttack のEnquipWaeponを「呼び出している!」
-            // 引数(かっこの中)に、地面にある武器のデータを渡す
-            //          player.Equals(weaponOnGroud);
 
-            GetItem();
-        }
-    }
+/*if (this.gameObject.tag =="Up")
+{
+    _item = "Up";
+    //_getAccessoriesCount++;
+    itemManager.GetComponent<Itemgetcount>().AddCount();
+    Debug.Log("tete"+itemManager.GetComponent<Itemgetcount>().GetCount());
+    _booltag._Gettag = true;
+}
+else if (this.gameObject.tag == "Speed")
+{
+    _item = "Speed";
+    //_getAccessoriesCount++;
+    itemManager.GetComponent<Itemgetcount>().AddCount();
+    _booltag._Gettag = true;
+}
+// ここでPlayerAttack のEnquipWaeponを「呼び出している!」
+// 引数(かっこの中)に、地面にある武器のデータを渡す
+//          player.Equals(weaponOnGroud);
 
-    /*
-    private void OnTriggerEnter2D(Collider2D other)
+GetItem();
+}
+}
+
+/*
+private void OnTriggerEnter2D(Collider2D other)
+{
+if(other.CompareTag("Player"))
+{
+
+
+Destroy(gameObject); //アイテム(自分)を消す
+
+Debug.Log("アイテム拾った!");
+}
+}
+*/
+
+// 追加↓
+/*void GetItem()
+{
+    Item._itemSyutoku = true;
+    if(Item._itemSyutoku == false)
     {
-        if(other.CompareTag("Player"))
+        Destroy(this.gameObject); // アイテム消す
+    }
+
+}
+
+
+void OnTriggerEnter2D(Collider2D other)
+{
+    if(other.CompareTag("Player"))
+    {
+        isPlayerNear = true;
+    }
+}
+
+void OnTriggerExit2D(Collider2D other)
+{
+    if(other.CompareTag("Player"))
+    {
+        isPlayerNear = false;
+    }
+}
+
+}*/
+using UnityEngine;
+
+public class Item : MonoBehaviour
+{
+    private GameObject itemManager;
+    public string _item;
+    public int _getAccessoriesCount;
+
+    // static変数はすべてのアイテムで共有されるため、今回は不要、または扱い方に注意が必要です
+    // static public bool _itemSyutoku; 
+
+    private bool isPlayerNear = false;
+    private PlayerController _booltag; // プレイヤーの参照を保存する変数
+
+    void Start()
+    {
+        // 事前にItemManagerを探しておく
+        itemManager = GameObject.Find("ItemManager");
+    }
+
+    void Update()
+    {
+        /*if (_getAccessoriesCount == 3)
         {
-           
+            _getAccessoriesCount = 2;
+        }
+        */
+        // Eキーが押され、かつプレイヤーが近くにいるとき
+        if (isPlayerNear && Input.GetKeyDown(KeyCode.E))
+        {
+            // _booltag が正しく取得できているか確認
+            if (_booltag != null)
+            {
+                /*if (this.gameObject.CompareTag("Up"))
+                {
+                    PlayerController._itemhensu += 1;
+                    _item = "Up";
+                    itemManager.GetComponent<Itemgetcount>().AddCount();
+                    Debug.Log("tete" + itemManager.GetComponent<Itemgetcount>().GetCount());
 
-            Destroy(gameObject); //アイテム(自分)を消す
+                    // PlayerController側のフラグをtrueにする
+                    _booltag._Gettag = true;
+                }
+                else if (this.gameObject.CompareTag("Speed"))
+                {
+                    PlayerController._itemhensu += 2;
+                    _item = "Speed";
+                    itemManager.GetComponent<Itemgetcount>().AddCount();
+                    Debug.Log("Player" + PlayerController._itemhensu);
+                    // PlayerController側のフラグをtrueにする
+                    _booltag._Gettag = true;
+                }*/
 
-            Debug.Log("アイテム拾った!");
+                // アイテム取得処理（自身を削除）
+                itemManager.GetComponent<Itemgetcount>().AddCount();
+                _booltag._Gettag = true;
+                GetItem();
+            }
+            
+        }
+        /*if (isPlayerNear && Input.GetKeyDown(KeyCode.E))
+        {
+            if (_booltag != null)
+            {
+                // 1. まずItemManagerから、現在のカウント（何個目のアイテムか）を取得
+                Itemgetcount counter = itemManager.GetComponent<Itemgetcount>();
+                counter.AddCount(); // カウントを増やす
+                int index = counter.GetCount() - 1; // 配列の添字用に -1 する
+
+                if (CompareTag("Up"))
+                {
+                    _item = "Up";
+                    itemManager.GetComponent<Itemgetcount>().AddCount();
+
+                    // 💡プレイヤー側の currentItem に "Up" を代入する
+                    _booltag.currentItem = "Up";
+
+                    _booltag._Gettag = true;
+                }
+                else if (CompareTag("Speed"))
+                {
+                    _item = "Speed";
+                    itemManager.GetComponent<Itemgetcount>().AddCount();
+
+                    // 💡プレイヤー側の currentItem に "Speed" を代入する
+                    _booltag.currentItem = "Speed";
+
+                    _booltag._Gettag = true;
+                }
+
+                GetItem();
+            }
+        }*/
+    }
+    private void OnDestroy()
+    {
+        // 親オブジェクトのスクリプトを取得して通知
+        destro parent = GetComponentInParent<destro>();
+        if (parent != null)
+        {
+            parent.OnChildDestroyed(gameObject);
         }
     }
-    */
-
-    // 追加↓
     void GetItem()
     {
-        
-        Destroy(gameObject); // アイテム消す
+        // 拾ったらこのアイテム自体を画面から消去する
+        Destroy(this.gameObject);
     }
-   
-    
+
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player"))
+        // ぶつかった相手がPlayerの場合
+        if (other.CompareTag("Player"))
         {
             isPlayerNear = true;
+            // ぶつかったプレイヤーから「PlayerController」スクリプトをここで1回だけ取得する（効率的！）
+            _booltag = other.GetComponent<PlayerController>();
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             isPlayerNear = false;
+            _booltag = null; // 離れたら参照をクリア
         }
     }
-
 }

@@ -7,6 +7,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    // アイテム所持判定のための変数
+
+    // PlayerController.cs の中にこれを追加
+    public string currentItem;
 
     private GameObject _itemManager;
 
@@ -83,42 +87,52 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        
-        // アクセサリーの情報
-        GameObject obj = GameObject.Find("Item");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
-        Item accessories = obj.GetComponent<Item>();  // タグ取得しているスクリプトを取得する
 
-        Debug.Log("item = " + accessories._item);
+        // アクセサリーの情報
+        GameObject obj = GameObject.Find("Destro");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
+        destro destro = obj.GetComponent<destro>();  // タグ取得しているスクリプトを取得する
+        
+
+        
+
         // ↓いったんコメントアウトしただけ
 
         //現在の取得アイテム数
         int numItem = _itemManager.GetComponent<Itemgetcount>().GetCount();
         
-       _arrayElement = numItem;
+        _arrayElement = numItem;
 
         
         // ↓いったんコメントアウトしただけ
-
+       
         if (_Gettag == true)
         {
+            /*if (_arrayElement > 0)
+            {
+                _accessories[_arrayElement - 1] = destro._item;   // タグの取得をする
+            }*/
+
             
-            Debug.Log(_arrayElement);
-            
+            if (_arrayElement > 0)
+            {
+                _accessories[_arrayElement - 1] = destro._item;   // タグの取得をする
+                
+                
+            }
+            Status(_accessories[_arrayElement - 1]);
             if (_arrayElement >= 3)
             {
                 List(_accessories[0]);
             }
-            Status(_accessories[_arrayElement - 1]);
-            if (_arrayElement > 0)
-            {
-                _accessories[_arrayElement - 1] = accessories._item;   // タグの取得をする
-            }
-            
+
+
+
+
+
             _Gettag = false;
-
         }
-        
 
+        
         // A,Dキー / ←→キー
         if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
         {
@@ -247,6 +261,8 @@ public class PlayerController : MonoBehaviour
         isDashing = false;
     }
 
+
+
     void FixedUpdate()
     {
         if (isDashing) return;
@@ -287,7 +303,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("enemyAttack"))
         {
             TakeDamage(1);
-    }
+        }
     }
 
 
@@ -306,8 +322,8 @@ public class PlayerController : MonoBehaviour
 
         if (accessories == "Up")
         {
-
             _attack += 2;
+
         }
         else if (accessories == "Speed")
         {
@@ -330,10 +346,11 @@ public class PlayerController : MonoBehaviour
         {
 
             _attack -= 2;
+
         }
         else if (accessories == "Speed")
         {
-  
+
             _accessoriesMoveSpeed -= 1.2f;
             
         }
@@ -341,12 +358,9 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-  
+        
         _accessories[0] = _accessories[1];
         _accessories[1] = _accessories[2];
-
-
-
     }
 
     public int GetHP()
