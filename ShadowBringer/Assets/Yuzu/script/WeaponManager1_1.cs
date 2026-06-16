@@ -42,10 +42,7 @@ public class WeaponManager1_1 : MonoBehaviour
     {
 
         GameObject obj = GameObject.Find("player");
-        if (obj != null)
-        {
-           PlayerController playerScript = obj.GetComponent<PlayerController>();
-        }
+        PlayerController playerScript = obj.GetComponent<PlayerController>();
         
         // プレイヤーのスクリプトが取得できていない場合は何もしない
         if (playerScript == null) return;

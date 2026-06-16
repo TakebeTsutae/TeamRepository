@@ -43,7 +43,8 @@ public class enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         GameObject obj = GameObject.Find("player");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
        // PlayerOtamesi _playerOtamesi = obj.GetComponent<PlayerOtamesi>();  // 統合したときに使用（プレイヤーの攻撃力取得のためのやつ）
-       // _playerAttack = _playerOtamesi._attack;
+       // _playerAttack = _playerOtamesi._att
+       // ack;
         StartCoroutine(Action());
     }
 

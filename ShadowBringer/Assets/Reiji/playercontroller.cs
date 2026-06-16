@@ -53,6 +53,8 @@ public class PlayerController : MonoBehaviour
 
     private bool _item = false;
 
+    private bool _GetKey=false;
+
     [Header("Jump Settings")]
     // --- 追加: コヨーテタイムの設定 (秒) ---
     [SerializeField] private float coyoteTime = 0.2f;
@@ -81,6 +83,8 @@ public class PlayerController : MonoBehaviour
         Application.targetFrameRate = 60;
         rigid2D = GetComponent<Rigidbody2D>();
         _itemManager = GameObject.Find("ItemManager");
+        _arrayElement = 0;
+        _Gettag = false;
 
 
     }
@@ -89,49 +93,42 @@ public class PlayerController : MonoBehaviour
     {
 
         // アクセサリーの情報
-        GameObject obj = GameObject.Find("Destro");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
-        destro destro = obj.GetComponent<destro>();  // タグ取得しているスクリプトを取得する
+       // GameObject obj = GameObject.Find("Destro");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
+       // destro destro = obj.GetComponent<destro>();  // タグ取得しているスクリプトを取得する
         
+        if (Keyboard.current.eKey.isPressed)
+        {
+            _GetKey = true;
+        }
+        else
+        {
+            _GetKey = false;
+        }
 
-        
 
         // ↓いったんコメントアウトしただけ
 
-        //現在の取得アイテム数
-        int numItem = _itemManager.GetComponent<Itemgetcount>().GetCount();
-        
-        _arrayElement = numItem;
 
-        
+
         // ↓いったんコメントアウトしただけ
-       
+
         if (_Gettag == true)
         {
-            /*if (_arrayElement > 0)
+            // 配列の範囲内に収まるように安全弁をつける
+            if (_arrayElement > 0 && _arrayElement <= _accessories.Length)
             {
-                _accessories[_arrayElement - 1] = destro._item;   // タグの取得をする
-            }*/
-            Debug.Log(destro._item);
-            
-            if (_arrayElement > 0)
-            {
-                _accessories[_arrayElement - 1] = destro._item;   // タグの取得をする
-                
-                
+                _accessories[_arrayElement - 1] = currentItem;
+                Status(_accessories[_arrayElement - 1]);
             }
-            Status(_accessories[_arrayElement - 1]);
+
             if (_arrayElement >= 3)
             {
                 List(_accessories[0]);
+                _arrayElement = 2; // 古いものを捨てたので、現在の所持数を2に補正する
             }
-
-
-
-
 
             _Gettag = false;
         }
-
         
         // A,Dキー / ←→キー
         if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
@@ -150,6 +147,8 @@ public class PlayerController : MonoBehaviour
         {
             moveInput = 0f;
         }
+
+        
 
         // --- タイマーの更新処理 ---
         // 1. コヨーテタイムの計算
@@ -298,11 +297,48 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    // 接触した瞬間の処理（敵の攻撃など、キー入力に関係ないもの）
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("enemyAttack"))
         {
             TakeDamage(1);
+        }
+    }
+
+    // 【追加】トリガーに触れている間、毎フレーム呼び出される処理
+    // 【修正版】トリガーに触れている間、毎フレーム呼び出される処理
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        // すでにアイテム取得処理が始まっている（_GettagがTrue）なら、このフレームは何もせず返す
+        if (_Gettag) return;
+
+        // アイテムのタグを持っている場合のみ、Eキーの入力をチェックする
+        if (collision.CompareTag("Up") || collision.CompareTag("Speed"))
+        {
+            // 触れている間にEキーが押されたら取得
+            if (Keyboard.current.eKey.isPressed)
+            {
+                _arrayElement++;
+
+                if (collision.CompareTag("Up"))
+                {
+                    currentItem = "Up";
+                }
+                else if (collision.CompareTag("Speed"))
+                {
+                    currentItem = "Speed";
+                }
+
+                Debug.Log($"currentItemを取得しました: {currentItem}");
+
+                // 2重判定を防ぐために即座にコライダーを無効化する
+                collision.enabled = false;
+
+
+                _Gettag = true;
+                Destroy(collision.gameObject);
+            }
         }
     }
 
