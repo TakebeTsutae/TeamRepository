@@ -91,10 +91,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-
-        // アクセサリーの情報
-       // GameObject obj = GameObject.Find("Destro");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
-       // destro destro = obj.GetComponent<destro>();  // タグ取得しているスクリプトを取得する
         
         if (Keyboard.current.eKey.isPressed)
         {
@@ -106,11 +102,6 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        // ↓いったんコメントアウトしただけ
-
-
-
-        // ↓いったんコメントアウトしただけ
 
         if (_Gettag == true)
         {
