@@ -73,10 +73,10 @@ public class BossController : MonoBehaviour
         _rb2D = GetComponent<Rigidbody2D>();
 
         //右に動く
-        _moveChenge = false;
+        _moveChenge = true;
         
        // スタート位置を指定
-        _startPos = new Vector3(20, -3, 0);
+        _startPos = new Vector3(7, -3, 0);
         transform.position = _startPos;
 
        // Debug.Log(bossHp);
