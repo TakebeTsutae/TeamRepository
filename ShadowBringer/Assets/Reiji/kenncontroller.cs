@@ -40,8 +40,7 @@ public class kenncontroller : MonoBehaviour
         // 剣がtrueのときに剣の判定を出す
         // 杖も同様
         //if(sword.SetActive(true))
-        GameObject kennhannteiPre =
-            Instantiate(kennhanntei, playerPos, Quaternion.identity);
+        GameObject kennhannteiPre = Instantiate(kennhanntei, playerPos, Quaternion.identity);
 
         Destroy(kennhannteiPre, 0.1f);
     }

@@ -19,14 +19,21 @@ public class PlayerController : MonoBehaviour
     //  プレイヤーのHP
     public int _playerHp = kMaxHp;
 
+    public int _attackTotal { get; private set;  } = 0;
+
     // 攻撃力
-    public int _attack = 3;
+    public int _attack { get; private set; } = 0;
+
+    public int _attackWeapon = 3;
 
     // 移動速度
     public float moveSpeed = 7f;
 
     // アクセサリーによる追加移動速度
     private float _accessoriesMoveSpeed;
+
+
+
 
     // ジャンプ力
     Rigidbody2D rigid2D;
@@ -47,6 +54,9 @@ public class PlayerController : MonoBehaviour
 
     // タグの取得変数
     public string[] _accessories = new string[3];
+
+    // 武器の所持変数
+    public string weapon;
 
     // tagを取得したか(ItemPickupにてtrueとfalseをいじる)
     public bool _Gettag = false;
@@ -85,6 +95,8 @@ public class PlayerController : MonoBehaviour
         _itemManager = GameObject.Find("ItemManager");
         _arrayElement = 0;
         _Gettag = false;
+        weapon = "Ken";
+
 
 
     }
@@ -92,6 +104,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         
+        _attackTotal = _attackWeapon + _attack;
+        Debug.Log(_attackTotal);
+
         if (Keyboard.current.eKey.isPressed)
         {
             _GetKey = true;
@@ -305,23 +320,37 @@ public class PlayerController : MonoBehaviour
         if (_Gettag) return;
 
         // アイテムのタグを持っている場合のみ、Eキーの入力をチェックする
-        if (collision.CompareTag("Up") || collision.CompareTag("Speed"))
+        if (collision.CompareTag("Up") || collision.CompareTag("Speed") || collision.CompareTag("Tue") || collision.CompareTag("Ken"))
         {
             // 触れている間にEキーが押されたら取得
             if (Keyboard.current.eKey.isPressed)
             {
-                _arrayElement++;
+                
 
                 if (collision.CompareTag("Up"))
                 {
+                    _arrayElement++;
                     currentItem = "Up";
                 }
                 else if (collision.CompareTag("Speed"))
                 {
+                    _arrayElement++;
                     currentItem = "Speed";
                 }
+                else if (collision.CompareTag("Ken"))
+                {
+                    weapon = "Ken";
+                    _attackWeapon = 3;
+                }
+                else if (collision.CompareTag("Tue"))
+                {
 
-                Debug.Log($"currentItemを取得しました: {currentItem}");
+                    weapon = "Tue";
+                    _attackWeapon = 2;
+                }
+                
+
+                  //  Debug.Log($"currentItemを取得しました: {currentItem}");
 
                 // 2重判定を防ぐために即座にコライダーを無効化する
                 collision.enabled = false;

@@ -17,6 +17,8 @@ TagManager:
   - Enemy
   - Up
   - Speed
+  - Tue
+  - Ken
   layers:
   - Default
   - TransparentFX

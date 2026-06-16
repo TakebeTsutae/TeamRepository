@@ -49,8 +49,15 @@ public class WeaponManager1_1 : MonoBehaviour
 
 
 
-        Debug.Log(playerScript._accessories[0]);
 
+        if(playerScript.weapon == "Ken")
+        {
+            weaponSlot.sprite = swordSprite;
+        }
+        else if (playerScript.weapon == "Tue")
+        {
+            weaponSlot.sprite = staffSprite;
+        }
 
         // 【1つ目のアクセサリー（weaponSlot1）の判定】
         if (playerScript._accessories[0] == "Up")
@@ -60,7 +67,7 @@ public class WeaponManager1_1 : MonoBehaviour
         }
         else if (playerScript._accessories[0] == "Speed")
         {
-            
+
             weaponSlot1.sprite = _speed;
         }
         else // null、またはそれ以外の文字のときは画像を消す
