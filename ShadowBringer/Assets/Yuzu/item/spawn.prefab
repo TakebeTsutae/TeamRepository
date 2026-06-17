@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5579476454537175074}
   - component: {fileID: 7094100117274921265}
+  - component: {fileID: -1741208819723260047}
   m_Layer: 0
   m_Name: spawn
   m_TagString: Untagged
@@ -91,3 +92,16 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &-1741208819723260047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3548656163119702788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f44f692670ade044cbae3d3acfcc3878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::spawn
+  EnemyPrefab: {fileID: 6137875044373409476, guid: e916771eda0509f449fb2f3e5d0d8bdd, type: 3}
