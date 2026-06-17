@@ -1,4 +1,4 @@
-/*
+
 using UnityEngine;
 using UnityEngine.UI;
 // yuzu
@@ -24,12 +24,8 @@ public class WeaponManager1_2 : MonoBehaviour
     // プレイヤーの参照を保存する変数（処理の軽量化用）
     private PlayerOtamesi playerScript;
 
-    // マオ追加↓
-    void UpdateHPUI()
-    {
-        hpText.text = currentHP + " / " + maxHP;
-    }
-
+   
+    
     void Start()
     {
         // 最初は剣アイコン
@@ -84,7 +80,7 @@ public class WeaponManager1_2 : MonoBehaviour
             weaponSlot1.sprite = _speed;
         }
         // マオ追加↓
-        else int (playerScript._accessories[0] == "HP")
+        else if (playerScript._accessories[0] == "HP")
         {
             weaponSlot1.sprite = _hp;
             
@@ -114,5 +110,7 @@ public class WeaponManager1_2 : MonoBehaviour
         {
             weaponSlot2.sprite = null;
         }
+        // HP更新
+       // UpdateHPUI();
     }
-}*/
+}

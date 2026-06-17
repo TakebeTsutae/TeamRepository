@@ -1,9 +1,16 @@
-/*using System;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
-public class PlayerOtamesi : MonoBehaviour
+/*
+ // マオ追加↓
+void UpdateHPUI()
+{
+    hpText.text = playerScript.currentHP + " / " + playerScript.maxHP;
+}
+//         ↑
+*/
+public class PlayerOtamesi1 : MonoBehaviour
 {
     // 攻撃力
     public int _attack = 3;
@@ -65,7 +72,7 @@ public class PlayerOtamesi : MonoBehaviour
     {
         // アクセサリーの情報
         GameObject obj = GameObject.Find("Item");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
-        ItemPickup accessories = obj.GetComponent<ItemPickup>();  // タグ取得しているスクリプトを取得する
+        ItemPickup1 accessories = obj.GetComponent<ItemPickup1>();  // タグ取得しているスクリプトを取得する
         _arrayElement = accessories._getAccessoriesCount;
         Debug.Log(_arrayElement);
         if(_arrayElement > 0) 
@@ -81,13 +88,13 @@ public class PlayerOtamesi : MonoBehaviour
             if(_arrayElement >= 3)
             {
                 List(_accessories[0]);
-                // マオ追加↓
-                if(item == "HP")
-                {
-                    currentHP += 1;
+                // マオ追加1↓
+             //   if(item == "HP")
+            //    {
+            //        currentHP += 1;
 
-                    UpdeteHPUI(); // UI表示を呼ぶ
-                }
+            //        UpdeteHPUI(); // UI表示を呼ぶ
+            //    }
                 //         ↑
             }
             _Gettag = false;
@@ -185,19 +192,20 @@ public class PlayerOtamesi : MonoBehaviour
             Debug.Log("hai");
             _accessoriesMoveSpeed += 2f;
         }
-        else 
-        {
-            return;
-        }
         // マオ追加↓
         else if (accessories == "HP")
         {
             maxHP += 1;     // 最大HPを増加
             currentHP += 1; // 今のHPも一緒に増やす（回復も兼ねる）
 
-            Debug.Log("最大HP増加:" + curentHP + " / " + maxHP);
+            Debug.Log("最大HP増加:" + currentHP + " / " + maxHP);
         }
         //         ↑
+        else
+        {
+            return;
+        }
+       
     }
     private void List(string accessories) 
     {
@@ -219,7 +227,7 @@ public class PlayerOtamesi : MonoBehaviour
                 maxHP -= 1;
                 
                // HPがmaxを超えないように調整
-               if(currentHP > maxHP
+               if(currentHP > maxHP)
                 {
                     currentHP = maxHP;
                 }
@@ -236,4 +244,4 @@ public class PlayerOtamesi : MonoBehaviour
         
 
     }
-}*/
+}
