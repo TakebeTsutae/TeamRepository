@@ -15,7 +15,7 @@ public class BossController : MonoBehaviour
     int _attackNum = 0;     // 0: 移動
                             // 1: 通常攻撃
                             // 2: 移動と通常攻撃の間
-    float _startBossPlayerDel = 8.0f; // Bossが動き出すPlayerとBossの距離 ※要調整
+    float _startBossPlayerDel = 20.0f; // Bossが動き出すPlayerとBossの距離 ※要調整
     float _attackCount; // 次の攻撃までの時間をカウントする
     float _moveTime = 1.0f; // 始めの移動行動に移る
     float _attackTime = 2.0f; // 次の攻撃に行くまでの時間

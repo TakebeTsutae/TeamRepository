@@ -4,30 +4,34 @@ using UnityEngine.UI;
 public class WeaponManager : MonoBehaviour
 {
 
-    /*public GameObject sword;
+    public GameObject sword;
     public GameObject staff;
-
-    int playerAttack = 0;
+    //playerAttack多分いらない by つたえ
+    //int playerAttack = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         sword.SetActive(true); // 剣を表示
         staff.SetActive(false); // 杖は非表示
-        playerAttack = 3;
+
+        weaponSlot.sprite = swordSprite;
+        //playerAttack = 3;
     }
 
     public void SwitchToStaff() //杖を拾ったら杖になる
     {
         sword.SetActive(false); // 剣を消す
         staff.SetActive(true);  // 杖を表示
+
+        weaponSlot.sprite = staffSprite;
     }
 
     public void SwitchToSword() // 剣を拾ったら剣になる
     {
         sword.SetActive(true);
         staff.SetActive(false);
-    }*/
+    }
 
     // UI画像
     public Image weaponSlot;
