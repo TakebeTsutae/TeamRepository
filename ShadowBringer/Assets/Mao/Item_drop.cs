@@ -1,7 +1,7 @@
 using JetBrains.Annotations;
 using UnityEngine;
 
-public class EnemyKillOnTouch : MonoBehaviour
+public class Item_drop : MonoBehaviour
 {
     public GameObject itemPrefab; 
 
@@ -22,6 +22,8 @@ public class EnemyKillOnTouch : MonoBehaviour
 
     void DropItem()
     {
+        Vector2 offset = new Vector2(10f, 0f); // 横にずらす
+
         Instantiate(
             itemPrefab,
             transform.position, Quaternion.identity

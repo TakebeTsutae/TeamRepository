@@ -84,7 +84,9 @@ public class PlayerOtamesi : MonoBehaviour
                 // マオ追加↓
                 if(item == "HP")
                 {
-                    currentHP += 20;
+                    currentHP += 1;
+
+                    UpdeteHPUI(); // UI表示を呼ぶ
                 }
                 //         ↑
             }
