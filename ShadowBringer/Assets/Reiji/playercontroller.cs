@@ -3,6 +3,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 
 public class PlayerController : MonoBehaviour
@@ -85,6 +86,8 @@ public class PlayerController : MonoBehaviour
     [Header("Damage Settings")]
     [SerializeField] private float invincibleTime = 1.0f;
     private float invincibleCounter;
+
+
 
     // -----------------------------------------------------------------------
     void Start()
@@ -199,7 +202,8 @@ public class PlayerController : MonoBehaviour
 
         if(isDead())
         {
-            _playerHp = kMaxHp;
+            //_playerHp = kMaxHp;
+            SceneManager.LoadScene("GameOver");
             
         }
 
@@ -212,7 +216,8 @@ public class PlayerController : MonoBehaviour
 
         if(isDead())
         {
-            _playerHp = kMaxHp;
+            //_playerHp = kMaxHp;
+            SceneManager.LoadScene("GameOver");
         }
 
         

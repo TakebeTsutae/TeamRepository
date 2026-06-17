@@ -14,7 +14,10 @@ public class PlayerOtamesi : MonoBehaviour
     // アクセサリーによる追加移動速度
     private float _accessoriesMoveSpeed;
 
-
+    // マオ追加↓HP増加  //ここ違ってたら消して
+    public int currentHP = 3;
+    public int maxHP = 3;
+    //         ↑
     // ジャンプ力
     Rigidbody2D rigid2D;
     float jumpForce = 300f;
@@ -78,8 +81,16 @@ public class PlayerOtamesi : MonoBehaviour
             if(_arrayElement >= 3)
             {
                 List(_accessories[0]);
+                // マオ追加↓
+                if(item == "HP")
+                {
+                    currentHP += 20;
+                }
+                //         ↑
             }
             _Gettag = false;
+
+            
 
         }
         
@@ -176,9 +187,15 @@ public class PlayerOtamesi : MonoBehaviour
         {
             return;
         }
-        
-        
+        // マオ追加↓
+        else if (accessories == "HP")
+        {
+            maxHP += 1;     // 最大HPを増加
+            currentHP += 1; // 今のHPも一緒に増やす（回復も兼ねる）
 
+            Debug.Log("最大HP増加:" + curentHP + " / " + maxHP);
+        }
+        //         ↑
     }
     private void List(string accessories) 
     {
@@ -193,6 +210,18 @@ public class PlayerOtamesi : MonoBehaviour
             {
                 Debug.Log("hai");
                 _accessoriesMoveSpeed -= 2f;
+            }
+            // マオ追加↓
+            else if (accessories == "HP")
+            {
+                maxHP -= 1;
+                
+               // HPがmaxを超えないように調整
+               if(currentHP > maxHP
+                {
+                    currentHP = maxHP;
+                }
+            //         ↑
             }
             else
             {

@@ -153,14 +153,25 @@ public class enemy : MonoBehaviour
     {
         // タグの判定をweponAttackに変えてHPを減らしてください　byつたえ
         // kenAttack, tueAttackは要りません。廃止タグです。　byつたえ
-        if (other.CompareTag("weponAttack")) 
+        if (other.CompareTag("weponAttack"))
         {
+            // すでにダメージ中なら処理をスキップ
+            if (isDame) return;
+
+            isDame = true; // ダメージ中フラグを立てる
+
             _enemyHp = _enemyHp - _playerAttack;
             Debug.Log(_playerAttack);
             Debug.Log(_enemyHp);
+
             if (_enemyHp <= 0)
             {
                 this.gameObject.SetActive(false);
+            }
+            else
+            {
+                // 0.2秒後にダメージを受け付ける状態に戻す
+                StartCoroutine(ResetDamageFlag(0.2f));
             }
         }
         //if (other.CompareTag("tueAttack"))
@@ -212,5 +223,10 @@ public class enemy : MonoBehaviour
         {
             moveSpeed = _moveSpeed;
         }
+    }
+    private IEnumerator ResetDamageFlag(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        isDame = false;
     }
 }
