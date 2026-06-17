@@ -76,16 +76,16 @@ public class BOSS : MonoBehaviour
         isActing = true;
 
         FacePlayer();
-
-        yield return Retreat();
-
+        // 後退
+        yield return RetreatDash();
+        // 突進
         yield return Dash();
-
+        // 通常攻撃
         yield return MeleeAttack();
-
+        // 後退
         yield return Retreat();
 
-       // yield return SummonSpawner();
+        yield return SummonSpawner();
 
         yield return JumpStamp();
 
@@ -112,8 +112,8 @@ public class BOSS : MonoBehaviour
         }
     }
 
-    // 後退
-    private IEnumerator Retreat()
+    // 突進前の後退
+    private IEnumerator RetreatDash()
     {
         FacePlayer();
 
@@ -182,23 +182,56 @@ public class BOSS : MonoBehaviour
             summonPoint.position,
             Quaternion.identity);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.0f);
 
-        Destroy(spawner, 5.0f);
+        Destroy(spawner);
     }
+
+    // ゆっくり後退する
+    private IEnumerator Retreat()
+    {
+        FacePlayer();
+
+        float dir =
+            player.position.x > transform.position.x
+            ? -1.0f
+            : 1.0f;
+
+        // 後退を始める位置
+        Vector3 startPos = transform.position;
+
+        Vector3 targetPos =
+            startPos + Vector3.right * dir * retreatDistance;
+
+        while (Vector2.Distance(transform.position, targetPos) > 0.05f)
+        {
+            transform.position =
+                Vector3.MoveTowards(
+                    transform.position,
+                    targetPos,
+                    retreatSpeed * Time.deltaTime);
+
+            yield return null;
+        }
+    }
+
 
     // ジャンプスタンプ
     private IEnumerator JumpStamp()
     {
+        float trackTime = 2.0f;
+        float timer = 0f;
+
+        
         // 真上へジャンプ
-        float jumpHeight = 5.0f;
+        float jumpHeight = 7.0f;
 
         Vector3 startPos = transform.position;
 
         Vector3 topPos =
             startPos + Vector3.up * jumpHeight;
 
-        while(Vector2.Distance(transform.position, topPos) > 0.05f)
+        while(Vector2.Distance(transform.position, topPos) > 1.0f)
         {
             transform.position = 
                 Vector3.MoveTowards(
@@ -206,14 +239,11 @@ public class BOSS : MonoBehaviour
                     topPos,
                     8.0f * Time.deltaTime);
 
-            yield return null;
+            //yield return null;
         }
 
-        float trackTime = 2.0f;
-        float timer = 0f;
-
         // プレイヤー追尾
-        while(timer < trackTime)
+        while (timer < trackTime)
         {
             timer += Time.deltaTime;
 
@@ -224,13 +254,14 @@ public class BOSS : MonoBehaviour
                    transform.position.z
                    );
 
-            yield return null;
+            //yield return null;
         }
+
 
         // 落下位置確定
         float lockX = transform.position.x;
 
-        yield return new WaitForSeconds(0.5f);
+        
 
         // 落下
         Vector3 groundPos =
@@ -238,8 +269,9 @@ public class BOSS : MonoBehaviour
                 lockX,
                 startPos.y,
                 startPos.z);
+        yield return new WaitForSeconds(1.0f);
 
-        while(Vector2.Distance(transform.position, groundPos) > 0.05f)
+        while (Vector2.Distance(transform.position, groundPos) > 0.05f)
         {
             transform.position =
                 Vector3.MoveTowards(
