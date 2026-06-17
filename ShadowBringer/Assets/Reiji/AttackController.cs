@@ -29,9 +29,13 @@ public class AttackController : MonoBehaviour
     int time = 0;
     private float lastAttackTime = 0f;
     public kenncontroller kenattack;
+    public tuecontroller tuecontroller;
+    public PlayerController playerController;
     private void Start()
     {
         kenattack = GetComponent<kenncontroller>();
+        tuecontroller = GetComponent<tuecontroller>();
+        playerController = GetComponent<PlayerController>();
     }
     void FixedUpdate()
     {
@@ -58,13 +62,22 @@ public class AttackController : MonoBehaviour
         // J押し中 ＆ 攻撃可能
         if (Input.GetMouseButtonDown(0) && canAttack)
         {
-            Attack();
-            // 攻撃した時間を保存
-            lastAttackTime = Time.time;
+            if(playerController.weapon == "Ken")
+            {
+                AttackKen();
+            }
+
+            else if(playerController.weapon == "Tue")
+            {
+                AttackTue();
+            }
+
+                // 攻撃した時間を保存
+                lastAttackTime = Time.time;
         }
     }
 
-    void Attack()
+    void AttackKen()
     {
 
         kenattack.PlayerAttack();
@@ -80,6 +93,28 @@ public class AttackController : MonoBehaviour
         {
             var health = enemy.GetComponent<EnemyHealth>();
             if(health!=null)
+            {
+                health.TakeDamage(attackDamage);
+            }
+        }
+        Debug.Log("Attack実行");
+    }
+    void AttackTue()
+    {
+
+        tuecontroller.ShootMagic();
+
+        // 攻撃範囲内の敵をまとめて取得
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(
+            attackPoint.position,
+            attackRange,
+            enemyLayer
+            );
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            var health = enemy.GetComponent<EnemyHealth>();
+            if (health != null)
             {
                 health.TakeDamage(attackDamage);
             }

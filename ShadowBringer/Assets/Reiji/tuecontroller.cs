@@ -34,7 +34,6 @@ public class tuecontroller : MonoBehaviour
 
     public void ShootMagic()
     {
-        Debug.Log("himei");
         // 1. マウスカーソルの世界座標を計算
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPos.z = 0f; // 2Dなので奥行きはゼロ
