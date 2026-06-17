@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class kenncontroller : MonoBehaviour
 {
-   public GameObject kennhanntei;
+    public GameObject kennhanntei;
     GameObject playerTransform;
 
     bool isFacingRight;

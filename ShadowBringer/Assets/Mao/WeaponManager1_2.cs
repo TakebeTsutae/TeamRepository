@@ -1,23 +1,31 @@
+
 using UnityEngine;
 using UnityEngine.UI;
 // yuzu
-public class WeaponManager1_1 : MonoBehaviour
+public class WeaponManager1_2 : MonoBehaviour
 {
     // UI画像
     public Image weaponSlot;
     public Image weaponSlot1;
     public Image weaponSlot2;
+    // マオ追加↓
+    public Text hpText;
+    //         ↑
 
     // 武器アイコン
     public Sprite swordSprite;
     public Sprite staffSprite;
     public Sprite _up;
     public Sprite _speed;
+    // マオ追加↓
     public Sprite _hp;
+    //         ↑
 
     // プレイヤーの参照を保存する変数（処理の軽量化用）
     private PlayerOtamesi playerScript;
 
+   
+    
     void Start()
     {
         // 最初は剣アイコン
@@ -71,11 +79,13 @@ public class WeaponManager1_1 : MonoBehaviour
 
             weaponSlot1.sprite = _speed;
         }
+        // マオ追加↓
         else if (playerScript._accessories[0] == "HP")
         {
-
             weaponSlot1.sprite = _hp;
+            
         }
+        //         ↑
         else // null、またはそれ以外の文字のときは画像を消す
         {
             weaponSlot1.sprite = null;
@@ -90,14 +100,17 @@ public class WeaponManager1_1 : MonoBehaviour
         {
             weaponSlot2.sprite = _speed;
         }
+        // マオ追加↓
         else if (playerScript._accessories[1] == "HP")
         {
-
-            weaponSlot1.sprite = _hp;
+            weaponSlot2.sprite = _hp;
         }
+        //         ↑
         else // null、またはそれ以外の文字のときは画像を消す
         {
             weaponSlot2.sprite = null;
         }
+        // HP更新
+       // UpdateHPUI();
     }
 }

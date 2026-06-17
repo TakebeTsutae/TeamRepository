@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 using static UnityEditor.Progress;
 
 
-public class PlayerController : MonoBehaviour
+public class PlayerController1 : MonoBehaviour
 {
     // アイテム所持判定のための変数
 
@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float invincibleTime = 1.0f;
     private float invincibleCounter;
 
-
+    [SerializeField] private string gameover;
 
     // -----------------------------------------------------------------------
     void Start()
@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(currentHP);
+     //   Debug.Log(maxHP);
 
 
         _attackTotal = _attackWeapon + _attack;
@@ -204,13 +204,6 @@ public class PlayerController : MonoBehaviour
 
         if (isDashing) return;
 
-        if(isDead())
-        {
-            //_playerHp = kMaxHp;
-            SceneManager.LoadScene("GameOver");
-            
-        }
-
         if(invincibleCounter>0)
         {
             invincibleCounter -= Time.deltaTime;
@@ -221,10 +214,8 @@ public class PlayerController : MonoBehaviour
         if(isDead())
         {
             //_playerHp = kMaxHp;
-            SceneManager.LoadScene("GameOver");
+            SceneManager.LoadScene(gameover);
         }
-
-        
 
     }
 
