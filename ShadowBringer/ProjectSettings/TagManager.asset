@@ -20,6 +20,7 @@ TagManager:
   - Tue
   - Ken
   - enemyAttack
+  - HP
   layers:
   - Default
   - TransparentFX

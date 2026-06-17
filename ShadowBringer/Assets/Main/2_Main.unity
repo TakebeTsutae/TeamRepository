@@ -1203,6 +1203,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Speed
       objectReference: {fileID: 0}
+    - target: {fileID: 5854523987230759030, guid: 388bad1210da155449915d42f9d18201, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854523987230759030, guid: 388bad1210da155449915d42f9d18201, type: 3}
+      propertyPath: m_Color.g
+      value: 0.26629424
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854523987230759030, guid: 388bad1210da155449915d42f9d18201, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5867724419200605494, guid: 388bad1210da155449915d42f9d18201, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -4385,6 +4397,18 @@ PrefabInstance:
     - target: {fileID: 4505389041796854156, guid: 388bad1210da155449915d42f9d18201, type: 3}
       propertyPath: m_TagString
       value: Up
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854523987230759030, guid: 388bad1210da155449915d42f9d18201, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854523987230759030, guid: 388bad1210da155449915d42f9d18201, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854523987230759030, guid: 388bad1210da155449915d42f9d18201, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5867724419200605494, guid: 388bad1210da155449915d42f9d18201, type: 3}
       propertyPath: m_Enabled
@@ -11482,6 +11506,10 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6895390732316378638, guid: 421e64fce844fbb4b9d233353066b6c2, type: 3}
+      propertyPath: m_EdgeRadius
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7348022266981613090, guid: 421e64fce844fbb4b9d233353066b6c2, type: 3}
       propertyPath: m_Name
       value: player
@@ -11489,6 +11517,10 @@ PrefabInstance:
     - target: {fileID: 7348022266981613090, guid: 421e64fce844fbb4b9d233353066b6c2, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7613012925948087050, guid: 421e64fce844fbb4b9d233353066b6c2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8272136852336410806, guid: 421e64fce844fbb4b9d233353066b6c2, type: 3}
       propertyPath: m_SortingOrder
@@ -11654,6 +11686,7 @@ MonoBehaviour:
   staffSprite: {fileID: 1769139453556492977, guid: e2e6a25a6ae1ed54b978a3051ceb7220, type: 3}
   _up: {fileID: -2670100242169240431, guid: 98527d78b9912dc4bb8ffb28f9b6bd8c, type: 3}
   _speed: {fileID: -5188336996638436733, guid: 92713291f1d4b9e479e67db81fa099f9, type: 3}
+  _hp: {fileID: 1368519161191829812, guid: c72d1f830c018084993721c530087c9e, type: 3}
 --- !u!1001 &895257218
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14819,6 +14852,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Speed
       objectReference: {fileID: 0}
+    - target: {fileID: 5854523987230759030, guid: 388bad1210da155449915d42f9d18201, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854523987230759030, guid: 388bad1210da155449915d42f9d18201, type: 3}
+      propertyPath: m_Color.g
+      value: 0.24636889
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854523987230759030, guid: 388bad1210da155449915d42f9d18201, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5867724419200605494, guid: 388bad1210da155449915d42f9d18201, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -15878,6 +15923,18 @@ PrefabInstance:
     - target: {fileID: 4505389041796854156, guid: 388bad1210da155449915d42f9d18201, type: 3}
       propertyPath: m_TagString
       value: Up
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854523987230759030, guid: 388bad1210da155449915d42f9d18201, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854523987230759030, guid: 388bad1210da155449915d42f9d18201, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854523987230759030, guid: 388bad1210da155449915d42f9d18201, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5867724419200605494, guid: 388bad1210da155449915d42f9d18201, type: 3}
       propertyPath: m_Enabled
@@ -19402,7 +19459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c57e51f7029192b4783efb04ad47f1cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneHenkou
-  timeUntilNextMap: 100
+  timeUntilNextMap: 50
   nextSceneName: 3_BossMainScene
 --- !u!4 &1490361932
 Transform:

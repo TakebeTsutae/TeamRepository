@@ -26,14 +26,4 @@ public class TimerController : MonoBehaviour
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
-    private TextMeshProUGUI textComponent;
-    public float speed = 1.5f; // 点滅の速さ
-
-    void Start()
-    {
-        textComponent = GetComponent<TextMeshProUGUI>();
-    }
-
-    
-       
-    }
+}

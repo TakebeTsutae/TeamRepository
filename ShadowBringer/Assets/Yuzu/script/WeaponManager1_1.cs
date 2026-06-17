@@ -13,6 +13,7 @@ public class WeaponManager1_1 : MonoBehaviour
     public Sprite staffSprite;
     public Sprite _up;
     public Sprite _speed;
+    public Sprite _hp;
 
     // プレイヤーの参照を保存する変数（処理の軽量化用）
     private PlayerOtamesi playerScript;
@@ -70,6 +71,11 @@ public class WeaponManager1_1 : MonoBehaviour
 
             weaponSlot1.sprite = _speed;
         }
+        else if (playerScript._accessories[0] == "HP")
+        {
+
+            weaponSlot1.sprite = _hp;
+        }
         else // null、またはそれ以外の文字のときは画像を消す
         {
             weaponSlot1.sprite = null;
@@ -83,6 +89,11 @@ public class WeaponManager1_1 : MonoBehaviour
         else if (playerScript._accessories[1] == "Speed")
         {
             weaponSlot2.sprite = _speed;
+        }
+        else if (playerScript._accessories[1] == "HP")
+        {
+
+            weaponSlot1.sprite = _hp;
         }
         else // null、またはそれ以外の文字のときは画像を消す
         {

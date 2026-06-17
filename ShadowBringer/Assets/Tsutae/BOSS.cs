@@ -37,6 +37,7 @@ public class BOSS : MonoBehaviour
     // スポナー召喚の変数
     [SerializeField, Header("召喚するスポナー")]
     GameObject spawnerPre;
+    // 後々二つにする
 
     [SerializeField]
     Transform summonPoint;
@@ -68,8 +69,6 @@ public class BOSS : MonoBehaviour
             // 攻撃開始
             StartCoroutine(AttackRoutine());
         }
-
-       
     }
 
     private IEnumerator AttackRoutine()
@@ -86,7 +85,7 @@ public class BOSS : MonoBehaviour
 
         yield return Retreat();
 
-        yield return SummonSpawner();
+       // yield return SummonSpawner();
 
         yield return JumpStamp();
 
@@ -94,7 +93,7 @@ public class BOSS : MonoBehaviour
 
         yield return Retreat();
 
-        yield return SummonSpawner();
+        //yield return SummonSpawner();
 
         isActing = false;
     }
@@ -105,11 +104,11 @@ public class BOSS : MonoBehaviour
         if(player.position.x > transform.position.x)
         {
             transform.localScale =
-                new Vector3(1, 1, 1);
+                new Vector3(2, 2, 1);
         }
         else
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-2, 2, 1);
         }
     }
 
@@ -166,10 +165,11 @@ public class BOSS : MonoBehaviour
         }
     }
 
-    // 近接攻撃
+    // 通常攻撃
     private IEnumerator MeleeAttack()
     {
-        animator.SetTrigger("Attack");
+      //  animator.SetTrigger("Attack");
+        Debug.Log("攻撃!");
 
         yield return new WaitForSeconds(1.0f);
     }
@@ -184,11 +184,11 @@ public class BOSS : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        Destroy(spawner);
+        Destroy(spawner, 5.0f);
     }
 
     // ジャンプスタンプ
-    private IEnumerable JumpStamp()
+    private IEnumerator JumpStamp()
     {
         // 真上へジャンプ
         float jumpHeight = 5.0f;
