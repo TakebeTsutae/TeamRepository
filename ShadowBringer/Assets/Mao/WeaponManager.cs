@@ -46,7 +46,7 @@ public class WeaponManager : MonoBehaviour
 
     // プレイヤーの参照を保存する変数（処理の軽量化用）
     private PlayerOtamesi playerScript;
-
+    /*
     void Start()
     {
         // 最初は剣アイコン
@@ -67,6 +67,7 @@ public class WeaponManager : MonoBehaviour
     {
         weaponSlot.sprite = swordSprite;
     }
+    */
 
     // Update is called once per frame
     void Update()
