@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class SceneHenkou : MonoBehaviour
 {
     // マップが切り替わるまでの時間（秒）
-    [SerializeField] private float timeUntilNextMap = 10.0f;
+    [SerializeField] private float timeUntilNextMap = 0.0f;
 
     // 遷移先のシーン名（Inspectorで設定）
     [SerializeField] private string nextSceneName = "BossScene";
