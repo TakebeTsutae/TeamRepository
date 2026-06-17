@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
             _Gettag = false;
         }
         
-        // A,Dキー / ←→キー
+        // プレイヤーの向きを変えた
         if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
         {
             moveInput = -1f-_accessoriesMoveSpeed;
