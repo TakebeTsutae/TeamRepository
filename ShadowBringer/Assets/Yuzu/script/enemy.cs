@@ -22,6 +22,7 @@ public class enemy : MonoBehaviour
 
     private Rigidbody2D rb;
     private bool isJumping = false;
+    private bool isDame = false;    // ダメージの連続判定を防ぐ判定
 
 
     Vector2 velocity;
@@ -41,9 +42,8 @@ public class enemy : MonoBehaviour
         _footLeft.SetActive(true);
         _footRight.SetActive(true);
         rb = GetComponent<Rigidbody2D>();
-        GameObject obj = GameObject.Find("player");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
-       // PlayerOtamesi _playerOtamesi = obj.GetComponent<PlayerOtamesi>();  // 統合したときに使用（プレイヤーの攻撃力取得のためのやつ）
-       // _playerAttack = _playerOtamesi._att
+       
+        
        // ack;
         StartCoroutine(Action());
     }
@@ -51,7 +51,9 @@ public class enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        GameObject obj = GameObject.Find("player");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
+        PlayerController _playerController = obj.GetComponent<PlayerController>();  // 統合したときに使用（プレイヤーの攻撃力取得のためのやつ）
+        _playerAttack = _playerController._attackTotal;
     }
     void FixedUpdate()
     {
@@ -133,14 +135,16 @@ public class enemy : MonoBehaviour
 
         foreach (ContactPoint2D contact in contacts)
         {
-            if (Mathf.Abs(contact.normal.x) > 0.7f)
+            if (Mathf.Abs(contact.normal.x) > 0.7f && collision.gameObject.tag != "player" && isDame == false)
             {
+                isDame = true;
                 kabe++;
                 _moveSpeed *= -1f;
                 if (moveSpeed != 0f)
                 {
                     moveSpeed = _moveSpeed;
                 }
+                isDame = false;
                 break;
             }
         }
@@ -149,26 +153,27 @@ public class enemy : MonoBehaviour
     {
         // タグの判定をweponAttackに変えてHPを減らしてください　byつたえ
         // kenAttack, tueAttackは要りません。廃止タグです。　byつたえ
-        if (other.CompareTag("kenAttack")) 
+        if (other.CompareTag("weponAttack")) 
         {
-           // _enemyHp = _enemyHp - player._attack;
-
+            _enemyHp = _enemyHp - _playerAttack;
+            Debug.Log(_playerAttack);
+            Debug.Log(_enemyHp);
             if (_enemyHp <= 0)
             {
                 this.gameObject.SetActive(false);
             }
         }
-        if (other.CompareTag("tueAttack"))
-        {
-            // _enemyHp = _enemyHp - player._attack;
+        //if (other.CompareTag("tueAttack"))
+        //{
+        //     _enemyHp = _enemyHp - _playerAttack;
 
-            // 
+        //    // 
 
-            if (_enemyHp <= 0)
-            {
-                this.gameObject.SetActive(false);
-            }
-        }
+        //    if (_enemyHp <= 0)
+        //    {
+        //        this.gameObject.SetActive(false);
+        //    }
+        //}
         if (other.CompareTag("Ground"))
         {
             _countFoot--;

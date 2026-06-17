@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
     {
         
         _attackTotal = _attackWeapon + _attack;
-        Debug.Log(_attackTotal);
+        
 
         if (Keyboard.current.eKey.isPressed)
         {

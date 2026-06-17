@@ -19,6 +19,7 @@ TagManager:
   - Speed
   - Tue
   - Ken
+  - enemyAttack
   layers:
   - Default
   - TransparentFX
