@@ -4894,7 +4894,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 456213213}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50c46c6e87352a348ac90c19d31c1435, type: 3}
   m_Name: 
@@ -11662,6 +11662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::kenncontroller
   kennhanntei: {fileID: 5462687660474636958, guid: 16a8bbcd0e4fc334da6d73581a46296e, type: 3}
+  clone: {fileID: 0}
 --- !u!50 &893721021 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 9012805826484682625, guid: 421e64fce844fbb4b9d233353066b6c2, type: 3}

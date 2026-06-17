@@ -361,7 +361,7 @@ public class PlayerController : MonoBehaviour
                 {
                     _arrayElement++;
                     weapon = "HP";
-                    currentHP += 20;
+                    currentHP += 1;
                 }
 
                 //  Debug.Log($"currentItemを取得しました: {currentItem}");

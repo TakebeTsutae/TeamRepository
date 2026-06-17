@@ -9,15 +9,21 @@ public class kenncontroller : MonoBehaviour
 
     bool isFacingRight;
 
+    public GameObject clone;
+
     GameObject wepon;
     private void Start()
     {
+
         playerTransform = GameObject.Find("player");
 
         //wepon=GameObject
     }
     public void PlayerAttack()
     {
+        GameObject obj = GameObject.Find("player");
+        WeaponManager1_1 playerScript = obj.GetComponent<WeaponManager1_1>();
+        tuecontroller tue = obj.GetComponent<tuecontroller>();
         Vector2 playerPos;
 
         // 右向きなら
@@ -39,14 +45,24 @@ public class kenncontroller : MonoBehaviour
         }
         // 剣がtrueのときに剣の判定を出す
         // 杖も同様
-        //if(sword.SetActive(true))
-        GameObject kennhannteiPre = Instantiate(kennhanntei, playerPos, Quaternion.identity);
+        if(playerScript.weaponSlot.sprite == playerScript.swordSprite)
+        {
+            GameObject kennhannteiPre = Instantiate(kennhanntei, playerPos, Quaternion.identity);
+        }
+        else if(playerScript.weaponSlot.sprite == playerScript.staffSprite){
+            tue.ShootMagic();
+            Debug.Log("wwww");
+        }
 
-        Destroy(kennhannteiPre, 0.1f);
+
+
+        clone = GameObject.Find("kencollider(Clone)");
+        Destroy(clone, 0.1f);
     }
 
     void Update()
     {
+        
         if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
         {
             isFacingRight = false;
