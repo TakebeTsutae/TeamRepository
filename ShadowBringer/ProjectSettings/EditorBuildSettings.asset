@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Main/4_MainClearScene.unity
     guid: 5116c74b3f3fa5344954cd32b3ef91eb
+  - enabled: 1
+    path: Assets/Yuzu/GameOver/GameOver.unity
+    guid: 9f65b519feb180d4985543728b2228e9
   - enabled: 0
     path: Assets/Mitsuha/ClearScene.unity
     guid: 605179636e22f934d899c4e8a49788a2
