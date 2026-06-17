@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using static UnityEditor.Progress;
 
 
 public class PlayerController : MonoBehaviour
@@ -33,7 +34,8 @@ public class PlayerController : MonoBehaviour
     // アクセサリーによる追加移動速度
     private float _accessoriesMoveSpeed;
 
-
+    public int currentHP = 3;
+    public int maxHP = 3;
 
 
     // ジャンプ力
@@ -106,7 +108,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        
+        Debug.Log(currentHP);
+
+
         _attackTotal = _attackWeapon + _attack;
         
 
@@ -325,7 +329,7 @@ public class PlayerController : MonoBehaviour
         if (_Gettag) return;
 
         // アイテムのタグを持っている場合のみ、Eキーの入力をチェックする
-        if (collision.CompareTag("Up") || collision.CompareTag("Speed") || collision.CompareTag("Tue") || collision.CompareTag("Ken"))
+        if (collision.CompareTag("Up") || collision.CompareTag("Speed") || collision.CompareTag("Tue") || collision.CompareTag("Ken") || collision.CompareTag("HP"))
         {
             // 触れている間にEキーが押されたら取得
             if (Keyboard.current.eKey.isPressed)
@@ -353,9 +357,14 @@ public class PlayerController : MonoBehaviour
                     weapon = "Tue";
                     _attackWeapon = 2;
                 }
-                
+                else if (collision.CompareTag("HP"))
+                {
+                    _arrayElement++;
+                    weapon = "HP";
+                    currentHP += 20;
+                }
 
-                  //  Debug.Log($"currentItemを取得しました: {currentItem}");
+                //  Debug.Log($"currentItemを取得しました: {currentItem}");
 
                 // 2重判定を防ぐために即座にコライダーを無効化する
                 collision.enabled = false;
@@ -391,6 +400,13 @@ public class PlayerController : MonoBehaviour
             _accessoriesMoveSpeed += 1.2f;
             
         }
+        else if (accessories == "HP")
+        {
+            maxHP += 1;     // 最大HPを増加
+            currentHP += 1; // 今のHPも一緒に増やす（回復も兼ねる）
+
+            Debug.Log("最大HP増加:" + currentHP + " / " + maxHP);
+        }
         else
         {
             return;
@@ -413,7 +429,17 @@ public class PlayerController : MonoBehaviour
         {
 
             _accessoriesMoveSpeed -= 1.2f;
-            
+
+        }
+        else if (accessories == "HP")
+        {
+            maxHP -= 1;
+
+            // HPがmaxを超えないように調整
+            if (currentHP > maxHP)
+            {
+                currentHP = maxHP;
+            }
         }
         else
         {
