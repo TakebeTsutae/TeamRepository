@@ -353,7 +353,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else if (collision.CompareTag("Tue"))
                 {
-
+                    Debug.Log("tue");
                     weapon = "Tue";
                     _attackWeapon = 2;
                 }

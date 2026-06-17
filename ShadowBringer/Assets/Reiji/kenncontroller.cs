@@ -48,15 +48,13 @@ public class kenncontroller : MonoBehaviour
         if(playerScript.weaponSlot.sprite == playerScript.swordSprite)
         {
             GameObject kennhannteiPre = Instantiate(kennhanntei, playerPos, Quaternion.identity);
+            clone = GameObject.Find("kencollider(Clone)");
         }
         else if(playerScript.weaponSlot.sprite == playerScript.staffSprite){
             tue.ShootMagic();
             Debug.Log("wwww");
         }
-
-
-
-        clone = GameObject.Find("kencollider(Clone)");
+        
         Destroy(clone, 0.1f);
     }
 
