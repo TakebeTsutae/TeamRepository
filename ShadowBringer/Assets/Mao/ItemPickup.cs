@@ -101,6 +101,7 @@ public class Item : MonoBehaviour
         {
 
             parent.OnChildDestroyed(gameObject);
+
         }
     }
     void GetItem()
