@@ -928,6 +928,8 @@ MonoBehaviour:
   attackDamage: 10
   attackCooldown: 3
   kenattack: {fileID: 0}
+  tuecontroller: {fileID: 0}
+  playerController: {fileID: 0}
 --- !u!4 &1039244974
 Transform:
   m_ObjectHideFlags: 0
@@ -1619,11 +1621,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4429042665598596485, guid: 2ea24d0ba1cd15649935336cd16e1dd2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.31
+      value: -2.96
       objectReference: {fileID: 0}
     - target: {fileID: 4429042665598596485, guid: 2ea24d0ba1cd15649935336cd16e1dd2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.48
+      value: 0.18
       objectReference: {fileID: 0}
     - target: {fileID: 4429042665598596485, guid: 2ea24d0ba1cd15649935336cd16e1dd2, type: 3}
       propertyPath: m_LocalPosition.z
