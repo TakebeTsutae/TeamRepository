@@ -5,14 +5,14 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Mitsuha/TitleScene.unity
+  - enabled: 1
+    path: Assets/Mitsuha/Scene/TitleScene.unity
     guid: ee51ac360cafa654697cc2f76618c31e
-  - enabled: 0
-    path: Assets/Mitsuha/Hirayama1.unity
+  - enabled: 1
+    path: Assets/Mitsuha/Scene/Hirayama1.unity
     guid: 58c2e16bfd9d4074dbc8206908e1d1ad
   - enabled: 1
-    path: Assets/Mitsuha/BossScene.unity
+    path: Assets/Mitsuha/Scene/BossScene.unity
     guid: 4c882cad2bffdbf429e659c4087fcb51
   - enabled: 1
     path: Assets/Main/1_MainTitleScene.unity
@@ -32,8 +32,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Yuzu/GameOver/GameOver.unity
     guid: 9f65b519feb180d4985543728b2228e9
-  - enabled: 0
-    path: Assets/Mitsuha/ClearScene.unity
+  - enabled: 1
+    path: Assets/Mitsuha/Scene/ClearScene.unity
     guid: 605179636e22f934d899c4e8a49788a2
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
