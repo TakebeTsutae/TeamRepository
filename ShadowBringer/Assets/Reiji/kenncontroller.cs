@@ -22,7 +22,7 @@ public class kenncontroller : MonoBehaviour
     public void PlayerAttack()
     {
         GameObject obj = GameObject.Find("player");
-        WeaponManager1_1 playerScript = obj.GetComponent<WeaponManager1_1>();
+        PlayerController playerScript = obj.GetComponent<PlayerController>();
         tuecontroller tue = obj.GetComponent<tuecontroller>();
         Vector2 playerPos;
 
@@ -45,14 +45,10 @@ public class kenncontroller : MonoBehaviour
         }
         // 剣がtrueのときに剣の判定を出す
         // 杖も同様
-        if(playerScript.weaponSlot.sprite == playerScript.swordSprite)
+        //if (playerScript.weapon == "Ken")
         {
             GameObject kennhannteiPre = Instantiate(kennhanntei, playerPos, Quaternion.identity);
-            clone = GameObject.Find("kencollider(Clone)");
-        }
-        else if(playerScript.weaponSlot.sprite == playerScript.staffSprite){
-            tue.ShootMagic();
-            Debug.Log("wwww");
+
         }
         
         Destroy(clone, 0.1f);

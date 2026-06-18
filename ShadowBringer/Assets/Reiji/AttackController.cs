@@ -62,22 +62,24 @@ public class AttackController : MonoBehaviour
         // J押し中 ＆ 攻撃可能
         if (Input.GetMouseButtonDown(0) && canAttack)
         {
-            if(playerController.weapon == "Ken")
+            //Debug.Log("ボタンゲット");
+            //if(playerController.weapon == "Ken")
             {
-                AttackKen();
+                //Debug.Log("剣ゲット");
+                Attack();
             }
 
-            else if(playerController.weapon == "Tue")
-            {
-                AttackTue();
-            }
+            //else if(playerController.weapon == "Tue")
+            //{
+            //    AttackTue();
+            //}
 
                 // 攻撃した時間を保存
                 lastAttackTime = Time.time;
         }
     }
 
-    void AttackKen()
+    void Attack()
     {
 
         kenattack.PlayerAttack();

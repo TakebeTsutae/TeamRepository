@@ -94,14 +94,13 @@ public class PlayerController : MonoBehaviour
     // -----------------------------------------------------------------------
     void Start()
     {
+        weapon = "Ken";
         _accessoriesMoveSpeed = 0f;
         Application.targetFrameRate = 60;
         rigid2D = GetComponent<Rigidbody2D>();
         _itemManager = GameObject.Find("ItemManager");
         _arrayElement = 0;
         _Gettag = false;
-        weapon = "Ken";
-
 
 
     }
