@@ -42,9 +42,14 @@ public class spawn : MonoBehaviour
     {
         Transform enemySpawnPos = this.transform;
         Transform cameraPos = Camera.transform;
+
+        Debug.Log(cameraPos.position.x);
         
-        if () { }
-        Spown();
+        if(cameraPos.position.x-1280/2 >= enemySpawnPos.position.x && cameraPos.position.x +1280/2 <= enemySpawnPos.position.x && cameraPos.position.y+640/2 <= enemySpawnPos.position.x && cameraPos.position.y - 640 / 2 >= enemySpawnPos.position.x)
+        {
+            Spown();
+        }
+            
 
 
         

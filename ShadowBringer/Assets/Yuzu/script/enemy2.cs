@@ -50,7 +50,6 @@ public class enemy2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(_enemyHp);
 
     }
     void FixedUpdate()
