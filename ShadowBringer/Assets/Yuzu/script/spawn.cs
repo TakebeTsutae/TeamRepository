@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class spawn : MonoBehaviour
 {
-
+    public GameObject Camera;
 
     private float _enemy1_x,_enemy1_y;
     private float _enemy2_x, _enemy2_y;
@@ -19,6 +19,7 @@ public class spawn : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // スポーンの座標
         _spawnCount = 0;
         _enemy1_x = this.transform.position.x - 10f;
         _enemy1_y = this.transform.position.y - 10f;
@@ -28,15 +29,21 @@ public class spawn : MonoBehaviour
         _enemy3_y = this.transform.position.y + 7f;
         _enemy4_x = this.transform.position.x + 7f;
         _enemy4_y = this.transform.position.y - 7f;
+
+        
     }
     private void Update()
     {
+        
         _timer -= Time.deltaTime;
     }
     // Update is called once per frame
     void FixedUpdate()
     {
-
+        Transform enemySpawnPos = this.transform;
+        Transform cameraPos = Camera.transform;
+        
+        if () { }
         Spown();
 
 
