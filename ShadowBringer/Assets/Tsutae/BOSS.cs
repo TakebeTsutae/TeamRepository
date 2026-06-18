@@ -5,6 +5,13 @@ public class BOSS : MonoBehaviour
 { 
     [SerializeField, Header("ボスHP")]
     int bossHp = 500;
+    [SerializeField,Header("大きさ")]
+    float _bossScale = 2.0f; // ボスの大きさ
+    bool _isDaed = false;
+    // 一連の攻撃を何回終えたか
+    int _attackCounter = 0;
+
+    // プレイヤーの攻撃力を取得
     int _playerAttack;
     PlayerController _playerController;
 
@@ -12,21 +19,20 @@ public class BOSS : MonoBehaviour
     Transform player;
 
     [SerializeField,Header("攻撃を始めるプレイヤーとの距離")]
-    float attackRenge = 8.0f;
+    float attackRenge = 10.0f;
 
     private bool isActing;
 
     // 後退の変数
     [SerializeField,Header("後退")]
-    float retreatDistance = 1.0f;   // 後退で進む距離
-
+    float dashRetreatDistance = 1.0f;   // 突進前の後退で進む距離
+    float retreatDistance = 5.0f;   // 後退で進む距離
     [SerializeField]
-    float retreatSpeed = 3.0f;  // 後退のスピード
+    float retreatSpeed = 3.0f;  // 突進前後退のスピード
 
     // 突進の変数
     [SerializeField,Header("突進")]
     float dashDistance = 5.0f;  // 突進で進む距離
-
     [SerializeField]
     float dashSpeed = 10.0f;    // 突進のスピード
 
@@ -35,10 +41,11 @@ public class BOSS : MonoBehaviour
     Animator animator;
 
     // スポナー召喚の変数
+    [SerializeField, Header("スポナー召喚をするのは何巡目か")]
+    int _spawnerNum = 3;
     [SerializeField, Header("召喚するスポナー")]
     GameObject spawnerPre;
     // 後々二つにする
-
     [SerializeField]
     Transform summonPoint;
 
@@ -76,7 +83,7 @@ public class BOSS : MonoBehaviour
         isActing = true;
 
         FacePlayer();
-        // 後退
+        // 突進前後退
         yield return RetreatDash();
         // 突進
         yield return Dash();
@@ -85,15 +92,21 @@ public class BOSS : MonoBehaviour
         // 後退
         yield return Retreat();
 
-        yield return SummonSpawner();
-
         yield return JumpStamp();
 
         yield return MeleeAttack();
 
-        yield return Retreat();
+        if (_attackCounter >= _spawnerNum)
+        {
+            _attackCounter = 0;
+            yield return Retreat();
 
+            yield return SummonSpawner();
+        }
+        
         //yield return SummonSpawner();
+
+        _attackCounter++;
 
         isActing = false;
     }
@@ -104,11 +117,11 @@ public class BOSS : MonoBehaviour
         if(player.position.x > transform.position.x)
         {
             transform.localScale =
-                new Vector3(2, 2, 1);
+                new Vector3(_bossScale, _bossScale, 1);
         }
         else
         {
-            transform.localScale = new Vector3(-2, 2, 1);
+            transform.localScale = new Vector3(-_bossScale, _bossScale, 1);
         }
     }
 
@@ -126,7 +139,7 @@ public class BOSS : MonoBehaviour
         Vector3 startPos = transform.position;
 
         Vector3 targetPos = 
-            startPos + Vector3.right * dir * retreatDistance;
+            startPos + Vector3.right * dir * dashRetreatDistance;
 
         while(Vector2.Distance(transform.position, targetPos) > 0.05f)
         {
@@ -213,6 +226,8 @@ public class BOSS : MonoBehaviour
 
             yield return null;
         }
+        // 1秒まつ
+        yield return new WaitForSeconds(1.0f);
     }
 
 
@@ -229,7 +244,7 @@ public class BOSS : MonoBehaviour
         Vector3 startPos = transform.position;
 
         Vector3 topPos =
-            startPos + Vector3.up * jumpHeight;
+            new Vector3(player.position.x, startPos.y) + Vector3.up * jumpHeight;
 
         while(Vector2.Distance(transform.position, topPos) > 1.0f)
         {
@@ -237,16 +252,16 @@ public class BOSS : MonoBehaviour
                 Vector3.MoveTowards(
                     transform.position,
                     topPos,
-                    8.0f * Time.deltaTime);
+                    20.0f * Time.deltaTime);
 
-            //yield return null;
+            yield return null;
         }
 
         // プレイヤー追尾
+        //timer += Time.deltaTime;
         while (timer < trackTime)
         {
             timer += Time.deltaTime;
-
             transform.position =
                new Vector3(
                    player.position.x,
@@ -254,9 +269,9 @@ public class BOSS : MonoBehaviour
                    transform.position.z
                    );
 
-            //yield return null;
+            yield return null;
         }
-
+        //timer = 0;
 
         // 落下位置確定
         float lockX = transform.position.x;
@@ -283,6 +298,13 @@ public class BOSS : MonoBehaviour
         }
 
         // プレイヤーへの着地ダメージ発生
+
+        // ボスが死んだとき
+        if (bossHp <= 0)
+        {
+            _isDaed = true;
+            
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -293,6 +315,7 @@ public class BOSS : MonoBehaviour
             // 統合したときに使用（プレイヤーの攻撃力取得のためのやつ）
             _playerAttack = _playerController._attackTotal;
             bossHp -= _playerAttack;
+            
         }
     }
 }
