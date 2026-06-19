@@ -91,6 +91,9 @@ public class PlayerController1 : MonoBehaviour
 
     [SerializeField] private string gameover;
 
+    private Animator animator;
+    private string currentAnimation = "";
+
     // -----------------------------------------------------------------------
     void Start()
     {
@@ -102,7 +105,8 @@ public class PlayerController1 : MonoBehaviour
         _Gettag = false;
         weapon = "Ken";
 
-
+        // ゲームが始まった瞬間に自分についているAnimatorコンポーネントを自動で覚えさせます
+        animator = GetComponentInChildren<Animator>();
 
     }
 
@@ -149,12 +153,18 @@ public class PlayerController1 : MonoBehaviour
             moveInput = -1f-_accessoriesMoveSpeed;
             isFacingRight = false;
             transform.localScale = new Vector3(-1, 1, 1);
+
+            // 【追加】左に動いているので「Player_Run」を再生
+            ChangeAnimation("Player_Run_spritesite1");
         }
         else if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
         {
             moveInput = 1f+ _accessoriesMoveSpeed;
             isFacingRight = true;
             transform.localScale = new Vector3(1, 1, 1);
+
+            // 【追加】右に動いているので「Player_Run」を再生
+            ChangeAnimation("Player_Run_spritesite1");
         }
         else
         {
@@ -279,6 +289,18 @@ public class PlayerController1 : MonoBehaviour
             dashCooldownCounter = dashCooldown; // タイマーを1秒満タンにセットする
             StartCoroutine(DashRoutine());
         }
+    }
+
+    void ChangeAnimation(string newAnimation)
+    {
+        // もし「今再生中のアニメーション」と「次に再生したいアニメーショ」が同じなら、何もしない
+        if (currentAnimation == newAnimation) return;
+
+        // 違うアニメーションのときだけ、新しく再生する
+        animator.Play(newAnimation);
+
+        // 今再生しているアニメーションの名前を上書きして記憶する
+        currentAnimation = newAnimation;
     }
 
     // tagにぶつかったときの処理たち
