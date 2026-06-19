@@ -30,12 +30,13 @@ public class spawn : MonoBehaviour
         _enemy4_x = this.transform.position.x + 7f;
         _enemy4_y = this.transform.position.y - 7f;
 
+        Vector2 cameraPos;
+
         
     }
     private void Update()
     {
         
-        _timer -= Time.deltaTime;
     }
     // Update is called once per frame
     void FixedUpdate()

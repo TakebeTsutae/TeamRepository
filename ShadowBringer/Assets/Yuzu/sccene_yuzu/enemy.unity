@@ -212,11 +212,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6493041371557248858, guid: 7b7b5d37325a9aa408e703c3341aab51, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.88
+      value: 10.07
       objectReference: {fileID: 0}
     - target: {fileID: 6493041371557248858, guid: 7b7b5d37325a9aa408e703c3341aab51, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.97
+      value: -2.84
       objectReference: {fileID: 0}
     - target: {fileID: 6493041371557248858, guid: 7b7b5d37325a9aa408e703c3341aab51, type: 3}
       propertyPath: m_LocalPosition.z
@@ -432,7 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44f692670ade044cbae3d3acfcc3878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::spawn
-  Camera: {fileID: 0}
+  Camera: {fileID: 825730648}
   EnemyPrefab: {fileID: 6137875045112329211}
 --- !u!1 &1335284546 stripped
 GameObject:
