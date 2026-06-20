@@ -158,26 +158,26 @@ public class enemy2 : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("kenAttack"))
-        {
-            // _enemyHp = _enemyHp - player._attack;
+    //    if (other.CompareTag("kenAttack"))
+    //    {
+    //        // _enemyHp = _enemyHp - player._attack;
 
-            if (_enemyHp <= 0)
-            {
-                this.gameObject.SetActive(false);
-            }
-        }
-        if (other.CompareTag("tueAttack"))
-        {
-            // _enemyHp = _enemyHp - player._attack;
+    //        if (_enemyHp <= 0)
+    //        {
+    //            this.gameObject.SetActive(false);
+    //        }
+    //    }
+    //    if (other.CompareTag("tueAttack"))
+    //    {
+    //        // _enemyHp = _enemyHp - player._attack;
 
-            // 
+    //        // 
 
-            if (_enemyHp <= 0)
-            {
-                this.gameObject.SetActive(false);
-            }
-        }
+    //        if (_enemyHp <= 0)
+    //        {
+    //            this.gameObject.SetActive(false);
+    //        }
+    //    }
         if (other.CompareTag("Ground"))
         {
             _countFoot--;

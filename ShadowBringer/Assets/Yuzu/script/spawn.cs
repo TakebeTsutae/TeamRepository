@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class spawn : MonoBehaviour
 {
-    public GameObject Camera;
+    [SerializeField] GameObject Camera;
 
     private float _enemy1_x,_enemy1_y;
     private float _enemy2_x, _enemy2_y;
@@ -41,13 +41,17 @@ public class spawn : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        
         Transform enemySpawnPos = this.transform;
-        Transform cameraPos = Camera.transform;
+        Transform cameraPos = Camera.gameObject.transform;
+
+        Debug.Log(cameraPos);
 
         Debug.Log(cameraPos.position.x);
         
-        if(cameraPos.position.x-1280/2 >= enemySpawnPos.position.x && cameraPos.position.x +1280/2 <= enemySpawnPos.position.x && cameraPos.position.y+640/2 <= enemySpawnPos.position.x && cameraPos.position.y - 640 / 2 >= enemySpawnPos.position.x)
+        if(cameraPos.position.x-10 <= enemySpawnPos.position.x && cameraPos.position.x +10 >= enemySpawnPos.position.x && cameraPos.position.y+5 >= enemySpawnPos.position.y && cameraPos.position.y - 5 <= enemySpawnPos.position.y)
         {
+            Debug.Log("入ってるよ");
             Spown();
         }
             

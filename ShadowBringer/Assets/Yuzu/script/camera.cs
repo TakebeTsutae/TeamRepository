@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerScript : MonoBehaviour
+public class camera : MonoBehaviour
 {
     float speed = 3.0f;
 
