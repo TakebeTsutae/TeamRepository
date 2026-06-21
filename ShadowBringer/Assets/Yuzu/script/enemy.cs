@@ -51,9 +51,9 @@ public class enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GameObject obj = GameObject.Find("player");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
-        PlayerController _playerController = obj.GetComponent<PlayerController>();  // 統合したときに使用（プレイヤーの攻撃力取得のためのやつ）
-        _playerAttack = _playerController._attackTotal;
+    //    GameObject obj = GameObject.Find("player");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
+    //    PlayerController _playerController = obj.GetComponent<PlayerController>();  // 統合したときに使用（プレイヤーの攻撃力取得のためのやつ）
+    //    _playerAttack = _playerController._attackTotal;
     }
     void FixedUpdate()
     {

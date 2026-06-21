@@ -49,16 +49,16 @@ public class spawn : MonoBehaviour
 
         Debug.Log(cameraPos.position.x);
         
-        if(cameraPos.position.x-10 <= enemySpawnPos.position.x && cameraPos.position.x +10 >= enemySpawnPos.position.x && cameraPos.position.y+5 >= enemySpawnPos.position.y && cameraPos.position.y - 5 <= enemySpawnPos.position.y)
+       // if(cameraPos.position.x-10 <= enemySpawnPos.position.x && cameraPos.position.x +10 >= enemySpawnPos.position.x && cameraPos.position.y+5 >= enemySpawnPos.position.y && cameraPos.position.y - 5 <= enemySpawnPos.position.y)
         {
             Debug.Log("入ってるよ");
             Spown();
         }
-            
 
 
-        
-        if(_spawnCount <= 0)
+        _timer -= _timeInterval/100;
+
+        if (_spawnCount <= 0)
         {
             _spawnCount++;
             Vector2 pos1 = new Vector2(_enemy1_x, _enemy1_y);
@@ -74,9 +74,12 @@ public class spawn : MonoBehaviour
     }
     void Spown() 
     {
-        if (_timer > 0f) return;
-        _timer += _timeInterval;
-       
+        if (_timer > 0f)
+        {
+            return;
+        }
+        else
+        {
             _spawnCount++;
             Vector2 pos1 = new Vector2(_enemy1_x, _enemy1_y);
             Vector2 pos2 = new Vector2(_enemy2_x, _enemy2_y);
@@ -87,6 +90,11 @@ public class spawn : MonoBehaviour
             Instantiate(EnemyPrefab, pos2, Quaternion.identity);
             Instantiate(EnemyPrefab, pos3, Quaternion.identity);
             Instantiate(EnemyPrefab, pos4, Quaternion.identity);
+
+            _timer = 100;
+        }
+
+            
         
     }
     
