@@ -49,7 +49,7 @@ public class spawn : MonoBehaviour
 
         Debug.Log(cameraPos.position.x);
         
-       // if(cameraPos.position.x-10 <= enemySpawnPos.position.x && cameraPos.position.x +10 >= enemySpawnPos.position.x && cameraPos.position.y+5 >= enemySpawnPos.position.y && cameraPos.position.y - 5 <= enemySpawnPos.position.y)
+        if(cameraPos.position.x-10 <= enemySpawnPos.position.x && cameraPos.position.x +10 >= enemySpawnPos.position.x && cameraPos.position.y+5 >= enemySpawnPos.position.y && cameraPos.position.y - 5 <= enemySpawnPos.position.y)
         {
             Debug.Log("入ってるよ");
             Spown();

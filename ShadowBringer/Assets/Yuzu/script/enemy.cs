@@ -130,7 +130,7 @@ public class enemy : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)  // playerとの衝突は無視するようにのちに設定すること
     {
 
-        ContactPoint2D[] contacts = new ContactPoint2D[collision.contactCount];
+        ContactPoint2D[] contacts = new ContactPoint2D[collision.contactCount]; // contactCount ← ぶつかった点の個数
         collision.GetContacts(contacts);
 
         foreach (ContactPoint2D contact in contacts)
@@ -147,6 +147,7 @@ public class enemy : MonoBehaviour
                 isDame = false;
                 break;
             }
+            
         }
     }
     private void OnTriggerEnter2D(Collider2D other) 
