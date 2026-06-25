@@ -42,9 +42,9 @@ public class enemy : MonoBehaviour
         _footLeft.SetActive(true);
         _footRight.SetActive(true);
         rb = GetComponent<Rigidbody2D>();
-       
-        
-       // ack;
+        this._countFoot = 0;
+
+        // ack;
         StartCoroutine(Action());
     }
 
@@ -65,7 +65,7 @@ public class enemy : MonoBehaviour
             rb.linearVelocity = velocity;
         }
 
-      
+        Debug.Log(this._countFoot);
         
         
 
@@ -188,11 +188,11 @@ public class enemy : MonoBehaviour
         //}
         if (other.CompareTag("Ground"))
         {
-            _countFoot--;
+            this._countFoot--;
 
-            if (_countFoot <= 0)
+            if (this._countFoot <= 0)
             {
-                _countFoot = 0;
+                this._countFoot = 0;
                 if (this.gameObject.tag == "_enemyFoot")
                 {
 
@@ -206,7 +206,7 @@ public class enemy : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D other) // Exit -> 離れた瞬間
     {
-        _countFoot++;
+        this._countFoot++;
         if(this.gameObject.tag == "_enemyFoot") 
         {
            // this.gameObject.SetActive(false) ;
