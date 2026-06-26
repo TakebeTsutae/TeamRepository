@@ -413,6 +413,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerOtamesi
   _attack: 3
   moveSpeed: 7
+  _accessories:
+  - 
+  - 
+  - 
   isFacingRight: 1
   _Gettag: 0
   coyoteTime: 0.2
@@ -473,6 +477,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
+    - target: {fileID: 7348022266981613090, guid: 17eed6889af7f604e92d1a5213115004, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -499,7 +507,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPicup
   _item: 
-  _getAccessoriesCount: 0
 --- !u!1001 &2011858461
 PrefabInstance:
   m_ObjectHideFlags: 0
