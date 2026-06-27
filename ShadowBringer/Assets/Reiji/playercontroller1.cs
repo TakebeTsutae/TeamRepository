@@ -91,7 +91,7 @@ public class PlayerController1 : MonoBehaviour
 
     [SerializeField] private string gameover;
 
-    private Animator animator;
+    private Animator _anim;
     private string currentAnimation = "";
 
     // -----------------------------------------------------------------------
@@ -106,7 +106,9 @@ public class PlayerController1 : MonoBehaviour
         weapon = "Ken";
 
         // ゲームが始まった瞬間に自分についているAnimatorコンポーネントを自動で覚えさせます
-        animator = GetComponentInChildren<Animator>();
+        _anim = GetComponent<Animator>();
+        _anim.Play("Idle", 0, 0f);
+        transform.localScale = new Vector3(2, 2, 1);
 
     }
 
@@ -152,23 +154,26 @@ public class PlayerController1 : MonoBehaviour
         {
             moveInput = -1f-_accessoriesMoveSpeed;
             isFacingRight = false;
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-2, 2, 1);
 
-            // 【追加】左に動いているので「Player_Run」を再生
-            ChangeAnimation("Player_Run_spritesite1");
+            Debug.Log("左キーが押されました。");
+            // 【追加】左に動いているので「Walk」を再生
+            ChangeAnimation("Walk");
         }
         else if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
         {
             moveInput = 1f+ _accessoriesMoveSpeed;
             isFacingRight = true;
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(2, 2, 1);
 
-            // 【追加】右に動いているので「Player_Run」を再生
-            ChangeAnimation("Player_Run_spritesite1");
+            Debug.Log("右キーが押されました。");
+            // 【追加】右に動いているので「Walk」を再生
+            ChangeAnimation("Walk");
         }
         else
         {
             moveInput = 0f;
+            ChangeAnimation("Idle");
         }
 
         
@@ -293,12 +298,17 @@ public class PlayerController1 : MonoBehaviour
 
     void ChangeAnimation(string newAnimation)
     {
+        Debug.Log("ChangeAnimationが呼ばれた：" + newAnimation);
+        Debug.Log("現在のアニメーション：" + currentAnimation);
+
+
         // もし「今再生中のアニメーション」と「次に再生したいアニメーショ」が同じなら、何もしない
         if (currentAnimation == newAnimation) return;
 
         // 違うアニメーションのときだけ、新しく再生する
-        animator.Play(newAnimation);
+        _anim.Play(newAnimation);
 
+        Debug.Log("Playを実行しました：" + newAnimation);
         // 今再生しているアニメーションの名前を上書きして記憶する
         currentAnimation = newAnimation;
     }
