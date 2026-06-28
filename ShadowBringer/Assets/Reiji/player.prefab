@@ -173,7 +173,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::kenncontroller
   kennhanntei: {fileID: 5462687660474636958, guid: 16a8bbcd0e4fc334da6d73581a46296e, type: 3}
-  clone: {fileID: 0}
 --- !u!114 &9220060815963998398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec36e5b485d86d846a0d59395b150a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackController
-  attackPoint: {fileID: 0}
+  attackPoint: {fileID: 3136006416087767938}
   attackRange: 0.1
   enemyLayer:
     serializedVersion: 2
@@ -515,7 +514,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KenController
   kennhanntei: {fileID: 5462687660474636958, guid: 16a8bbcd0e4fc334da6d73581a46296e, type: 3}
-  clone: {fileID: 0}
 --- !u!4 &3831049509034957188 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3222981834668259858, guid: d8dba9d1757c7904580dce2849e1bdac, type: 3}
