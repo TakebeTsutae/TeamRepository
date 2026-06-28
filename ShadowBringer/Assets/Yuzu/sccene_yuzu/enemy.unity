@@ -312,6 +312,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kabe
       objectReference: {fileID: 0}
+    - target: {fileID: 4934993929711923303, guid: 7b7b5d37325a9aa408e703c3341aab51, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 6493041371557248858, guid: 7b7b5d37325a9aa408e703c3341aab51, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.1214
@@ -716,11 +720,11 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.6, y: 0}
+  m_Offset: {x: -0.6, y: 0.1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}

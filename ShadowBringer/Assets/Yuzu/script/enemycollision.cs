@@ -20,7 +20,7 @@ public class enemycollision : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == groundTag || collision.gameObject.tag == enemyTag)
+        if (collision.gameObject.tag == groundTag || collision.gameObject.tag == enemyTag)
         {
             isOn = true;
         }
