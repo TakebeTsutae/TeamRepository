@@ -322,11 +322,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6493041371557248858, guid: 7b7b5d37325a9aa408e703c3341aab51, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.3393
+      value: 12.94
       objectReference: {fileID: 0}
     - target: {fileID: 6493041371557248858, guid: 7b7b5d37325a9aa408e703c3341aab51, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.9
+      value: -3.14
       objectReference: {fileID: 0}
     - target: {fileID: 6493041371557248858, guid: 7b7b5d37325a9aa408e703c3341aab51, type: 3}
       propertyPath: m_LocalPosition.z
@@ -613,6 +613,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8756245256651025711, guid: 07feb7923f0cf2c4891656c2b58a988e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1362479964}
+    - targetCorrespondingSourceObject: {fileID: 8756245256651025711, guid: 07feb7923f0cf2c4891656c2b58a988e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1314436497}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6692394789741281334, guid: 07feb7923f0cf2c4891656c2b58a988e, type: 3}
       insertIndex: -1
@@ -654,6 +657,99 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::spawn
   Camera: {fileID: 825730648}
   EnemyPrefab: {fileID: 6137875045112329211}
+--- !u!1 &1314436496
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1314436497}
+  - component: {fileID: 1314436498}
+  - component: {fileID: 1314436499}
+  m_Layer: 0
+  m_Name: asi
+  m_TagString: _enemyFoot
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1314436497
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314436496}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1547334114}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1314436498
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314436496}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.6, y: -0.8}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.1, y: 0.5}
+  m_EdgeRadius: 0
+--- !u!114 &1314436499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314436496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0976c36ca212ff4dab76d29c4ff8da7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::enemycollision
+  isOn: 0
+  isOn1: 0
 --- !u!1 &1335284546 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8566036807444224699, guid: 07feb7923f0cf2c4891656c2b58a988e, type: 3}
@@ -690,6 +786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemycollision
   isOn: 0
+  isOn1: 0
 --- !u!61 &1362479963
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -803,6 +900,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyotamesi
   checkcollision: {fileID: 1362479962}
+  checkcollision1: {fileID: 1314436499}
+  attack: {fileID: 579665958}
 --- !u!4 &1547334114 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8756245256651025711, guid: 07feb7923f0cf2c4891656c2b58a988e, type: 3}
