@@ -31,7 +31,7 @@ public class kenncontroller : MonoBehaviour
             playerPos = new Vector2(
                 playerTransform.transform.position.x + 1,
                 playerTransform.transform.position.y
-            );
+                );
         }
 
         // 左向きなら

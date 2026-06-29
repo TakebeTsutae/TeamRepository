@@ -91,8 +91,10 @@ public class PlayerController1 : MonoBehaviour
 
     [SerializeField] private string gameover;
 
-    private Animator _anim;
+    public Animator _anim;
     private string currentAnimation = "";
+
+    private bool isAttacking = false;
 
     // -----------------------------------------------------------------------
     void Start()
@@ -114,11 +116,11 @@ public class PlayerController1 : MonoBehaviour
 
     void Update()
     {
-     //   Debug.Log(maxHP);
+        //   Debug.Log(maxHP);
 
 
         _attackTotal = _attackWeapon + _attack;
-        
+
 
         if (Keyboard.current.eKey.isPressed)
         {
@@ -148,11 +150,35 @@ public class PlayerController1 : MonoBehaviour
 
             _Gettag = false;
         }
-        
-        // A,Dキー / ←→キー
-        if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
+
+        if (isAttacking)
         {
-            moveInput = -1f-_accessoriesMoveSpeed;
+            // A,Dキー / ←→キー
+            if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
+            {
+                moveInput = -1f - _accessoriesMoveSpeed;
+                isFacingRight = false;
+                transform.localScale = new Vector3(-2, 2, 1);
+
+                Debug.Log("左キーが押されました。");
+            }
+            else if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
+            {
+                moveInput = 1f + _accessoriesMoveSpeed;
+                isFacingRight = true;
+                transform.localScale = new Vector3(2, 2, 1);
+
+                Debug.Log("右キーが押されました。");
+            }
+            else
+            {
+                moveInput = 0f;
+            }
+            // Attack実行中はほかのアニメーションが再生されないようにする
+        }
+        else if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
+        {
+            moveInput = -1f - _accessoriesMoveSpeed;
             isFacingRight = false;
             transform.localScale = new Vector3(-2, 2, 1);
 
@@ -162,7 +188,7 @@ public class PlayerController1 : MonoBehaviour
         }
         else if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
         {
-            moveInput = 1f+ _accessoriesMoveSpeed;
+            moveInput = 1f + _accessoriesMoveSpeed;
             isFacingRight = true;
             transform.localScale = new Vector3(2, 2, 1);
 
@@ -175,8 +201,6 @@ public class PlayerController1 : MonoBehaviour
             moveInput = 0f;
             ChangeAnimation("Idle");
         }
-
-        
 
         // --- タイマーの更新処理 ---
         // 1. コヨーテタイムの計算
@@ -249,6 +273,22 @@ public class PlayerController1 : MonoBehaviour
         invincibleCounter = invincibleTime;
     }
 
+    public void PlayerAttackAnimation()
+    {
+        Debug.Log("AttackAnimationが呼ばれた！");
+        isAttacking = true;
+        currentAnimation = "";
+        ChangeAnimation("Attack");
+        StartCoroutine(AttackAnimationEnd());
+    }
+
+    private IEnumerator AttackAnimationEnd()
+    {
+        // 攻撃アニメーションのクリップの長さだけ待つ
+        yield return new WaitForSeconds(0.24f); // 攻撃アニメーションの長さに合わせて変更している
+        isAttacking = false;
+    }
+
     // ダッシュ
     /*
       public void OnDash(InputAction.CallbackContext context)
@@ -301,14 +341,14 @@ public class PlayerController1 : MonoBehaviour
         Debug.Log("ChangeAnimationが呼ばれた：" + newAnimation);
         Debug.Log("現在のアニメーション：" + currentAnimation);
 
-
+        Debug.Log("Play直前:" + newAnimation);
         // もし「今再生中のアニメーション」と「次に再生したいアニメーショ」が同じなら、何もしない
         if (currentAnimation == newAnimation) return;
 
         // 違うアニメーションのときだけ、新しく再生する
         _anim.Play(newAnimation);
 
-        Debug.Log("Playを実行しました：" + newAnimation);
+        Debug.Log("Playしました：" + newAnimation);
         // 今再生しているアニメーションの名前を上書きして記憶する
         currentAnimation = newAnimation;
     }
