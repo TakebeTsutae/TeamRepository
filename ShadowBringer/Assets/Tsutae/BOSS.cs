@@ -9,19 +9,14 @@ public class BOSS : MonoBehaviour
     float _bossScale = 2.0f; // ボスの大きさ
     bool _isDaed = false; // ボスの死亡判定
 
-    // アニメーションの登録
+    // アニメーション
     Animator animator;
-    RuntimeAnimatorController runtimeController;
-    private SpriteRenderer sr;
-    public AnimationClip idleClip;
-    public AnimationClip walkClip;
-    public AnimationClip attackPreClip;
-    public AnimationClip attackClip;
-    public AnimationClip dashPreClip;
-    [SerializeField] private Sprite dashSprite;
-   // [SerializeField] private float time = 0;
-   // [SerializeField] private int idx = 0;
-    //[SerializeField] private AnimationClip dashClip;
+    GameObject bossAnim;
+    private SpriteRenderer baseSr;
+    private SpriteRenderer animSr;
+    [SerializeField,Header("ダッシュ中の見た目")] private Sprite dashSprite;
+    // デバッグ用
+    AnimatorClipInfo[] clipInfo;
 
 
     // 一連の攻撃を何回終えたか
@@ -65,18 +60,20 @@ public class BOSS : MonoBehaviour
 
     private void Start()
     {
+        bossAnim = GameObject.Find("BossAnimation");
         // Animationコンポーネントを取得
-        animator = GetComponent<Animator>();
+        animator = bossAnim.GetComponent<Animator>();
         // SpriteRendererを取得
-        this.sr = GetComponent<SpriteRenderer>();
-
-        // 空のRuntimeAnimatorControllerを作成
-        runtimeController = new AnimatorOverrideController();
-        animator.runtimeAnimatorController = runtimeController;
+        this.baseSr = GetComponent<SpriteRenderer>();
+        animSr = bossAnim.GetComponent<SpriteRenderer>();
+        baseSr.enabled = false;
+        animSr.enabled = true;
 
         // 初期状態はIdle
-        PlayClip(idleClip);
-        animator.SetBool("isAttack", false);
+        animator.SetBool("isWalk", false);
+
+        // デバッグ用
+        clipInfo = animator.GetCurrentAnimatorClipInfo(0);
 
     }
 
@@ -101,30 +98,44 @@ public class BOSS : MonoBehaviour
     {
         isActing = true;
 
+        //string currentClipName = clipInfo[0].clip.name;
+        //Debug.LogError("現在のアニメーション : " + currentClipName);
+
         FacePlayer();
         // 突進前後退
+        // 突進前のアニメーションを再生
+        animator.SetTrigger("isDashPre");
         yield return RetreatDash();
         // 突進
         yield return Dash();
         // 通常攻撃
+        //yield return new WaitForSeconds(0.3f);
+        // 攻撃はじめのアニメーションを再生
+        animator.SetTrigger("isAttackPre");
         yield return MeleeAttack();
         // 後退
+        // 歩くアニメーションを再生
+        animator.SetBool("isWalk", true);
         yield return Retreat();
+        animator.SetBool("isWalk", false);
 
         yield return JumpStamp();
 
+        // 攻撃はじめのアニメーションを再生
+        animator.SetTrigger("isAttackPre");
         yield return MeleeAttack();
 
         if (_attackCounter >= _spawnerNum)
         {
             _attackCounter = 0;
+            animator.SetBool("isWalk", true);
             yield return Retreat();
+            animator.SetBool("isWalk", false);
 
             yield return SummonSpawner();
         }
-        
-        //yield return SummonSpawner();
 
+        //yield return SummonSpawner();
         _attackCounter++;
 
         isActing = false;
@@ -147,6 +158,7 @@ public class BOSS : MonoBehaviour
     // 突進前の後退
     private IEnumerator RetreatDash()
     {
+       
         FacePlayer();
 
         float dir =
@@ -159,11 +171,17 @@ public class BOSS : MonoBehaviour
 
         Vector3 targetPos = 
             startPos + Vector3.right * dir * dashRetreatDistance;
+        
+        Debug.Log("ボスの突進！");
+        
 
-        while(Vector2.Distance(transform.position, targetPos) > 0.05f)
+        while (Vector2.Distance(transform.position, targetPos) > 0.05f)
         {
-            // 突進前のアニメーションを再生
-            PlayClip(dashPreClip); 
+            
+            // デバッグ
+            //string currentClipName = clipInfo[0].clip.name;
+            //Debug.LogError("現在のアニメーション : " + currentClipName);
+
             transform.position =
                 Vector3.MoveTowards(
                     transform.position,
@@ -187,12 +205,11 @@ public class BOSS : MonoBehaviour
         Vector3 targetPos =
             transform.position + Vector3.right * dir * dashDistance;
 
-        this.sr.sprite = this.dashSprite;
+        animSr.enabled = false;
+        baseSr.enabled = true;
 
         while(Vector2.Distance(transform.position, targetPos) > 0.05f)
         {
-            // 突進のアニメーションを再生
-           // PlayAnimation("BossDash");
             transform.position =
                 Vector3.MoveTowards(
                     transform.position,
@@ -201,15 +218,20 @@ public class BOSS : MonoBehaviour
 
             yield return null;
         }
+
+        baseSr.enabled = false;
+        animSr.enabled = true;
+        yield return null;
     }
 
     // 通常攻撃
     private IEnumerator MeleeAttack()
     {
-        //  animator.SetTrigger("Attack");
-        // 攻撃始め、攻撃のアニメーションを再生
-        PlayClip(attackPreClip);
-        PlayClip(attackClip);
+        // 攻撃アニメーションを再生
+        animator.SetTrigger("isAttack");
+        //string currentClipName = clipInfo[0].clip.name;
+        //Debug.LogError("現在のアニメーション : " + currentClipName);
+
         Debug.Log("攻撃!");
 
         yield return new WaitForSeconds(1.0f);
@@ -219,7 +241,7 @@ public class BOSS : MonoBehaviour
     private IEnumerator SummonSpawner()
     {
         // 攻撃はじめのアニメーションを再生
-        PlayClip(attackPreClip);
+        //PlayClip(attackPreClip);
         GameObject spawner = Instantiate(
             spawnerPre,
             summonPoint.position,
@@ -233,6 +255,7 @@ public class BOSS : MonoBehaviour
     // ゆっくり後退する
     private IEnumerator Retreat()
     {
+        
         FacePlayer();
 
         float dir =
@@ -246,10 +269,12 @@ public class BOSS : MonoBehaviour
         Vector3 targetPos =
             startPos + Vector3.right * dir * retreatDistance;
 
+        
+
         while (Vector2.Distance(transform.position, targetPos) > 0.05f)
         {
-            // 歩くアニメーションを再生
-            PlayClip(walkClip);
+            //string currentClipName = clipInfo[0].clip.name;
+            //Debug.LogError("現在のアニメーション : " + currentClipName);
             transform.position =
                 Vector3.MoveTowards(
                     transform.position,
@@ -258,6 +283,7 @@ public class BOSS : MonoBehaviour
 
             yield return null;
         }
+       
         // 1秒まつ
         yield return new WaitForSeconds(1.0f);
     }
@@ -338,30 +364,4 @@ public class BOSS : MonoBehaviour
             
         }
     }
-
-    // アニメーションを再生する関数
-    void PlayClip(AnimationClip clip)
-    {
-        if (clip == null) return;
-
-        // AnimationOverrideControllerを使って一時的に差し替え
-        var overrideController = new AnimatorOverrideController();
-        overrideController.runtimeAnimatorController = animator.runtimeAnimatorController;
-
-        // ベースのステート名は"Default"として登録
-        overrideController["Default"] = clip;
-
-        animator.runtimeAnimatorController = overrideController;
-        animator.Play("Default", 0, 0f); // 即再生
-    }
-    /*
-    void PlayAnimation(string clipName)
-    {
-        if (!anim.IsPlaying(clipName))
-        {
-            anim.CrossFade(clipName, 0.1f); // スムーズに切り替え
-        }
-        Debug.Log("再生中 : " +  clipName);
-    }
-    */
 }
