@@ -21,14 +21,14 @@ public class spawn : MonoBehaviour
     {
         // スポーンの座標
         _spawnCount = 0;
-        _enemy1_x = this.transform.position.x - 10f;
-        _enemy1_y = this.transform.position.y - 10f;
-        _enemy2_x = this.transform.position.x + 10f;
-        _enemy2_y = this.transform.position.y + 10f;
-        _enemy3_x = this.transform.position.x - 7f;
-        _enemy3_y = this.transform.position.y + 7f;
-        _enemy4_x = this.transform.position.x + 7f;
-        _enemy4_y = this.transform.position.y - 7f;
+        _enemy1_x = this.transform.position.x - 5f;
+        _enemy1_y = this.transform.position.y - 5f;
+        _enemy2_x = this.transform.position.x + 5f;
+        _enemy2_y = this.transform.position.y + 5f;
+        _enemy3_x = this.transform.position.x - 2f;
+        _enemy3_y = this.transform.position.y + 2f;
+        _enemy4_x = this.transform.position.x + 2f;
+        _enemy4_y = this.transform.position.y - 2f;
 
         Vector2 cameraPos;
 
