@@ -32,6 +32,7 @@ public class enemyotamesi : MonoBehaviour
             
             if(posx != 0f)
             {
+                Debug.Log("•Ç”½“]");
                 rightTleftF = !rightTleftF; // ƒtƒ‰ƒO‚Ì”½“]
                 MoveFlag();
             }
@@ -41,7 +42,7 @@ public class enemyotamesi : MonoBehaviour
             
             if (posx != 0f)
             {
-                
+                Debug.Log("‘«”½“]");
                 rightTleftF = !rightTleftF; // ƒtƒ‰ƒO‚Ì”½“]
                 MoveFlag();
             }
