@@ -116,6 +116,7 @@ public class enemyotamesi : MonoBehaviour
 
             posx = 0f;
             attack.SetActive(true);
+            
             yield return new WaitForSeconds(1);
             attack.SetActive(false);
 
