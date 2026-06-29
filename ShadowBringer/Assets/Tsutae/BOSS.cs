@@ -3,17 +3,31 @@ using UnityEngine;
 
 public class BOSS : MonoBehaviour
 { 
-    [SerializeField, Header("ボスHP")]
-    int bossHp = 500;
+    [Header("ボスHP")]
+    public int bossHp = 500;
     [SerializeField,Header("大きさ")]
     float _bossScale = 2.0f; // ボスの大きさ
-    bool _isDaed = false;
+    bool _isDaed = false; // ボスの死亡判定
+
+    // アニメーションの登録
+    Animator animator;
+    RuntimeAnimatorController runtimeController;
+    private SpriteRenderer sr;
+    public AnimationClip idleClip;
+    public AnimationClip walkClip;
+    public AnimationClip attackPreClip;
+    public AnimationClip attackClip;
+    public AnimationClip dashPreClip;
+    [SerializeField] private Sprite dashSprite;
+   // [SerializeField] private float time = 0;
+   // [SerializeField] private int idx = 0;
+    //[SerializeField] private AnimationClip dashClip;
+
+
     // 一連の攻撃を何回終えたか
     int _attackCounter = 0;
 
-    // プレイヤーの攻撃力を取得
-    int _playerAttack;
-    PlayerController _playerController;
+   
 
     [SerializeField,Header("プレイヤーの座標")]
     Transform player;
@@ -36,10 +50,6 @@ public class BOSS : MonoBehaviour
     [SerializeField]
     float dashSpeed = 10.0f;    // 突進のスピード
 
-    // 近接攻撃の変数
-    [SerializeField, Header("通常攻撃のアニメーション")]
-    Animator animator;
-
     // スポナー召喚の変数
     [SerializeField, Header("スポナー召喚をするのは何巡目か")]
     int _spawnerNum = 3;
@@ -55,10 +65,19 @@ public class BOSS : MonoBehaviour
 
     private void Start()
     {
-        GameObject obj = GameObject.Find("player");
+        // Animationコンポーネントを取得
+        animator = GetComponent<Animator>();
+        // SpriteRendererを取得
+        this.sr = GetComponent<SpriteRenderer>();
 
-        //　↓スクリプトがついてあるゲームオブジェクトを取得する
-        _playerController = obj.GetComponent<PlayerController>();
+        // 空のRuntimeAnimatorControllerを作成
+        runtimeController = new AnimatorOverrideController();
+        animator.runtimeAnimatorController = runtimeController;
+
+        // 初期状態はIdle
+        PlayClip(idleClip);
+        animator.SetBool("isAttack", false);
+
     }
 
     void Update()
@@ -143,6 +162,8 @@ public class BOSS : MonoBehaviour
 
         while(Vector2.Distance(transform.position, targetPos) > 0.05f)
         {
+            // 突進前のアニメーションを再生
+            PlayClip(dashPreClip); 
             transform.position =
                 Vector3.MoveTowards(
                     transform.position,
@@ -166,8 +187,12 @@ public class BOSS : MonoBehaviour
         Vector3 targetPos =
             transform.position + Vector3.right * dir * dashDistance;
 
+        this.sr.sprite = this.dashSprite;
+
         while(Vector2.Distance(transform.position, targetPos) > 0.05f)
         {
+            // 突進のアニメーションを再生
+           // PlayAnimation("BossDash");
             transform.position =
                 Vector3.MoveTowards(
                     transform.position,
@@ -181,7 +206,10 @@ public class BOSS : MonoBehaviour
     // 通常攻撃
     private IEnumerator MeleeAttack()
     {
-      //  animator.SetTrigger("Attack");
+        //  animator.SetTrigger("Attack");
+        // 攻撃始め、攻撃のアニメーションを再生
+        PlayClip(attackPreClip);
+        PlayClip(attackClip);
         Debug.Log("攻撃!");
 
         yield return new WaitForSeconds(1.0f);
@@ -190,6 +218,8 @@ public class BOSS : MonoBehaviour
     // スポナー召喚
     private IEnumerator SummonSpawner()
     {
+        // 攻撃はじめのアニメーションを再生
+        PlayClip(attackPreClip);
         GameObject spawner = Instantiate(
             spawnerPre,
             summonPoint.position,
@@ -218,6 +248,8 @@ public class BOSS : MonoBehaviour
 
         while (Vector2.Distance(transform.position, targetPos) > 0.05f)
         {
+            // 歩くアニメーションを再生
+            PlayClip(walkClip);
             transform.position =
                 Vector3.MoveTowards(
                     transform.position,
@@ -307,15 +339,29 @@ public class BOSS : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    // アニメーションを再生する関数
+    void PlayClip(AnimationClip clip)
     {
-        //ボスのHPを減らす
-        if(collision.gameObject.tag == "wepon")
-        {
-            // 統合したときに使用（プレイヤーの攻撃力取得のためのやつ）
-            _playerAttack = _playerController._attackTotal;
-            bossHp -= _playerAttack;
-            
-        }
+        if (clip == null) return;
+
+        // AnimationOverrideControllerを使って一時的に差し替え
+        var overrideController = new AnimatorOverrideController();
+        overrideController.runtimeAnimatorController = animator.runtimeAnimatorController;
+
+        // ベースのステート名は"Default"として登録
+        overrideController["Default"] = clip;
+
+        animator.runtimeAnimatorController = overrideController;
+        animator.Play("Default", 0, 0f); // 即再生
     }
+    /*
+    void PlayAnimation(string clipName)
+    {
+        if (!anim.IsPlaying(clipName))
+        {
+            anim.CrossFade(clipName, 0.1f); // スムーズに切り替え
+        }
+        Debug.Log("再生中 : " +  clipName);
+    }
+    */
 }
