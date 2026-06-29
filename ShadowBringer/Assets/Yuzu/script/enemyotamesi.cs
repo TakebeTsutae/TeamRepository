@@ -16,14 +16,25 @@ public class enemyotamesi : MonoBehaviour
     private float posx; // transformのx方向
     private float posy; // transformのy方向
 
+    private int _enemyHp;
+    private int _playerAttack;
+
     private bool rightTleftF = false; // 反転するかどうかのフラグ
+    private bool isDame = false;
     Vector2 pos;
     private void Start()
     {
+        this._enemyHp = 8;
         StartCoroutine(MoveEnemy());
         attack.SetActive(false);
     }
 
+    private void Update()
+    {
+        GameObject obj = GameObject.Find("player");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
+        PlayerController _playerController = obj.GetComponent<PlayerController>();  // 統合したときに使用（プレイヤーの攻撃力取得のためのやつ）
+        _playerAttack = _playerController._attack;
+    }
     void FixedUpdate()
     {
 
@@ -32,6 +43,7 @@ public class enemyotamesi : MonoBehaviour
             
             if(posx != 0f)
             {
+                Debug.Log("壁反転");
                 rightTleftF = !rightTleftF; // フラグの反転
                 MoveFlag();
             }
@@ -41,7 +53,7 @@ public class enemyotamesi : MonoBehaviour
             
             if (posx != 0f)
             {
-                
+                Debug.Log("足反転");
                 rightTleftF = !rightTleftF; // フラグの反転
                 MoveFlag();
             }
@@ -56,6 +68,26 @@ public class enemyotamesi : MonoBehaviour
         }
         transform.Translate(posx, posy, 0f);  // Translate←引数で指定したベクトル分だけオブジェクトの位置を移動させることができるらしい
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("weponAttack"))
+        {
+            // すでにダメージ中なら処理をスキップ
+            if (isDame) return;
+            isDame = true; // ダメージ中フラグを立てる
+            _enemyHp = _enemyHp - _playerAttack;
+            if (_enemyHp <= 0)
+            {
+                this.gameObject.SetActive(false);
+            }
+            else
+            {
+                // 0.2秒後にダメージを受け付ける状態に戻す
+                StartCoroutine(ResetDamageFlag(0.2f));
+            }
+        }
     }
     private IEnumerator MoveEnemy()
     {
@@ -84,6 +116,7 @@ public class enemyotamesi : MonoBehaviour
 
             posx = 0f;
             attack.SetActive(true);
+            
             yield return new WaitForSeconds(1);
             attack.SetActive(false);
 
@@ -101,6 +134,14 @@ public class enemyotamesi : MonoBehaviour
             posx = -0.1f;
         }
     }
-    
+    private IEnumerator ResetDamageFlag(float delay)
+
+    {
+
+        yield return new WaitForSeconds(delay);
+
+        isDame = false;
+
+    }
 
 }
