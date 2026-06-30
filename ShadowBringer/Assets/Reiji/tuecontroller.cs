@@ -1,5 +1,5 @@
 using UnityEngine;
-
+#if false
 public class tuecontroller : MonoBehaviour
 {
     [Header("ーー 魔法の型と発射口 ーー")]
@@ -62,3 +62,4 @@ public class tuecontroller : MonoBehaviour
         cooldownTimer = cooldownTime;
     }
 }
+#endif

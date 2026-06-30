@@ -197,6 +197,8 @@ public class PlayerController1 : MonoBehaviour
         else
         {
             moveInput = 0f;
+            if (isAttacking) return;
+            currentAnimation = "Idle";
             ChangeAnimation("Idle");
         }
 
@@ -283,8 +285,9 @@ public class PlayerController1 : MonoBehaviour
     private IEnumerator AttackAnimationEnd()
     {
         // 攻撃アニメーションのクリップの長さだけ待つ
-        yield return new WaitForSeconds(0.24f); // 攻撃アニメーションの長さに合わせて変更している
+        yield return new WaitForSeconds(0.36f); // 攻撃アニメーションの長さに合わせて変更している
         isAttacking = false;
+        ChangeAnimation("Idle");
     }
 
     // ダッシュ
@@ -334,12 +337,12 @@ public class PlayerController1 : MonoBehaviour
         }
     }
 
-    void ChangeAnimation(string newAnimation)
+    public void ChangeAnimation(string newAnimation)
     {
-        Debug.Log("ChangeAnimationが呼ばれた：" + newAnimation);
-        Debug.Log("現在のアニメーション：" + currentAnimation);
+        //Debug.Log("ChangeAnimationが呼ばれた：" + newAnimation);
+        //Debug.Log("現在のアニメーション：" + currentAnimation);
 
-        Debug.Log("Play直前:" + newAnimation);
+        //Debug.Log("Play直前:" + newAnimation);
         // もし「今再生中のアニメーション」と「次に再生したいアニメーショ」が同じなら、何もしない
         if (currentAnimation == newAnimation) return;
 

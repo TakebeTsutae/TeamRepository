@@ -22,7 +22,7 @@ public class kenncontroller : MonoBehaviour
     {
         GameObject obj = GameObject.Find("player");
         PlayerController playerScript = obj.GetComponent<PlayerController>();
-        tuecontroller tue = obj.GetComponent<tuecontroller>();
+        //tuecontroller tue = obj.GetComponent<tuecontroller>();
         Vector2 playerPos;
 
         // 右向きなら
