@@ -299,6 +299,7 @@ MonoBehaviour:
   dashCooldown: 1
   invincibleTime: 1
   gameover: GameOver
+  _anim: {fileID: 0}
 --- !u!111 &4330844501761264494
 Animation:
   m_ObjectHideFlags: 0
