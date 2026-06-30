@@ -116,9 +116,7 @@ public class PlayerController1 : MonoBehaviour
 
     void Update()
     {
-        //   Debug.Log(maxHP);
-
-
+       
         _attackTotal = _attackWeapon + _attack;
 
 
@@ -348,7 +346,7 @@ public class PlayerController1 : MonoBehaviour
         // 違うアニメーションのときだけ、新しく再生する
         _anim.Play(newAnimation);
 
-        Debug.Log("Playしました：" + newAnimation);
+       // Debug.Log("Playしました：" + newAnimation);
         // 今再生しているアニメーションの名前を上書きして記憶する
         currentAnimation = newAnimation;
     }
