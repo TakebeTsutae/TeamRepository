@@ -1,4 +1,6 @@
+using UnityEditor.Search;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossElementCollider : MonoBehaviour
 {
@@ -6,6 +8,11 @@ public class BossElementCollider : MonoBehaviour
     int _playerAttack;
     PlayerController _playerController;
     BOSS bossScript;
+    int currentBossHp;
+    bool _isDaed = false; // ボスの死亡判定
+
+    [SerializeField] string nextSceneName = "ClearScne";
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -13,13 +20,20 @@ public class BossElementCollider : MonoBehaviour
         GameObject bossObj = GameObject.Find("Boss");
         //　↓スクリプトがついてあるゲームオブジェクトを取得する
         _playerController = obj.GetComponent<PlayerController>();
-        bossScript = bossObj.GetComponent<BOSS>(); 
+        bossScript = bossObj.GetComponent<BOSS>();
+        currentBossHp = bossScript.bossHp;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+        // ボスが死んだとき
+        if (currentBossHp <= 0)
+        {
+            _isDaed = true;
+            OnMoveClearScene();
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -28,14 +42,13 @@ public class BossElementCollider : MonoBehaviour
         {
             // 統合したときに使用（プレイヤーの攻撃力取得のためのやつ）
             _playerAttack = _playerController._attackTotal;
-            bossScript.bossHp -= _playerAttack;
-            Debug.Log("ボスHP : " + bossScript.bossHp);
+            currentBossHp -= _playerAttack;
+            Debug.Log("ボスHP : " + currentBossHp);
         }
     }
 
-    // BossのHpを返す
-    public void GetBossHp()
+    void OnMoveClearScene()
     {
-
+        SceneManager.LoadScene(nextSceneName);
     }
 }

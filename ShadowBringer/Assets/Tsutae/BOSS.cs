@@ -7,7 +7,6 @@ public class BOSS : MonoBehaviour
     public int bossHp = 500;
     [SerializeField,Header("大きさ")]
     float _bossScale = 2.0f; // ボスの大きさ
-    bool _isDaed = false; // ボスの死亡判定
 
     // アニメーション
     Animator animator;
@@ -72,9 +71,6 @@ public class BOSS : MonoBehaviour
         // 初期状態はIdle
         animator.SetBool("isWalk", false);
 
-        // デバッグ用
-        clipInfo = animator.GetCurrentAnimatorClipInfo(0);
-
     }
 
     void Update()
@@ -98,31 +94,23 @@ public class BOSS : MonoBehaviour
     {
         isActing = true;
 
-        //string currentClipName = clipInfo[0].clip.name;
-        //Debug.LogError("現在のアニメーション : " + currentClipName);
-
         FacePlayer();
         // 突進前後退
-        // 突進前のアニメーションを再生
-        animator.SetTrigger("isDashPre");
+        
         yield return RetreatDash();
         // 突進
         yield return Dash();
         // 通常攻撃
-        //yield return new WaitForSeconds(0.3f);
-        // 攻撃はじめのアニメーションを再生
-        animator.SetTrigger("isAttackPre");
+        //yield return new WaitForSeconds(0.3f); 
         yield return MeleeAttack();
         // 後退
         // 歩くアニメーションを再生
         animator.SetBool("isWalk", true);
         yield return Retreat();
         animator.SetBool("isWalk", false);
-
+        // ジャンプスタンプ
         yield return JumpStamp();
-
-        // 攻撃はじめのアニメーションを再生
-        animator.SetTrigger("isAttackPre");
+        // 通常攻撃
         yield return MeleeAttack();
 
         if (_attackCounter >= _spawnerNum)
@@ -160,6 +148,8 @@ public class BOSS : MonoBehaviour
     {
        
         FacePlayer();
+        // 突進前のアニメーションを再生
+        animator.SetTrigger("isDashPre");
 
         float dir =
             player.position.x > transform.position.x
@@ -177,11 +167,6 @@ public class BOSS : MonoBehaviour
 
         while (Vector2.Distance(transform.position, targetPos) > 0.05f)
         {
-            
-            // デバッグ
-            //string currentClipName = clipInfo[0].clip.name;
-            //Debug.LogError("現在のアニメーション : " + currentClipName);
-
             transform.position =
                 Vector3.MoveTowards(
                     transform.position,
@@ -227,6 +212,9 @@ public class BOSS : MonoBehaviour
     // 通常攻撃
     private IEnumerator MeleeAttack()
     {
+        FacePlayer();
+        // 攻撃はじめのアニメーションを再生
+        animator.SetTrigger("isAttackPre");
         // 攻撃アニメーションを再生
         animator.SetTrigger("isAttack");
         //string currentClipName = clipInfo[0].clip.name;
@@ -255,9 +243,7 @@ public class BOSS : MonoBehaviour
     // ゆっくり後退する
     private IEnumerator Retreat()
     {
-        
         FacePlayer();
-
         float dir =
             player.position.x > transform.position.x
             ? -1.0f
@@ -269,8 +255,6 @@ public class BOSS : MonoBehaviour
         Vector3 targetPos =
             startPos + Vector3.right * dir * retreatDistance;
 
-        
-
         while (Vector2.Distance(transform.position, targetPos) > 0.05f)
         {
             //string currentClipName = clipInfo[0].clip.name;
@@ -280,10 +264,8 @@ public class BOSS : MonoBehaviour
                     transform.position,
                     targetPos,
                     retreatSpeed * Time.deltaTime);
-
             yield return null;
         }
-       
         // 1秒まつ
         yield return new WaitForSeconds(1.0f);
     }
@@ -357,11 +339,5 @@ public class BOSS : MonoBehaviour
 
         // プレイヤーへの着地ダメージ発生
 
-        // ボスが死んだとき
-        if (bossHp <= 0)
-        {
-            _isDaed = true;
-            
-        }
     }
 }

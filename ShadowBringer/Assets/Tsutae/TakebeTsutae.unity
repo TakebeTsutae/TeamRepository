@@ -421,11 +421,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 636607079}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 60a5420108588b842ac4b0509f04912a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossElementCollider
+  nextSceneName: ClearScne
 --- !u!1 &673884841
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,7 +437,6 @@ GameObject:
   m_Component:
   - component: {fileID: 673884843}
   - component: {fileID: 673884842}
-  - component: {fileID: 673884844}
   - component: {fileID: 673884845}
   - component: {fileID: 673884847}
   - component: {fileID: 673884848}
@@ -526,20 +526,6 @@ Transform:
   - {fileID: 636607080}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &673884844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 673884841}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d36b81e2589c18d49876d124cea2961c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BossController
-  _moveRange: 3
-  nomalAttackPre: {fileID: 5856791209733784154, guid: 8ccdec0627f5a8e4bb276694be5f96ef, type: 3}
 --- !u!50 &673884845
 Rigidbody2D:
   serializedVersion: 5

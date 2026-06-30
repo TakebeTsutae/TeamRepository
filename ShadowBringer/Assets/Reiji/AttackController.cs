@@ -44,6 +44,7 @@ public class AttackController : MonoBehaviour
     }
     void Update()
     {
+        Debug.Log("Update動いてる");
         // canAttackをtrueにする
         /* time++;
          if (time>= 50)
@@ -64,13 +65,17 @@ public class AttackController : MonoBehaviour
         bool canAttack =
             Time.time >= lastAttackTime + attackCooldown;
 
+
+
         // J押し中 ＆ 攻撃可能
         if (Mouse.current.leftButton.wasPressedThisFrame&& canAttack)
         {
             //Debug.Log("ボタンゲット");
             //if(playerController.weapon == "Ken")
-            
-                //Debug.Log("剣ゲット");
+
+            //Debug.Log("剣ゲット");
+
+            Debug.Log("クリック検知！");
             Attack();
 
            
