@@ -45,11 +45,12 @@ public class WeaponManager1 : MonoBehaviour
 
     void Start()
     {
+        /*
         // 最初は剣アイコン
         weaponSlot.sprite = swordSprite;
         weaponSlot1.sprite = null;
         weaponSlot2.sprite = null;
-
+        */
         // Start時にプレイヤーのスクリプトを1回だけ取得しておく
         GameObject obj = GameObject.Find("player");
         if (obj != null)

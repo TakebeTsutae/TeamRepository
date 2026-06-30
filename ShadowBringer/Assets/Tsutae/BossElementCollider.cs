@@ -38,7 +38,7 @@ public class BossElementCollider : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //ボスのHPを減らす
-        if (collision.gameObject.tag == "wepon")
+        if (collision.gameObject.tag == "WeponAttack")
         {
             // 統合したときに使用（プレイヤーの攻撃力取得のためのやつ）
             _playerAttack = _playerController._attackTotal;

@@ -23,13 +23,13 @@ public class AttackController : MonoBehaviour
     public float attackRange = 0.5f;
     public LayerMask enemyLayer;
     public int attackDamage = 10;
-    public float attackCooldown = 3f;
+    public int attackCooldown = 50;
     //public float attackCooldownSub = 0.5f; 
     //bool canAttack = true;
     int time = 0;
     private float lastAttackTime = 0f;
     public kenncontroller kenattack;
-    public tuecontroller tuecontroller;
+    //public tuecontroller tuecontroller;
     public PlayerController playerController;
 
     private PlayerController1 _playerController1;
@@ -37,18 +37,20 @@ public class AttackController : MonoBehaviour
     private void Start()
     {
         kenattack = GetComponent<kenncontroller>();
-        tuecontroller = GetComponent<tuecontroller>();
+        //tuecontroller = GetComponent<tuecontroller>();
         playerController = GetComponent<PlayerController>();
 
         _playerController1 = GetComponent<PlayerController1>();
     }
-    void Update()
+    void FixedUpdate()
     {
+        //Debug.Log("Update動いてる");
         // canAttackをtrueにする
-        /* time++;
+        /*
+        time++;
          if (time>= 50)
          {
-             attackCooldown -= attackCooldownSub;
+             time -= attackCooldown;
              time = 0;
          }
          if(attackCooldown<=0)
@@ -61,27 +63,31 @@ public class AttackController : MonoBehaviour
          }
         */
         // 今攻撃できるか？
-        bool canAttack =
-            Time.time >= lastAttackTime + attackCooldown;
+        //bool canAttack =
+        //    Time.time >= lastAttackTime + attackCooldown;
+
+
 
         // J押し中 ＆ 攻撃可能
-        if (Mouse.current.leftButton.wasPressedThisFrame&& canAttack)
+        if (Mouse.current.leftButton.wasPressedThisFrame)// && canAttack)
         {
             //Debug.Log("ボタンゲット");
             //if(playerController.weapon == "Ken")
-            
-                //Debug.Log("剣ゲット");
+
+            //Debug.Log("剣ゲット");
+
+            Debug.Log("クリック検知！");
             Attack();
 
-           
 
+            //_playerController1.ChangeAnimation("Attack");
 
-                //else if(playerController.weapon == "Tue")
-                //{
-                //    AttackTue();
-                //}
+            //else if(playerController.weapon == "Tue")
+            //{
+            //    AttackTue();
+            //}
 
-                // 攻撃した時間を保存
+            // 攻撃した時間を保存
             lastAttackTime = Time.time;
         }
     }
@@ -91,6 +97,7 @@ public class AttackController : MonoBehaviour
 
         kenattack.PlayerAttack();
         _playerController1.PlayerAttackAnimation();
+        Debug.Log("剣攻撃");
 
         // 攻撃範囲内の敵をまとめて取得
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(
@@ -109,14 +116,14 @@ public class AttackController : MonoBehaviour
         }
 
 
-       
+
 
         Debug.Log("Attack実行");
     }
     void AttackTue()
     {
 
-        tuecontroller.ShootMagic();
+        //tuecontroller.ShootMagic();
 
         // 攻撃範囲内の敵をまとめて取得
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(
