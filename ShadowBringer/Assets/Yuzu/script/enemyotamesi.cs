@@ -11,7 +11,7 @@ public class enemyotamesi : MonoBehaviour
     [Header("接触判定")] public enemycollision checkcollision;
     [Header("接触判定")] public enemycollision checkcollision1;
 
-    [Header("攻撃オブジェクト")] public GameObject attack;
+    //[Header("攻撃オブジェクト")] public GameObject attack;
 
     private float posx; // transformのx方向
     private float posy; // transformのy方向
@@ -21,19 +21,24 @@ public class enemyotamesi : MonoBehaviour
 
     private bool rightTleftF = false; // 反転するかどうかのフラグ
     private bool isDame = false;
+    [SerializeField] private Animator animator;
     Vector2 pos;
     private void Start()
     {
+
         this._enemyHp = 8;
+        animator = GetComponent<Animator>();
         StartCoroutine(MoveEnemy());
-        attack.SetActive(false);
+        animator.SetBool("jump", false);
+        animator.SetBool("attack", false);
+        //attack.SetActive(false);
     }
 
     private void Update()
     {
-        GameObject obj = GameObject.Find("player");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
-        PlayerController _playerController = obj.GetComponent<PlayerController>();  // 統合したときに使用（プレイヤーの攻撃力取得のためのやつ）
-        _playerAttack = _playerController._attack;
+        //GameObject obj = GameObject.Find("player");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
+        //PlayerController _playerController = obj.GetComponent<PlayerController>();  // 統合したときに使用（プレイヤーの攻撃力取得のためのやつ）
+        //_playerAttack = _playerController._attack;
     }
     void FixedUpdate()
     {
@@ -60,11 +65,11 @@ public class enemyotamesi : MonoBehaviour
         }
         if (rightTleftF)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(5, 5, 1);
         }
         else
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(-5, 5, 5);
         }
         transform.Translate(posx, posy, 0f);  // Translate←引数で指定したベクトル分だけオブジェクトの位置を移動させることができるらしい
 
@@ -93,12 +98,14 @@ public class enemyotamesi : MonoBehaviour
     {
         while (true)
         {
-            
+            Debug.Log("walk");
             MoveFlag();
+            animator.SetBool("jump", false);
+            animator.SetBool("attack", false);
             posy = 0f;
             yield return new WaitForSeconds(3);
-            
-            
+            Debug.Log("jump");
+
             if (rightTleftF)
             {
                 posx = 0.05f;
@@ -107,18 +114,24 @@ public class enemyotamesi : MonoBehaviour
             {
                 posx = -0.05f;
             }
+            animator.SetBool("jump", true);
             posy = 0.1f;
             yield return new WaitForSeconds(1);
+            Debug.Log("walk");
+            animator.SetBool("jump", false);
 
             MoveFlag();
             posy = 0f;
             yield return new WaitForSeconds(3);
-
+            Debug.Log("attack");
+            animator.SetBool("attack", true);
             posx = 0f;
-            attack.SetActive(true);
+            //attack.SetActive(true);
             
             yield return new WaitForSeconds(1);
-            attack.SetActive(false);
+            Debug.Log("walk");
+            animator.SetBool("attack", false);
+            //attack.SetActive(false);
 
         }
     }
