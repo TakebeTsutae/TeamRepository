@@ -167,7 +167,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7348022266981613090}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04629177ec04df343be48ea84eda2d42, type: 3}
   m_Name: 
@@ -180,12 +180,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7348022266981613090}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec36e5b485d86d846a0d59395b150a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackController
-  attackPoint: {fileID: 3136006416087767938}
+  attackPoint: {fileID: 7718053830042913985, guid: 16a8bbcd0e4fc334da6d73581a46296e, type: 3}
   attackRange: 0.1
   enemyLayer:
     serializedVersion: 2
@@ -210,10 +210,10 @@ MonoBehaviour:
   weaponSlot: {fileID: 0}
   weaponSlot1: {fileID: 0}
   weaponSlot2: {fileID: 0}
-  swordSprite: {fileID: 0}
-  staffSprite: {fileID: 0}
-  _up: {fileID: 0}
-  _speed: {fileID: 0}
+  swordSprite: {fileID: -278335149916310281, guid: 671c9a8e295bf124e9dd8e5287523012, type: 3}
+  staffSprite: {fileID: 1769139453556492977, guid: e2e6a25a6ae1ed54b978a3051ceb7220, type: 3}
+  _up: {fileID: -2670100242169240431, guid: 98527d78b9912dc4bb8ffb28f9b6bd8c, type: 3}
+  _speed: {fileID: -5188336996638436733, guid: 92713291f1d4b9e479e67db81fa099f9, type: 3}
 --- !u!114 &1579332225450406355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,6 +299,7 @@ MonoBehaviour:
   dashCooldown: 1
   invincibleTime: 1
   gameover: GameOver
+  _anim: {fileID: 0}
 --- !u!111 &4330844501761264494
 Animation:
   m_ObjectHideFlags: 0
@@ -351,7 +352,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 468172788440363822, guid: d8dba9d1757c7904580dce2849e1bdac, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1723786748142808347, guid: d8dba9d1757c7904580dce2849e1bdac, type: 3}
       propertyPath: kenattack
@@ -399,11 +400,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3222981834668259858, guid: d8dba9d1757c7904580dce2849e1bdac, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.366
+      value: 0.67
       objectReference: {fileID: 0}
     - target: {fileID: 3222981834668259858, guid: d8dba9d1757c7904580dce2849e1bdac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.226
+      value: -7.42
       objectReference: {fileID: 0}
     - target: {fileID: 3222981834668259858, guid: d8dba9d1757c7904580dce2849e1bdac, type: 3}
       propertyPath: m_LocalPosition.z
@@ -411,7 +412,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3222981834668259858, guid: d8dba9d1757c7904580dce2849e1bdac, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.93427163
+      value: 0.9934693
       objectReference: {fileID: 0}
     - target: {fileID: 3222981834668259858, guid: d8dba9d1757c7904580dce2849e1bdac, type: 3}
       propertyPath: m_LocalRotation.x
@@ -423,7 +424,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3222981834668259858, guid: d8dba9d1757c7904580dce2849e1bdac, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.35656226
+      value: -0.11409992
       objectReference: {fileID: 0}
     - target: {fileID: 3222981834668259858, guid: d8dba9d1757c7904580dce2849e1bdac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -435,7 +436,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3222981834668259858, guid: d8dba9d1757c7904580dce2849e1bdac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 41.778
+      value: -13.103
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1935030177270285689, guid: d8dba9d1757c7904580dce2849e1bdac, type: 3}
