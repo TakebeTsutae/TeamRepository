@@ -36,9 +36,9 @@ public class enemyotamesi : MonoBehaviour
 
     private void Update()
     {
-        //GameObject obj = GameObject.Find("player");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
-        //PlayerController _playerController = obj.GetComponent<PlayerController>();  // 統合したときに使用（プレイヤーの攻撃力取得のためのやつ）
-        //_playerAttack = _playerController._attack;
+        GameObject obj = GameObject.Find("player");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
+        PlayerController _playerController = obj.GetComponent<PlayerController>();  // 統合したときに使用（プレイヤーの攻撃力取得のためのやつ）
+        _playerAttack = _playerController._attack;
     }
     void FixedUpdate()
     {
@@ -98,13 +98,11 @@ public class enemyotamesi : MonoBehaviour
     {
         while (true)
         {
-            Debug.Log("walk");
             MoveFlag();
             animator.SetBool("jump", false);
             animator.SetBool("attack", false);
             posy = 0f;
             yield return new WaitForSeconds(3);
-            Debug.Log("jump");
 
             if (rightTleftF)
             {
@@ -117,19 +115,16 @@ public class enemyotamesi : MonoBehaviour
             animator.SetBool("jump", true);
             posy = 0.1f;
             yield return new WaitForSeconds(1);
-            Debug.Log("walk");
             animator.SetBool("jump", false);
 
             MoveFlag();
             posy = 0f;
             yield return new WaitForSeconds(3);
-            Debug.Log("attack");
             animator.SetBool("attack", true);
             posx = 0f;
             //attack.SetActive(true);
             
             yield return new WaitForSeconds(1);
-            Debug.Log("walk");
             animator.SetBool("attack", false);
             //attack.SetActive(false);
 

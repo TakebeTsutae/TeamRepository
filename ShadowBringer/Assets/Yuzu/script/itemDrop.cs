@@ -15,7 +15,7 @@ public class itemDrop : MonoBehaviour
 
     void Update()
     {
-        GameObject obj = GameObject.FindWithTag("enemy");
+        GameObject obj = GameObject.FindWithTag("Enemy");
         enemy enemy = obj.GetComponent<enemy>();
         _enemyHp = 8;
         

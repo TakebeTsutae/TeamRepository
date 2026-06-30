@@ -5,7 +5,7 @@ public class enemycollision : MonoBehaviour
     [HideInInspector] public bool isOn = false;
     [HideInInspector] public bool isOn1 = false;
     private string groundTag = "Ground";
-    private string enemyTag = "enemy";
+    private string enemyTag = "Enemy";
     private float ignoreExitTimer = 0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
