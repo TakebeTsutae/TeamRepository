@@ -818,7 +818,6 @@ MonoBehaviour:
   attackDamage: 10
   attackCooldown: 3
   kenattack: {fileID: 0}
-  tuecontroller: {fileID: 0}
   playerController: {fileID: 0}
 --- !u!4 &1039244974
 Transform:
@@ -1653,7 +1652,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7582091606206487399, guid: 421e64fce844fbb4b9d233353066b6c2, type: 3}
+    - {fileID: 4126333026198945639, guid: 421e64fce844fbb4b9d233353066b6c2, type: 3}
+    - {fileID: 9220060815963998398, guid: 421e64fce844fbb4b9d233353066b6c2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
