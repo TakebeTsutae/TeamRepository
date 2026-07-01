@@ -781,6 +781,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemySuraimu
       objectReference: {fileID: 0}
+    - target: {fileID: 3784952186721663229, guid: 0538e670967591b4a84076b20dc2bb61, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6520258017987515696, guid: 0538e670967591b4a84076b20dc2bb61, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.78746

@@ -42,7 +42,7 @@ public class AttackController : MonoBehaviour
 
         _playerController1 = GetComponent<PlayerController1>();
     }
-    void Update()
+    void FixedUpdate()
     {
         //Debug.Log("Update動いてる");
         // canAttackをtrueにする
