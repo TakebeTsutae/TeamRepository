@@ -7,7 +7,7 @@ public class kenncontroller : MonoBehaviour
     public GameObject kennhanntei;
     GameObject playerTransform;
 
-    bool isFacingRight;
+    bool isFacingRight = true;
 
 
     GameObject wepon;
@@ -21,7 +21,7 @@ public class kenncontroller : MonoBehaviour
     public void PlayerAttack()
     {
         GameObject obj = GameObject.Find("player");
-        PlayerController playerScript = obj.GetComponent<PlayerController>();
+        PlayerController1 playerScript = obj.GetComponent<PlayerController1>();
         //tuecontroller tue = obj.GetComponent<tuecontroller>();
         Vector2 playerPos;
 

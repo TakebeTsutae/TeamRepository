@@ -22,6 +22,10 @@ public class enemyotamesi : MonoBehaviour
     private bool isDame = false;
     [SerializeField] private Animator animator;
     Vector2 pos;
+
+    
+    private PlayerController1 playerController1;
+
     private void Start()
     {
 
@@ -31,13 +35,15 @@ public class enemyotamesi : MonoBehaviour
         animator.SetBool("jump", false);
         animator.SetBool("attack", false);
         //attack.SetActive(false);
+
+        GameObject obj = GameObject.Find("player");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
+        playerController1 = obj.GetComponent<PlayerController1>();  // 統合したときに使用（プレイヤーの攻撃力取得のためのやつ）
+        _playerAttack = playerController1._attackTotal;
     }
 
     private void Update()
     {
-        GameObject obj = GameObject.Find("player");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
-        PlayerController _playerController = obj.GetComponent<PlayerController>();  // 統合したときに使用（プレイヤーの攻撃力取得のためのやつ）
-        _playerAttack = _playerController._attack;
+        
     }
     void FixedUpdate()
     {
@@ -76,12 +82,19 @@ public class enemyotamesi : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("weponAttack"))
+       
+        if (other.tag == "weponAttack")
         {
             // すでにダメージ中なら処理をスキップ
             if (isDame) return;
             isDame = true; // ダメージ中フラグを立てる
+
+            //プレイヤーの攻撃取得
+            _playerAttack = playerController1._attackTotal;
             _enemyHp = _enemyHp - _playerAttack;
+
+            Debug.Log($"{_enemyHp}← 敵の体力");
+
             if (_enemyHp <= 0)
             {
                 this.gameObject.SetActive(false);

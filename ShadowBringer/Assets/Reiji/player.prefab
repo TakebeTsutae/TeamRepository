@@ -10,12 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3136006416087767938}
   - component: {fileID: 8272136852336410806}
-  - component: {fileID: 4126333026198945639}
   - component: {fileID: 9012805826484682625}
-  - component: {fileID: 7582091606206487399}
-  - component: {fileID: 9220060815963998398}
   - component: {fileID: 1237850594849369954}
-  - component: {fileID: 1579332225450406355}
   - component: {fileID: 4131343327474253104}
   - component: {fileID: 6175135657053871269}
   - component: {fileID: 4330844501761264494}
@@ -103,36 +99,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &4126333026198945639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7348022266981613090}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f68b0829f034794483f8769a4ef8bda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  currentItem: 
-  _playerHp: 3
-  _attackWeapon: 3
-  moveSpeed: 5
-  currentHP: 3
-  maxHP: 3
-  isFacingRight: 1
-  _accessories:
-  - 
-  - 
-  - 
-  weapon: 
-  _Gettag: 0
-  coyoteTime: 0.2
-  jumpCooldown: 0.5
-  dashForce: 15
-  dashCooldown: 1
-  invincibleTime: 1
 --- !u!50 &9012805826484682625
 Rigidbody2D:
   serializedVersion: 5
@@ -160,41 +126,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &7582091606206487399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7348022266981613090}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04629177ec04df343be48ea84eda2d42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::kenncontroller
-  kennhanntei: {fileID: 5462687660474636958, guid: 16a8bbcd0e4fc334da6d73581a46296e, type: 3}
---- !u!114 &9220060815963998398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7348022266981613090}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec36e5b485d86d846a0d59395b150a84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AttackController
-  attackPoint: {fileID: 7718053830042913985, guid: 16a8bbcd0e4fc334da6d73581a46296e, type: 3}
-  attackRange: 0.1
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  attackDamage: 10
-  attackCooldown: 10000
-  kenattack: {fileID: 0}
-  tuecontroller: {fileID: 0}
-  playerController: {fileID: 0}
 --- !u!114 &1237850594849369954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,23 +145,6 @@ MonoBehaviour:
   staffSprite: {fileID: 1769139453556492977, guid: e2e6a25a6ae1ed54b978a3051ceb7220, type: 3}
   _up: {fileID: -2670100242169240431, guid: 98527d78b9912dc4bb8ffb28f9b6bd8c, type: 3}
   _speed: {fileID: -5188336996638436733, guid: 92713291f1d4b9e479e67db81fa099f9, type: 3}
---- !u!114 &1579332225450406355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7348022266981613090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7776948aab786f94d8bc068079c28580, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::tueController
-  bulletPrefab: {fileID: 0}
-  firePoint: {fileID: 0}
-  cooldownTime: 1
-  maxSpeed: 15
-  powerMultiplier: 3
 --- !u!70 &4131343327474253104
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -368,8 +282,12 @@ PrefabInstance:
       objectReference: {fileID: 7718053830042913985, guid: 16a8bbcd0e4fc334da6d73581a46296e, type: 3}
     - target: {fileID: 1723786748142808347, guid: d8dba9d1757c7904580dce2849e1bdac, type: 3}
       propertyPath: attackCooldown
-      value: 0.3
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1723786748142808347, guid: d8dba9d1757c7904580dce2849e1bdac, type: 3}
+      propertyPath: _playerController1
+      value: 
+      objectReference: {fileID: 6175135657053871269}
     - target: {fileID: 1935030177270285689, guid: d8dba9d1757c7904580dce2849e1bdac, type: 3}
       propertyPath: m_Size.x
       value: 2.0500038
@@ -674,41 +592,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -4953234038621458836, guid: 7d365fd15d2036c46a3d7bcd69a113d2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7998659928897034819, guid: 7d365fd15d2036c46a3d7bcd69a113d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3660149633846639915}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2207271411144441765, guid: 7d365fd15d2036c46a3d7bcd69a113d2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3791229673597959883}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d365fd15d2036c46a3d7bcd69a113d2, type: 3}
 --- !u!4 &1961868529256689598 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7998659928897034819, guid: 7d365fd15d2036c46a3d7bcd69a113d2, type: 3}
   m_PrefabInstance: {fileID: 8374733623333746173}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7681111800878746200 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2207271411144441765, guid: 7d365fd15d2036c46a3d7bcd69a113d2, type: 3}
-  m_PrefabInstance: {fileID: 8374733623333746173}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3791229673597959883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7681111800878746200}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7776948aab786f94d8bc068079c28580, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::tuecontroller
-  bulletPrefab: {fileID: 2277781174339061302, guid: 8cdc1b954887f814d96a6a2a3aff6fff, type: 3}
-  firePoint: {fileID: 12068451871943066, guid: a3bc20d0ce733804480f1563a101f285, type: 3}
-  cooldownTime: 1
-  maxSpeed: 15
-  powerMultiplier: 3

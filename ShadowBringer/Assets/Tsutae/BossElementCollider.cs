@@ -6,7 +6,7 @@ public class BossElementCollider : MonoBehaviour
 {
     // プレイヤーの攻撃力を取得
     int _playerAttack;
-    PlayerController _playerController;
+    PlayerController1 _playerController;
     BOSS bossScript;
     int currentBossHp;
     bool _isDaed = false; // ボスの死亡判定
@@ -19,7 +19,7 @@ public class BossElementCollider : MonoBehaviour
         GameObject obj = GameObject.Find("player");
         GameObject bossObj = GameObject.Find("Boss");
         //　↓スクリプトがついてあるゲームオブジェクトを取得する
-        _playerController = obj.GetComponent<PlayerController>();
+        _playerController = obj.GetComponent<PlayerController1>();
         bossScript = bossObj.GetComponent<BOSS>();
         currentBossHp = bossScript.bossHp;
     }

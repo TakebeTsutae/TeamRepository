@@ -18,7 +18,7 @@ public class playerhp : MonoBehaviour
     void Update()
     {
         GameObject obj = GameObject.Find("player");
-        PlayerController hp = obj.GetComponent<PlayerController>();
+        PlayerController1 hp = obj.GetComponent<PlayerController1>();
         _playerhp = hp._playerHp;
         if (_playerhp < 4)
         {

@@ -30,17 +30,16 @@ public class AttackController : MonoBehaviour
     private float lastAttackTime = 0f;
     public kenncontroller kenattack;
     //public tuecontroller tuecontroller;
-    public PlayerController playerController;
 
+    [SerializeField]
     private PlayerController1 _playerController1;
     //---------------------------------------------------------------
     private void Start()
     {
         kenattack = GetComponent<kenncontroller>();
         //tuecontroller = GetComponent<tuecontroller>();
-        playerController = GetComponent<PlayerController>();
-
-        _playerController1 = GetComponent<PlayerController1>();
+        
+        
     }
     void FixedUpdate()
     {

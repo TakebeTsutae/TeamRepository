@@ -11,7 +11,7 @@ public class Item : MonoBehaviour
     // static public bool _itemSyutoku; 
 
     private bool isPlayerNear = false;
-    private PlayerController _booltag; // プレイヤーの参照を保存する変数
+    private PlayerController1 _booltag; // プレイヤーの参照を保存する変数
 
     void Start()
     {
@@ -117,7 +117,7 @@ public class Item : MonoBehaviour
         {
             isPlayerNear = true;
             // ぶつかったプレイヤーから「PlayerController」スクリプトをここで1回だけ取得する（効率的！）
-            _booltag = other.GetComponent<PlayerController>();
+            _booltag = other.GetComponent<PlayerController1>();
         }
     }
 
