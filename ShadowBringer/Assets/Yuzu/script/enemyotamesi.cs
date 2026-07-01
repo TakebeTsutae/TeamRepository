@@ -10,7 +10,6 @@ public class enemyotamesi : MonoBehaviour
     // enemycollisionのスクリプトがついているオブジェクトをcheckcollisionの中にぶち込む
     [Header("接触判定")] public enemycollision checkcollision;
     [Header("接触判定")] public enemycollision checkcollision1;
-
     //[Header("攻撃オブジェクト")] public GameObject attack;
 
     private float posx; // transformのx方向
