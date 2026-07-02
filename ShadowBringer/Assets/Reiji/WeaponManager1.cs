@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class WeaponManager1 : MonoBehaviour
@@ -58,15 +58,15 @@ public class WeaponManager1 : MonoBehaviour
             //PlayerController playerScript = obj.GetComponent<PlayerController>();
         }
     }
-
+    
     public void SwitchToStaff()
     {
-        weaponSlot.sprite = staffSprite;
+      //  weaponSlot.sprite = staffSprite;
     }
-
+    
     public void SwitchToSword()
     {
-        weaponSlot.sprite = swordSprite;
+      //  weaponSlot.sprite = swordSprite;
     }
 
     // Update is called once per frame
