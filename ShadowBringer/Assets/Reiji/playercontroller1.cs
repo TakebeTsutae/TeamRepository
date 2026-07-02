@@ -1,4 +1,4 @@
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -198,7 +198,8 @@ public class PlayerController1 : MonoBehaviour
         {
             moveInput = 0f;
             if (isAttacking) return;
-            currentAnimation = "Idle";
+            currentAnimation = "";
+         //   Debug.Log("止まりました！Idleを再生します");
             ChangeAnimation("Idle");
         }
 
@@ -344,6 +345,7 @@ public class PlayerController1 : MonoBehaviour
 
         //Debug.Log("Play直前:" + newAnimation);
         // もし「今再生中のアニメーション」と「次に再生したいアニメーショ」が同じなら、何もしない
+        Debug.Log("現在：" + currentAnimation + "→次：" + newAnimation);
         if (currentAnimation == newAnimation) return;
 
         // 違うアニメーションのときだけ、新しく再生する
@@ -366,12 +368,7 @@ public class PlayerController1 : MonoBehaviour
             isGrounded = true;
             TakeDamage(1);
         }
-        if(collision.gameObject.CompareTag("enemy"))
-        {
-            TakeDamage(1);
-            Debug.Log("敵にぶつかった！");
-            Debug.Log(_playerHp);
-        }
+        
         
         
     }
@@ -382,6 +379,13 @@ public class PlayerController1 : MonoBehaviour
         if (collision.gameObject.CompareTag("enemyAttack"))
         {
             TakeDamage(1);
+        }
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            TakeDamage(1);
+            Debug.Log("敵にぶつかった！");
+            Debug.Log(_playerHp);
         }
     }
 

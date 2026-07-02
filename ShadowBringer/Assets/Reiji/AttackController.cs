@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class AttackController : MonoBehaviour
@@ -41,7 +41,7 @@ public class AttackController : MonoBehaviour
         
         
     }
-    void FixedUpdate()
+    void Update()
     {
         //Debug.Log("Update動いてる");
         // canAttackをtrueにする
