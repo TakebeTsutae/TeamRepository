@@ -52,15 +52,14 @@ public class GameOver : MonoBehaviour
         click.SetActive(true);
         yield return new WaitForSeconds(0.3f);
         click.SetActive(false);
-        if(this.gameObject.tag == "title")
+        if (this.gameObject.tag == "title")
         {
             SceneManager.LoadScene("1_MainTitleScene");   //タイトルのシーン名記入
-            
         }
-        else if (this.gameObject.tag == "retry") 
+        else if (this.gameObject.tag == "retry")
         {
             SceneManager.LoadScene("main");   //リトライのシーン名記入
-            
+
         }
     }
 
