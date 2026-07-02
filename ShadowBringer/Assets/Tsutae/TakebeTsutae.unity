@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 636607083}
   m_Layer: 0
   m_Name: BossElement
-  m_TagString: enemyAttack
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -426,7 +426,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a5420108588b842ac4b0509f04912a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossElementCollider
-  nextSceneName: ClearScne
 --- !u!1 &673884841
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,7 +564,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f343b227520f104f87c200f07d2d45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BOSS
-  bossHp: 500
+  _bossHp: 5
+  nextSceneName: TkbClearScne
   _bossScale: 4
   dashSprite: {fileID: -4913155488674122577, guid: ac98c61adff7f4e4d8c0b7bdd074c1af, type: 3}
   player: {fileID: 1997772599}
@@ -606,7 +606,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 673884841}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -790,6 +790,10 @@ PrefabInstance:
     - target: {fileID: 2301202484661276856, guid: 421e64fce844fbb4b9d233353066b6c2, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2301202484661276856, guid: 421e64fce844fbb4b9d233353066b6c2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3136006416087767938, guid: 421e64fce844fbb4b9d233353066b6c2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1478,13 +1482,14 @@ GameObject:
   m_Component:
   - component: {fileID: 2119628558}
   - component: {fileID: 2119628559}
+  - component: {fileID: 2119628560}
   m_Layer: 0
   m_Name: BossDash
-  m_TagString: Untagged
+  m_TagString: enemyAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2119628558
 Transform:
   m_ObjectHideFlags: 0
@@ -1534,7 +1539,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.01819861, y: 0.23294169}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1544,8 +1549,20 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.39580727, y: 0.37396902}
   m_EdgeRadius: 0
+--- !u!114 &2119628560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119628557}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d43e9bd42e6615647afa025f323cef1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossDashCollider
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

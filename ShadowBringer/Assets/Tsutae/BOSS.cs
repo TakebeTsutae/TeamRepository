@@ -1,21 +1,32 @@
-using System.Collections;
+﻿using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BOSS : MonoBehaviour
 { 
     [Header("ボスHP")]
-    public int bossHp = 500;
+    private int bossStartHp = 500;
+    public int _bossHp; // 現在のbossHpを入れる変数
+
+    // ダメージ処理のスクリプトを取得
+    GameObject bossColl; // 当たり判定のオブジェクト
+                         // 突進の時に消す
+    BossElementCollider _elementCollider;
+
+    // ボスが死んだときにシーン移動する
+    bool _isDaed = false; // ボスの死亡判定
+    [SerializeField] string nextSceneName = "ClearScne";　// 移動するシーン
+
+    // ゲーム中のボスの大きさ
     [SerializeField,Header("大きさ")]
     float _bossScale = 2.0f; // ボスの大きさ
 
     // アニメーション
     Animator animator;
-    GameObject bossAnim;
     private SpriteRenderer baseSr;
     private SpriteRenderer animSr;
     [SerializeField,Header("ダッシュ中の見た目")] private Sprite dashSprite;
-    // デバッグ用
-    AnimatorClipInfo[] clipInfo;
 
 
     // 一連の攻撃を何回終えたか
@@ -43,6 +54,7 @@ public class BOSS : MonoBehaviour
     float dashDistance = 5.0f;  // 突進で進む距離
     [SerializeField]
     float dashSpeed = 10.0f;    // 突進のスピード
+    GameObject _bossDashColl;    // 当たり判定
 
     // スポナー召喚の変数
     [SerializeField, Header("スポナー召喚をするのは何巡目か")]
@@ -59,17 +71,31 @@ public class BOSS : MonoBehaviour
 
     private void Start()
     {
-        bossAnim = GameObject.Find("BossAnimation");
         // Animationコンポーネントを取得
+        GameObject bossAnim = GameObject.Find("BossAnimation");
         animator = bossAnim.GetComponent<Animator>();
+
+        // ボスの当たり判定とスクリプトを取得
+        bossColl = GameObject.Find("BossElement");
+        _elementCollider = bossColl.GetComponent<BossElementCollider>();
+
+        // 突進時の攻撃判定を取得
+        _bossDashColl = GameObject.Find("BossDash");
+        // 突進以外は使わない
+        _bossDashColl.SetActive(false);
+
         // SpriteRendererを取得
         this.baseSr = GetComponent<SpriteRenderer>();
         animSr = bossAnim.GetComponent<SpriteRenderer>();
         baseSr.enabled = false;
         animSr.enabled = true;
 
-        // 初期状態はIdle
+        // 初期アニメーションはIdle
         animator.SetBool("isWalk", false);
+
+        // ボスの開始HPはbossStartHp
+        _bossHp = bossStartHp;
+      
 
     }
 
@@ -88,6 +114,16 @@ public class BOSS : MonoBehaviour
             // 攻撃開始
             StartCoroutine(AttackRoutine());
         }
+
+        // ボスが死んだとき
+        if (_bossHp <= 0)
+        {
+            _isDaed = true;
+            OnMoveClearScene();
+        }
+
+        _bossHp = _elementCollider.GetBossHp();
+    //    Debug.LogError("現在のボスHP:" +_bossHp);
     }
 
     private IEnumerator AttackRoutine()
@@ -181,6 +217,9 @@ public class BOSS : MonoBehaviour
     private IEnumerator Dash()
     {
         FacePlayer();
+        // 攻撃判定を有効化、当たり判定を無効化
+        _bossDashColl.SetActive(true);
+        bossColl.SetActive(false);
 
         float dir =
             player.position.x > transform.position.x
@@ -204,6 +243,11 @@ public class BOSS : MonoBehaviour
             yield return null;
         }
 
+        // 攻撃判定を無効化、当たり判定を有効化
+        _bossDashColl.SetActive(false);
+        bossColl.SetActive(true);
+
+        // 突進のスプライトを非表示、アニメーションのスプライトを表示
         baseSr.enabled = false;
         animSr.enabled = true;
         yield return null;
@@ -339,5 +383,10 @@ public class BOSS : MonoBehaviour
 
         // プレイヤーへの着地ダメージ発生
 
+    }
+
+    void OnMoveClearScene()
+    {
+        SceneManager.LoadScene(nextSceneName);
     }
 }
