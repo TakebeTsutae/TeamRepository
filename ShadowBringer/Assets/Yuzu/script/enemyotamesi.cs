@@ -92,6 +92,8 @@ public class enemyotamesi : MonoBehaviour
             //ƒvƒŒƒCƒ„[‚ÌUŒ‚æ“¾
             _playerAttack = playerController1._attackTotal;
             _enemyHp = _enemyHp - _playerAttack;
+            GetComponent<SpriteRenderer>().color = Color.red;
+            
 
             Debug.Log($"{_enemyHp}© “G‚Ì‘Ì—Í");
 
@@ -159,7 +161,7 @@ public class enemyotamesi : MonoBehaviour
     {
 
         yield return new WaitForSeconds(delay);
-
+        GetComponent<SpriteRenderer>().color = Color.white;
         isDame = false;
 
     }
