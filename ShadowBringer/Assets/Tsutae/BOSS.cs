@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class BOSS : MonoBehaviour
 { 
     [Header("ボスHP")]
-    private int bossStartHp = 500;
+    public int bossStartHp = 500;
     public int _bossHp; // 現在のbossHpを入れる変数
 
     // ダメージ処理のスクリプトを取得
@@ -122,8 +122,8 @@ public class BOSS : MonoBehaviour
             OnMoveClearScene();
         }
 
-        _bossHp = _elementCollider.GetBossHp();
-    //    Debug.LogError("現在のボスHP:" +_bossHp);
+        _bossHp = _elementCollider._currentBossHp;
+        Debug.LogError("_bossHp:" +_bossHp);
     }
 
     private IEnumerator AttackRoutine()

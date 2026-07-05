@@ -426,6 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a5420108588b842ac4b0509f04912a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossElementCollider
+  _currentBossHp: 0
 --- !u!1 &673884841
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,8 +565,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f343b227520f104f87c200f07d2d45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BOSS
+  bossStartHp: 500
   _bossHp: 5
-  nextSceneName: TkbClearScne
+  nextSceneName: TkbClearScene
   _bossScale: 4
   dashSprite: {fileID: -4913155488674122577, guid: ac98c61adff7f4e4d8c0b7bdd074c1af, type: 3}
   player: {fileID: 1997772599}

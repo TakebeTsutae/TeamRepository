@@ -8,7 +8,7 @@ public class BossElementCollider : MonoBehaviour
     int _playerAttack;
     PlayerController1 _playerController;
     BOSS _bossScript;
-    int _currentBossHp;
+    public int _currentBossHp;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,7 +18,7 @@ public class BossElementCollider : MonoBehaviour
         //　↓スクリプトがついてあるゲームオブジェクトを取得する
         _playerController = obj.GetComponent<PlayerController1>();
         _bossScript = bossObj.GetComponent<BOSS>();
-        _currentBossHp = _bossScript._bossHp;
+        _currentBossHp = _bossScript.bossStartHp;
     }
 
     // Update is called once per frame
@@ -34,7 +34,7 @@ public class BossElementCollider : MonoBehaviour
             // 統合したときに使用（プレイヤーの攻撃力取得のためのやつ）
             _playerAttack = _playerController._attackTotal;
             _currentBossHp -= _playerAttack;
-            Debug.LogError("ボスHP : " + _currentBossHp);
+            //Debug.Log("ボスHP : " + _currentBossHp);
         }
     }
 
