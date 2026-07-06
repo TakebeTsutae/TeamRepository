@@ -1,4 +1,5 @@
-﻿using UnityEditor.Search;
+﻿using System.Collections;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,36 +11,132 @@ public class BossElementCollider : MonoBehaviour
     BOSS _bossScript;
     public int _currentBossHp;
 
+    // 被弾処理の変数
+    bool _isHitting;    // 攻撃が当たっている状態かどうか
+    bool _isHit; // 仮
+    // 攻撃が当たってから再び攻撃が当たるまでのクールタイム
+    [SerializeField] float _deltHitCount = 1.0f;
+    float _hitCount = 0;    // 攻撃が当たってからの秒数
+    GameObject _bossIdleAttack; // ダメージを与える当たり判定
+    // 色を変えるための変数
+    SpriteRenderer _spriteRenderer;
+    float _deltRedChangeColor = 0.2f;
+    float _deltWhiteChangeColor = 0.2f;
+    float _hitChangeCount = 0;
+
+    // ボスが死んだときにシーン移動する
+    [SerializeField] string nextSceneName = "ClearScne";　// 移動するシーン
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        GameObject obj = GameObject.Find("player");
-        GameObject bossObj = GameObject.Find("Boss");
-        //　↓スクリプトがついてあるゲームオブジェクトを取得する
-        _playerController = obj.GetComponent<PlayerController1>();
-        _bossScript = bossObj.GetComponent<BOSS>();
+        //ゲームオブジェクトを取得する
+        GameObject _obj = GameObject.Find("player");
+        GameObject _bossObj = GameObject.Find("Boss");
+        GameObject _bossAnim = GameObject.Find("BossAnimation");
+        // ダメージを与える当たり判定
+        _bossIdleAttack = GameObject.Find("BossIdleAttack");
+
+        // スクリプトを取得
+        _playerController = _obj.GetComponent<PlayerController1>();
+        _bossScript = _bossObj.GetComponent<BOSS>();
         _currentBossHp = _bossScript.bossStartHp;
+        // 色を変えるためにスプライトレンダラーを取得
+        _spriteRenderer = _bossAnim.gameObject.GetComponent<SpriteRenderer>();
+        // 始めは攻撃が当たっていない
+        _isHitting = false;
     }
 
     // Update is called once per frame
     void Update()
     {
- 
+        _hitCount += Time.deltaTime;
+        // 色が変わる秒数
+        _hitChangeCount += Time.deltaTime;
+        // ボスが死んだらシーンを移動する
+        if (_currentBossHp <= 0)
+        {
+            OnMoveClearScene();
+        }
+        OnSetBossAttack();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(_isHit)
+        {
+            return;
+        }
         //ボスのHPを減らす
+        // ヒットクールタイム中は攻撃を食らわない
         if (collision.gameObject.tag == "weponAttack")
         {
+            _hitCount = 0;
+            _isHitting = true;
             // 統合したときに使用（プレイヤーの攻撃力取得のためのやつ）
             _playerAttack = _playerController._attackTotal;
             _currentBossHp -= _playerAttack;
-            //Debug.Log("ボスHP : " + _currentBossHp);
+            Debug.LogError(_currentBossHp);
+            StartCoroutine(OnHit());
+        }
+        else
+        {
+            _isHitting = false;
         }
     }
 
-    public int GetBossHp()
+    /*
+    void SetisDaed(bool isDaed)
     {
-        return _currentBossHp;
+        _isBossDaed = isDaed;
+        Debug.LogError("SetisBossDaed:" + _isBossDaed);
+    }
+    
+
+    public bool GetisDaed()
+    {
+        //Debug.LogError("GetisBossDaed:" + _isBossDaed);
+        return isDaed;
+    }
+    */
+    void OnMoveClearScene()
+    {
+        SceneManager.LoadScene(nextSceneName);
+    }
+
+    private IEnumerator OnHit()
+    {
+        // 途中
+        // isHit = true;
+
+        for (int i = 0; i < 4; i++)
+        {
+            _hitChangeCount = 0;
+            if (_hitChangeCount == 0)
+            {
+                _spriteRenderer.color = Color.red;
+            }
+            if(_hitChangeCount > _deltWhiteChangeColor)
+            {
+                _spriteRenderer.color = Color.white;
+            }
+        }
+        yield return null;
+    }
+
+    public void OnSetBossAttack()
+    {
+        
+        // ヒットクールタイム中はダメージを与える当たり判定を消す
+        if (_isHitting)
+        {
+            // 攻撃を食らったら点滅する
+            OnHit();
+            //_bossIdleAttack.SetActive(false);
+        }
+        else if(!_isHitting)
+        {
+            
+        }
+        
     }
 }

@@ -10,13 +10,14 @@ public class BOSS : MonoBehaviour
     public int _bossHp; // 現在のbossHpを入れる変数
 
     // ダメージ処理のスクリプトを取得
-    GameObject bossColl; // 当たり判定のオブジェクト
-                         // 突進の時に消す
+    GameObject _bossDamage; // ボスがダメージを受ける当たり判定のオブジェクト
+                            // 常に有効化
+
+    GameObject _bossColl;  // ボスがダメージを与える当たり判定のオブジェクト
+                         // 攻撃の度に無効化
     BossElementCollider _elementCollider;
 
-    // ボスが死んだときにシーン移動する
-    bool _isDaed = false; // ボスの死亡判定
-    [SerializeField] string nextSceneName = "ClearScne";　// 移動するシーン
+    
 
     // ゲーム中のボスの大きさ
     [SerializeField,Header("大きさ")]
@@ -28,19 +29,17 @@ public class BOSS : MonoBehaviour
     private SpriteRenderer animSr;
     [SerializeField,Header("ダッシュ中の見た目")] private Sprite dashSprite;
 
-
-    // 一連の攻撃を何回終えたか
-    int _attackCounter = 0;
-
-   
-
+    // 攻撃の管理
     [SerializeField,Header("プレイヤーの座標")]
     Transform player;
-
     [SerializeField,Header("攻撃を始めるプレイヤーとの距離")]
     float attackRenge = 10.0f;
-
     private bool isActing;
+    // 一連の攻撃を何回終えたか
+    int _attackCounter = 0;
+    // 攻撃の状態
+    //bool _isAttacking = false;
+
 
     // 後退の変数
     [SerializeField,Header("後退")]
@@ -48,6 +47,11 @@ public class BOSS : MonoBehaviour
     float retreatDistance = 5.0f;   // 後退で進む距離
     [SerializeField]
     float retreatSpeed = 3.0f;  // 突進前後退のスピード
+    // 突進前後退の攻撃判定
+    GameObject _retreatDash;
+
+    // 通常攻撃の変数
+    GameObject attackSensorController;
 
     // 突進の変数
     [SerializeField,Header("突進")]
@@ -75,14 +79,25 @@ public class BOSS : MonoBehaviour
         GameObject bossAnim = GameObject.Find("BossAnimation");
         animator = bossAnim.GetComponent<Animator>();
 
-        // ボスの当たり判定とスクリプトを取得
-        bossColl = GameObject.Find("BossElement");
-        _elementCollider = bossColl.GetComponent<BossElementCollider>();
+        // ボスの攻撃当たり判定を取得
+        _bossColl = GameObject.Find("BossIdleAttack");
+        // 攻撃以外では常に使う
+        _bossColl.SetActive(true); 
+
+        // 突進前後退の攻撃判定の取得
+        _retreatDash = GameObject.Find("RetreatDash");
+        // 突進前後退以外では使わない
+        _retreatDash.SetActive(false);
 
         // 突進時の攻撃判定を取得
         _bossDashColl = GameObject.Find("BossDash");
         // 突進以外は使わない
         _bossDashColl.SetActive(false);
+
+        // 通常攻撃の攻撃判定を取得
+        attackSensorController = GameObject.Find("NomalAttack");
+        // 通常攻撃以外には使わない
+        attackSensorController.SetActive(false);
 
         // SpriteRendererを取得
         this.baseSr = GetComponent<SpriteRenderer>();
@@ -115,15 +130,9 @@ public class BOSS : MonoBehaviour
             StartCoroutine(AttackRoutine());
         }
 
-        // ボスが死んだとき
-        if (_bossHp <= 0)
-        {
-            _isDaed = true;
-            OnMoveClearScene();
-        }
-
-        _bossHp = _elementCollider._currentBossHp;
-        Debug.LogError("_bossHp:" +_bossHp);
+        // 減らしたHPを_bossHpに代入
+        //_bossHp = _elementCollider._currentBossHp;
+        //Debug.LogError("_bossHp:" + _bossHp);
     }
 
     private IEnumerator AttackRoutine()
@@ -132,18 +141,13 @@ public class BOSS : MonoBehaviour
 
         FacePlayer();
         // 突進前後退
-        
         yield return RetreatDash();
         // 突進
         yield return Dash();
         // 通常攻撃
-        //yield return new WaitForSeconds(0.3f); 
         yield return MeleeAttack();
         // 後退
-        // 歩くアニメーションを再生
-        animator.SetBool("isWalk", true);
         yield return Retreat();
-        animator.SetBool("isWalk", false);
         // ジャンプスタンプ
         yield return JumpStamp();
         // 通常攻撃
@@ -182,10 +186,18 @@ public class BOSS : MonoBehaviour
     // 突進前の後退
     private IEnumerator RetreatDash()
     {
-       
         FacePlayer();
         // 突進前のアニメーションを再生
+        _bossColl.SetActive(false);
         animator.SetTrigger("isDashPre");
+        // 1.0f秒待つ
+        yield return new WaitForSeconds(1.0f);
+        // 攻撃判定を表示
+        _retreatDash.SetActive(true);
+        // 1.0f秒待つ
+        yield return new WaitForSeconds(0.6f);
+        _retreatDash.SetActive(false);
+        _bossColl.SetActive(true);
 
         float dir =
             player.position.x > transform.position.x
@@ -219,7 +231,7 @@ public class BOSS : MonoBehaviour
         FacePlayer();
         // 攻撃判定を有効化、当たり判定を無効化
         _bossDashColl.SetActive(true);
-        bossColl.SetActive(false);
+        _bossColl.SetActive(false);
 
         float dir =
             player.position.x > transform.position.x
@@ -245,7 +257,7 @@ public class BOSS : MonoBehaviour
 
         // 攻撃判定を無効化、当たり判定を有効化
         _bossDashColl.SetActive(false);
-        bossColl.SetActive(true);
+        _bossColl.SetActive(true);
 
         // 突進のスプライトを非表示、アニメーションのスプライトを表示
         baseSr.enabled = false;
@@ -259,21 +271,26 @@ public class BOSS : MonoBehaviour
         FacePlayer();
         // 攻撃はじめのアニメーションを再生
         animator.SetTrigger("isAttackPre");
+        // 1.0f待つ
+        yield return new WaitForSeconds(0.5f);
         // 攻撃アニメーションを再生
         animator.SetTrigger("isAttack");
-        //string currentClipName = clipInfo[0].clip.name;
-        //Debug.LogError("現在のアニメーション : " + currentClipName);
+        attackSensorController.SetActive(true); // 攻撃判定
+        _bossColl.SetActive(false);  　// ボスの当たり判定
+        yield return new WaitForSeconds(0.5f);
+        attackSensorController.SetActive(false);    // 攻撃判定
+        _bossColl.SetActive(true);  // ボスの当たり判定
 
         Debug.Log("攻撃!");
 
-        yield return new WaitForSeconds(1.0f);
+        yield return null;
     }
 
     // スポナー召喚
     private IEnumerator SummonSpawner()
     {
         // 攻撃はじめのアニメーションを再生
-        //PlayClip(attackPreClip);
+        animator.SetTrigger("isAttackPre");
         GameObject spawner = Instantiate(
             spawnerPre,
             summonPoint.position,
@@ -288,6 +305,11 @@ public class BOSS : MonoBehaviour
     private IEnumerator Retreat()
     {
         FacePlayer();
+        // 歩くアニメーションを再生
+        animator.SetBool("isWalk", true);
+        // 1秒まつ
+        yield return new WaitForSeconds(1.0f);
+
         float dir =
             player.position.x > transform.position.x
             ? -1.0f
@@ -301,8 +323,6 @@ public class BOSS : MonoBehaviour
 
         while (Vector2.Distance(transform.position, targetPos) > 0.05f)
         {
-            //string currentClipName = clipInfo[0].clip.name;
-            //Debug.LogError("現在のアニメーション : " + currentClipName);
             transform.position =
                 Vector3.MoveTowards(
                     transform.position,
@@ -312,6 +332,8 @@ public class BOSS : MonoBehaviour
         }
         // 1秒まつ
         yield return new WaitForSeconds(1.0f);
+        animator.SetBool("isWalk", false);
+        yield return null;
     }
 
 
@@ -383,10 +405,5 @@ public class BOSS : MonoBehaviour
 
         // プレイヤーへの着地ダメージ発生
 
-    }
-
-    void OnMoveClearScene()
-    {
-        SceneManager.LoadScene(nextSceneName);
     }
 }
