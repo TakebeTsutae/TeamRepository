@@ -96,6 +96,9 @@ public class PlayerController1 : MonoBehaviour
 
     private bool isAttacking = false;
 
+    private SpriteRenderer spriteRenderer;
+    public float flashDuration = 0.2f;  // 赤くなっている時間（秒）
+
     // -----------------------------------------------------------------------
     void Start()
     {
@@ -112,6 +115,8 @@ public class PlayerController1 : MonoBehaviour
         _anim.Play("Idle", 0, 0f);
         transform.localScale = new Vector3(2, 2, 1);
 
+        // 自分についているSpriteRendererを取得しておく
+        spriteRenderer= GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -331,11 +336,14 @@ public class PlayerController1 : MonoBehaviour
         // 左右移動
         rigid2D.linearVelocity = new Vector2(moveInput * moveSpeed, rigid2D.linearVelocity.y);
 
+        // ダッシュのカウントの設定
         if (Mouse.current.rightButton.wasPressedThisFrame && dashCooldownCounter <= 0f)
         {
             dashCooldownCounter = dashCooldown; // タイマーを1秒満タンにセットする
             StartCoroutine(DashRoutine());
         }
+
+       
     }
 
     public void ChangeAnimation(string newAnimation)
@@ -345,7 +353,7 @@ public class PlayerController1 : MonoBehaviour
 
         //Debug.Log("Play直前:" + newAnimation);
         // もし「今再生中のアニメーション」と「次に再生したいアニメーショ」が同じなら、何もしない
-        Debug.Log("現在：" + currentAnimation + "→次：" + newAnimation);
+     //   Debug.Log("現在：" + currentAnimation + "→次：" + newAnimation);
         if (currentAnimation == newAnimation) return;
 
         // 違うアニメーションのときだけ、新しく再生する
@@ -386,7 +394,16 @@ public class PlayerController1 : MonoBehaviour
             TakeDamage(1);
             Debug.Log("敵にぶつかった！");
             Debug.Log(_playerHp);
+
+            StartCoroutine(FrashRed());
         }
+    }
+
+    IEnumerator FrashRed()
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(flashDuration);
+        spriteRenderer.color = Color.white;
     }
 
     // 【追加】トリガーに触れている間、毎フレーム呼び出される処理

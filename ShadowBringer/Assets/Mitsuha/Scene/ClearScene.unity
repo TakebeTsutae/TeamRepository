@@ -786,6 +786,135 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 831176452}
   m_CullTransparentMesh: 1
+--- !u!1 &1148349636
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1148349638}
+  - component: {fileID: 1148349637}
+  m_Layer: 0
+  m_Name: Audio Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1148349637
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148349636}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 60243d0445237da4b9879f834e76bd84, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1148349638
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148349636}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.35581, y: -1.97771, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1561590869
 GameObject:
   m_ObjectHideFlags: 0
@@ -1343,10 +1472,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   attackDamage: 10
-  attackCooldown: 0.3
+  attackCooldown: 0
   kenattack: {fileID: 0}
-  tuecontroller: {fileID: 0}
-  playerController: {fileID: 0}
+  _playerController1: {fileID: 0}
 --- !u!114 &1237850595263753061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1378,11 +1506,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7776948aab786f94d8bc068079c28580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::tueController
-  bulletPrefab: {fileID: 0}
-  firePoint: {fileID: 0}
-  cooldownTime: 1
-  maxSpeed: 15
-  powerMultiplier: 3
 --- !u!4 &1961868527521491897
 Transform:
   m_ObjectHideFlags: 0
@@ -1503,11 +1626,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7776948aab786f94d8bc068079c28580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::tuecontroller
-  bulletPrefab: {fileID: 2277781174339061302, guid: 8cdc1b954887f814d96a6a2a3aff6fff, type: 3}
-  firePoint: {fileID: 12068451871943066, guid: a3bc20d0ce733804480f1563a101f285, type: 3}
-  cooldownTime: 1
-  maxSpeed: 15
-  powerMultiplier: 3
 --- !u!4 &3831049510499753347
 Transform:
   m_ObjectHideFlags: 0
@@ -1535,24 +1653,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f68b0829f034794483f8769a4ef8bda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  currentItem: 
-  _playerHp: 3
-  _attackWeapon: 3
-  moveSpeed: 5
-  currentHP: 3
-  maxHP: 3
-  isFacingRight: 1
-  _accessories:
-  - 
-  - 
-  - 
-  weapon: 
-  _Gettag: 0
-  coyoteTime: 0.2
-  jumpCooldown: 0.5
-  dashForce: 15
-  dashCooldown: 1
-  invincibleTime: 1
 --- !u!70 &4131343329230813495
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1646,11 +1746,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7776948aab786f94d8bc068079c28580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::tuecontroller
-  bulletPrefab: {fileID: 2277781174339061302, guid: 8cdc1b954887f814d96a6a2a3aff6fff, type: 3}
-  firePoint: {fileID: 3660149635328473388}
-  cooldownTime: 1
-  maxSpeed: 20
-  powerMultiplier: 3
 --- !u!114 &6175135657451083938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2029,8 +2124,7 @@ MonoBehaviour:
   attackDamage: 10
   attackCooldown: 10000
   kenattack: {fileID: 0}
-  tuecontroller: {fileID: 0}
-  playerController: {fileID: 0}
+  _playerController1: {fileID: 0}
 --- !u!114 &9220060815304641722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2077,3 +2171,4 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 2106065255}
   - {fileID: 288691723}
+  - {fileID: 1148349638}
