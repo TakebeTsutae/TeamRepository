@@ -331,11 +331,14 @@ public class PlayerController1 : MonoBehaviour
         // 左右移動
         rigid2D.linearVelocity = new Vector2(moveInput * moveSpeed, rigid2D.linearVelocity.y);
 
+        // ダッシュのカウントの設定
         if (Mouse.current.rightButton.wasPressedThisFrame && dashCooldownCounter <= 0f)
         {
             dashCooldownCounter = dashCooldown; // タイマーを1秒満タンにセットする
             StartCoroutine(DashRoutine());
         }
+
+       
     }
 
     public void ChangeAnimation(string newAnimation)
@@ -345,7 +348,7 @@ public class PlayerController1 : MonoBehaviour
 
         //Debug.Log("Play直前:" + newAnimation);
         // もし「今再生中のアニメーション」と「次に再生したいアニメーショ」が同じなら、何もしない
-        Debug.Log("現在：" + currentAnimation + "→次：" + newAnimation);
+     //   Debug.Log("現在：" + currentAnimation + "→次：" + newAnimation);
         if (currentAnimation == newAnimation) return;
 
         // 違うアニメーションのときだけ、新しく再生する
