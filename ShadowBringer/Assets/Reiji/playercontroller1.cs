@@ -96,6 +96,9 @@ public class PlayerController1 : MonoBehaviour
 
     private bool isAttacking = false;
 
+    private SpriteRenderer spriteRenderer;
+    public float flashDuration = 0.2f;  // 赤くなっている時間（秒）
+
     // -----------------------------------------------------------------------
     void Start()
     {
@@ -112,6 +115,8 @@ public class PlayerController1 : MonoBehaviour
         _anim.Play("Idle", 0, 0f);
         transform.localScale = new Vector3(2, 2, 1);
 
+        // 自分についているSpriteRendererを取得しておく
+        spriteRenderer= GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -389,7 +394,16 @@ public class PlayerController1 : MonoBehaviour
             TakeDamage(1);
             Debug.Log("敵にぶつかった！");
             Debug.Log(_playerHp);
+
+            StartCoroutine(FrashRed());
         }
+    }
+
+    IEnumerator FrashRed()
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(flashDuration);
+        spriteRenderer.color = Color.white;
     }
 
     // 【追加】トリガーに触れている間、毎フレーム呼び出される処理
