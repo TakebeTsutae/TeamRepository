@@ -6,19 +6,7 @@ public class AttackController : MonoBehaviour
 {
     //ゲームマネージャーにぶち込む
 
-
-
-
-
-
-
     //=============================================
-
-
-
-
-
-
 
     public Transform attackPoint;
     public float attackRange = 0.5f;
@@ -126,7 +114,7 @@ public class AttackController : MonoBehaviour
     private IEnumerator AttackRoutine()
     {
         canAttack = false;
-        Debug.Log("開始 canAttack=" + canAttack + "time=" + Time.time);
+        Debug.Log("開始 canAttack=" + canAttack + "time=" + Time.time + "/ cooldown=" + PlayerAttackCooldown); ;
 
         yield return new WaitForSeconds(PlayerAttackCooldown);
 
