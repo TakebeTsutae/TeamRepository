@@ -44,6 +44,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Tsutae/TkbClearScene.unity
     guid: c0ecffa43ccdada4b84d35d2780aa120
+  - enabled: 1
+    path: Assets/Reiji/Reiji scene 1.unity
+    guid: b270e4a6dd2877e4e95efa4ef02617d8
+  - enabled: 1
+    path: Assets/Reiji/StaticTest.unity
+    guid: 4857b12aaf2e9154880128eb95d1771e
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

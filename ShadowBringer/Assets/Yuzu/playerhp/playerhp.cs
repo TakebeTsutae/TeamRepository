@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class playerhp : MonoBehaviour
 {
@@ -19,7 +19,7 @@ public class playerhp : MonoBehaviour
     {
         GameObject obj = GameObject.Find("player");
         PlayerController1 hp = obj.GetComponent<PlayerController1>();
-        _playerhp = hp._playerHp;
+        _playerhp = PlayerController1.instance._playerHp;
         if (_playerhp < 4)
         {
             hp_Max1.SetActive(true);
