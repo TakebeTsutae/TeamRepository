@@ -18,6 +18,7 @@ public class PlayerController1 : MonoBehaviour
 
     private const int kMaxHp= 3;
 
+    public static PlayerController1 instance;
     //  プレイヤーのHP
     public int _playerHp = kMaxHp;
 
@@ -36,6 +37,9 @@ public class PlayerController1 : MonoBehaviour
 
     public int currentHP = 3;
     public int maxHP = 3;
+
+    
+
 
 
     // ジャンプ力
@@ -100,6 +104,18 @@ public class PlayerController1 : MonoBehaviour
     public float flashDuration = 0.2f;  // 赤くなっている時間（秒）
 
     // -----------------------------------------------------------------------
+    private void Awake()
+    {
+        if(instance==null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
         _accessoriesMoveSpeed = 0f;
