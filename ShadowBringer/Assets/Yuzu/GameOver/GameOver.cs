@@ -58,7 +58,7 @@ public class GameOver : MonoBehaviour
         }
         else if (this.gameObject.tag == "retry")
         {
-            SceneManager.LoadScene("main");   //リトライのシーン名記入
+            SceneManager.LoadScene("2_main");   //リトライのシーン名記入
 
         }
     }

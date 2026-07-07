@@ -280,6 +280,26 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1196856188}
   m_SourcePrefab: {fileID: 100100000, guid: 0c9ad6182f410c64f96d2f742384fb85, type: 3}
+--- !u!1 &373793095 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1455300779446357433, guid: a57257c425f2c164ba4c845929b396cc, type: 3}
+  m_PrefabInstance: {fileID: 674072381}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &373793103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373793095}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df304616b1fafb244864e11c2489b7ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::enemyotamesi2
+  checkcollision: {fileID: 1820436474}
+  checkcollision1: {fileID: 620601614}
+  animator: {fileID: 0}
 --- !u!1 &554553782 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6419526230744607190, guid: 07feb7923f0cf2c4891656c2b58a988e, type: 3}
@@ -295,6 +315,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6493041371557248858, guid: 7b7b5d37325a9aa408e703c3341aab51, type: 3}
   m_PrefabInstance: {fileID: 2107233703}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &620601614 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7164883036880032913, guid: a57257c425f2c164ba4c845929b396cc, type: 3}
+  m_PrefabInstance: {fileID: 674072381}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0976c36ca212ff4dab76d29c4ff8da7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::enemycollision
 --- !u!1 &669813136 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6028721989657556311, guid: 07feb7923f0cf2c4891656c2b58a988e, type: 3}
@@ -308,17 +339,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 523340463849592683, guid: a57257c425f2c164ba4c845929b396cc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.07
+      objectReference: {fileID: 0}
     - target: {fileID: 1455300779446357433, guid: a57257c425f2c164ba4c845929b396cc, type: 3}
       propertyPath: m_Name
       value: enemySuraimu
       objectReference: {fileID: 0}
     - target: {fileID: 4529985906242270232, guid: a57257c425f2c164ba4c845929b396cc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.40876
+      value: 3.37
       objectReference: {fileID: 0}
     - target: {fileID: 4529985906242270232, guid: a57257c425f2c164ba4c845929b396cc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.25322
+      value: -0.82
       objectReference: {fileID: 0}
     - target: {fileID: 4529985906242270232, guid: a57257c425f2c164ba4c845929b396cc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -352,10 +387,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8406236807286552573, guid: a57257c425f2c164ba4c845929b396cc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1455300779446357433, guid: a57257c425f2c164ba4c845929b396cc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 373793103}
   m_SourcePrefab: {fileID: 100100000, guid: a57257c425f2c164ba4c845929b396cc, type: 3}
 --- !u!1001 &755226402
 PrefabInstance:
@@ -729,7 +771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::spawn
   Camera: {fileID: 825730648}
-  EnemyPrefab: {fileID: 0}
+  EnemyPrefab: {fileID: 373793095}
 --- !u!1 &1314436496
 GameObject:
   m_ObjectHideFlags: 0
@@ -946,7 +988,13 @@ MonoBehaviour:
   _moveSpeed: 1
   jumpForceX: 0
   jumpForceY: 5
+  kabe: 0
+  _playerAttack: 0
+  _countFoot: 0
   _enemyHp: 8
+  rb: {fileID: 0}
+  isJumping: 0
+  velocity: {x: 0, y: 0}
 --- !u!114 &1547334108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1199,6 +1247,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6493041371557248858, guid: 7b7b5d37325a9aa408e703c3341aab51, type: 3}
   m_PrefabInstance: {fileID: 1738122492}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1820436474 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 251146579222864880, guid: a57257c425f2c164ba4c845929b396cc, type: 3}
+  m_PrefabInstance: {fileID: 674072381}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0976c36ca212ff4dab76d29c4ff8da7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::enemycollision
 --- !u!1001 &1824404001
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1209,11 +1268,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3136006416087767938, guid: 421e64fce844fbb4b9d233353066b6c2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.40876
+      value: -0.58
       objectReference: {fileID: 0}
     - target: {fileID: 3136006416087767938, guid: 421e64fce844fbb4b9d233353066b6c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.25322
+      value: 5.37
       objectReference: {fileID: 0}
     - target: {fileID: 3136006416087767938, guid: 421e64fce844fbb4b9d233353066b6c2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1640,7 +1699,13 @@ MonoBehaviour:
   _moveSpeed: 1
   jumpForceX: 0
   jumpForceY: 5
+  kabe: 0
+  _playerAttack: 0
+  _countFoot: 0
   _enemyHp: 8
+  rb: {fileID: 0}
+  isJumping: 0
+  velocity: {x: 0, y: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

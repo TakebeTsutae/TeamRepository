@@ -4,7 +4,7 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class enemyotamesi : MonoBehaviour
+public class enemyotamesi2 : MonoBehaviour
 {
     // Header ← ヘッダー　インスペクタを見やすくする
     // enemycollisionのスクリプトがついているオブジェクトをcheckcollisionの中にぶち込む
@@ -117,7 +117,46 @@ public class enemyotamesi : MonoBehaviour
             animator.SetBool("attack", false);
             posy = 0f;
             yield return new WaitForSeconds(3);
+            animator.SetBool("attack", true);
+            posx = 0f;
+            //attack.SetActive(true);
 
+            yield return new WaitForSeconds(1);
+            animator.SetBool("attack", false);
+
+            MoveFlag();
+            yield return new WaitForSeconds(3);
+
+            if (rightTleftF)
+            {
+                posx = 0.05f;
+            }
+            else
+            {
+                posx = -0.05f;
+            }
+            animator.SetBool("jump", true);
+            posy = 0.1f;
+            yield return new WaitForSeconds(1);
+            animator.SetBool("jump", false);
+
+            MoveFlag();
+            posy = 0f;
+            if (rightTleftF)
+            {
+                posx = 0.05f;
+            }
+            else
+            {
+                posx = -0.05f;
+            }
+            animator.SetBool("jump", true);
+            posy = 0.1f;
+            yield return new WaitForSeconds(1);
+            animator.SetBool("jump", false);
+            MoveFlag();
+            posy = 0f;
+            yield return new WaitForSeconds(1);
             if (rightTleftF)
             {
                 posx = 0.05f;

@@ -30,7 +30,6 @@ public class spawn : MonoBehaviour
         _enemy4_x = this.transform.position.x + 2f;
         _enemy4_y = this.transform.position.y - 2f;
 
-        Vector2 cameraPos;
 
         
     }

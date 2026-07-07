@@ -26,14 +26,12 @@ public class enemycollision : MonoBehaviour
 
         if (this.gameObject.tag != "_enemyFoot"&& (collision.gameObject.tag == groundTag || collision.gameObject.tag == enemyTag))
         {
-            Debug.Log("壁当たり");
             isOn = true;
         }
         if (this.gameObject.tag == "_enemyFoot")
         {
             if (collision.gameObject.tag == groundTag)
             {
-                Debug.Log("床当たり");
                 isOn1 =false;
                 ignoreExitTimer = 0.1f;
             }
@@ -43,7 +41,6 @@ public class enemycollision : MonoBehaviour
     {
         if (this.gameObject.tag != "_enemyFoot" && (collision.gameObject.tag == groundTag || collision.gameObject.tag == enemyTag))
         {
-            Debug.Log("壁離れ");
             isOn = false;
         }
         if (ignoreExitTimer > 0) return;
@@ -51,7 +48,6 @@ public class enemycollision : MonoBehaviour
         {
             if (collision.gameObject.tag == groundTag)
             {
-                Debug.Log("床離れ");
                 isOn1 = true;
             }
         }
