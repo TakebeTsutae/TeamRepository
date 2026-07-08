@@ -224,6 +224,9 @@ public class PlayerController1 : MonoBehaviour
             ChangeAnimation("Idle");
         }
 
+        // 効果音追加中
+    //    if(Keyboard.current.dKey.isPressed && collision.gameObject.CompareTag("Ground"))
+
         // --- タイマーの更新処理 ---
         // 1. コヨーテタイムの計算
         if (isGrounded)
@@ -251,6 +254,7 @@ public class PlayerController1 : MonoBehaviour
             coyoteCounter = 0f; // 空中での連続ジャンプを防ぐため、猶予をゼロにする
             jumpCooldownCounter = jumpCooldown; // クールタイム(0.5秒)をセット
         }
+
         if (Mouse.current.rightButton.wasPressedThisFrame&&dashCooldownCounter<=0f)
         {
             dashCooldownCounter = dashCooldown;

@@ -44,10 +44,10 @@ public class AttackController : MonoBehaviour
         // 今攻撃できるか？
         if(PlayerAttackCooldown > 0) 
         {
-            PlayerAttackCooldown += Time.deltaTime;
+            PlayerAttackCooldown -= Time.deltaTime;
         }
 
-        if(PlayerAttackCooldown < 0)
+        if(PlayerAttackCooldown <= 0)
         {
             canAttack = true;
         }
@@ -80,11 +80,6 @@ public class AttackController : MonoBehaviour
             // 攻撃した時間を保存
             
         }
-    }
-
-    void FixedUpdate()
-    {
-        PlayerAttackCooldown -= Time.deltaTime;
     }
 
     void Attack()
