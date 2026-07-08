@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 6175135657053871269}
   - component: {fileID: 4330844501761264494}
   - component: {fileID: 3346869894899066736}
+  - component: {fileID: 2671944303862661111}
+  - component: {fileID: 6723309732893676138}
   m_Layer: 8
   m_Name: player
   m_TagString: Player
@@ -133,7 +135,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7348022266981613090}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 18e17a5812fa47a408fafd6e5352ae2e, type: 3}
   m_Name: 
@@ -141,10 +143,10 @@ MonoBehaviour:
   weaponSlot: {fileID: 0}
   weaponSlot1: {fileID: 0}
   weaponSlot2: {fileID: 0}
-  swordSprite: {fileID: -278335149916310281, guid: 671c9a8e295bf124e9dd8e5287523012, type: 3}
+  swordSprite: {fileID: -4004527290698857321, guid: b7935b68ac78f0a4c8db2afd61505422, type: 3}
   staffSprite: {fileID: 1769139453556492977, guid: e2e6a25a6ae1ed54b978a3051ceb7220, type: 3}
-  _up: {fileID: -2670100242169240431, guid: 98527d78b9912dc4bb8ffb28f9b6bd8c, type: 3}
-  _speed: {fileID: -5188336996638436733, guid: 92713291f1d4b9e479e67db81fa099f9, type: 3}
+  _up: {fileID: 2451002373052964623, guid: b7935b68ac78f0a4c8db2afd61505422, type: 3}
+  _speed: {fileID: -7156045342858959276, guid: b7935b68ac78f0a4c8db2afd61505422, type: 3}
 --- !u!70 &4131343327474253104
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -189,7 +191,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7348022266981613090}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf7283682436fbc4a8cad4f93625145d, type: 3}
   m_Name: 
@@ -214,6 +216,7 @@ MonoBehaviour:
   invincibleTime: 1
   gameover: GameOver
   _anim: {fileID: 0}
+  flashDuration: 0.2
 --- !u!111 &4330844501761264494
 Animation:
   m_ObjectHideFlags: 0
@@ -252,6 +255,58 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2671944303862661111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7348022266981613090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf23e25849f4fc14594ede7a23632680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController_yuzu
+  currentItem: 
+  _playerHp: 3
+  _attackWeapon: 3
+  moveSpeed: 7
+  currentHP: 3
+  maxHP: 3
+  isFacingRight: 1
+  _accessories:
+  - 
+  - 
+  - 
+  weapon: 
+  _Gettag: 0
+  coyoteTime: 0.2
+  jumpCooldown: 0.5
+  dashForce: 25
+  dashCooldown: 1
+  invincibleTime: 1
+  gameover: 
+  _anim: {fileID: 0}
+  flashDuration: 0.2
+--- !u!114 &6723309732893676138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7348022266981613090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1d12fc79201b3142a3fefda0c953c9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponManager_yuzu
+  weaponSlot: {fileID: 0}
+  weaponSlot1: {fileID: 0}
+  weaponSlot2: {fileID: 0}
+  swordSprite: {fileID: -4004527290698857321, guid: b7935b68ac78f0a4c8db2afd61505422, type: 3}
+  staffSprite: {fileID: 1769139453556492977, guid: e2e6a25a6ae1ed54b978a3051ceb7220, type: 3}
+  _up: {fileID: 2451002373052964623, guid: b7935b68ac78f0a4c8db2afd61505422, type: 3}
+  _speed: {fileID: -7156045342858959276, guid: b7935b68ac78f0a4c8db2afd61505422, type: 3}
 --- !u!1001 &1842196393381766038
 PrefabInstance:
   m_ObjectHideFlags: 0

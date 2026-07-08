@@ -1029,63 +1029,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 766406513}
   m_CullTransparentMesh: 1
---- !u!1 &852557701 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7348022266981613090, guid: ab1a7a1845c28874c8e46c8ad8c6e615, type: 3}
-  m_PrefabInstance: {fileID: 1621289681}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &852557702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 852557701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1d12fc79201b3142a3fefda0c953c9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WeaponManager_yuzu
-  weaponSlot: {fileID: 1430620249}
-  weaponSlot1: {fileID: 124136122}
-  weaponSlot2: {fileID: 1627294134}
-  swordSprite: {fileID: -4004527290698857321, guid: b7935b68ac78f0a4c8db2afd61505422, type: 3}
-  staffSprite: {fileID: 1769139453556492977, guid: e2e6a25a6ae1ed54b978a3051ceb7220, type: 3}
-  _up: {fileID: 2451002373052964623, guid: b7935b68ac78f0a4c8db2afd61505422, type: 3}
-  _speed: {fileID: -7156045342858959276, guid: b7935b68ac78f0a4c8db2afd61505422, type: 3}
---- !u!114 &852557703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 852557701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf23e25849f4fc14594ede7a23632680, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController_yuzu
-  currentItem: 
-  _playerHp: 3
-  _attackWeapon: 3
-  moveSpeed: 7
-  currentHP: 3
-  maxHP: 3
-  isFacingRight: 1
-  _accessories:
-  - 
-  - 
-  - 
-  weapon: 
-  _Gettag: 0
-  coyoteTime: 0.2
-  jumpCooldown: 0.5
-  dashForce: 25
-  dashCooldown: 1
-  invincibleTime: 1
-  gameover: 
-  _anim: {fileID: 0}
-  flashDuration: 0.2
 --- !u!1 &1271830699
 GameObject:
   m_ObjectHideFlags: 0
@@ -1365,34 +1308,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1237850594849369954, guid: ab1a7a1845c28874c8e46c8ad8c6e615, type: 3}
-      propertyPath: _up
-      value: 
-      objectReference: {fileID: 2451002373052964623, guid: b7935b68ac78f0a4c8db2afd61505422, type: 3}
-    - target: {fileID: 1237850594849369954, guid: ab1a7a1845c28874c8e46c8ad8c6e615, type: 3}
-      propertyPath: _speed
-      value: 
-      objectReference: {fileID: -7156045342858959276, guid: b7935b68ac78f0a4c8db2afd61505422, type: 3}
-    - target: {fileID: 1237850594849369954, guid: ab1a7a1845c28874c8e46c8ad8c6e615, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1237850594849369954, guid: ab1a7a1845c28874c8e46c8ad8c6e615, type: 3}
-      propertyPath: weaponSlot
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1237850594849369954, guid: ab1a7a1845c28874c8e46c8ad8c6e615, type: 3}
-      propertyPath: swordSprite
-      value: 
-      objectReference: {fileID: -4004527290698857321, guid: b7935b68ac78f0a4c8db2afd61505422, type: 3}
-    - target: {fileID: 1237850594849369954, guid: ab1a7a1845c28874c8e46c8ad8c6e615, type: 3}
-      propertyPath: weaponSlot1
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1237850594849369954, guid: ab1a7a1845c28874c8e46c8ad8c6e615, type: 3}
-      propertyPath: weaponSlot2
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3136006416087767938, guid: ab1a7a1845c28874c8e46c8ad8c6e615, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.132641
@@ -1433,10 +1348,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6175135657053871269, guid: ab1a7a1845c28874c8e46c8ad8c6e615, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 6723309732893676138, guid: ab1a7a1845c28874c8e46c8ad8c6e615, type: 3}
+      propertyPath: weaponSlot
+      value: 
+      objectReference: {fileID: 1430620249}
+    - target: {fileID: 6723309732893676138, guid: ab1a7a1845c28874c8e46c8ad8c6e615, type: 3}
+      propertyPath: weaponSlot1
+      value: 
+      objectReference: {fileID: 124136122}
+    - target: {fileID: 6723309732893676138, guid: ab1a7a1845c28874c8e46c8ad8c6e615, type: 3}
+      propertyPath: weaponSlot2
+      value: 
+      objectReference: {fileID: 1627294134}
     - target: {fileID: 7348022266981613090, guid: ab1a7a1845c28874c8e46c8ad8c6e615, type: 3}
       propertyPath: m_Name
       value: player
@@ -1444,13 +1367,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7348022266981613090, guid: ab1a7a1845c28874c8e46c8ad8c6e615, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 852557703}
-    - targetCorrespondingSourceObject: {fileID: 7348022266981613090, guid: ab1a7a1845c28874c8e46c8ad8c6e615, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 852557702}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab1a7a1845c28874c8e46c8ad8c6e615, type: 3}
 --- !u!1 &1627294132
 GameObject:
