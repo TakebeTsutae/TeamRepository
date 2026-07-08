@@ -41,21 +41,21 @@ public class WeaponManager_yuzu : MonoBehaviour
     public Sprite _speed;
 
     // プレイヤーの参照を保存する変数（処理の軽量化用）
-    private PlayerOtamesi playerScript;
+    private PlayerController_yuzu playerScript;
 
     void Start()
     {
-        /*
+        
         // 最初は剣アイコン
         weaponSlot.sprite = swordSprite;
         weaponSlot1.sprite = null;
         weaponSlot2.sprite = null;
-        */
+        
         // Start時にプレイヤーのスクリプトを1回だけ取得しておく
         GameObject obj = GameObject.Find("player");
         if (obj != null)
         {
-            //PlayerController playerScript = obj.GetComponent<PlayerController>();
+            PlayerController_yuzu playerScript = obj.GetComponent<PlayerController_yuzu>();
         }
     }
     
@@ -74,10 +74,11 @@ public class WeaponManager_yuzu : MonoBehaviour
     {
         // プレイヤーのスクリプトが取得できていない場合は何もしない
         if (playerScript == null) return;
-        print(playerScript._accessories);
+        Debug.Log(playerScript._accessories[0]);
         // 【1つ目のアクセサリー（weaponSlot1）の判定】
         if (playerScript._accessories[0] == "Up")
         {
+            Debug.Log("Up");
             weaponSlot1.sprite = _up;
         }
         else if (playerScript._accessories[0] == "Speed")

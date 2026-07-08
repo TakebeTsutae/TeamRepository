@@ -121,7 +121,6 @@ public class PlayerController_yuzu : MonoBehaviour
 
     void Update()
     {
-       
         _attackTotal = _attackWeapon + _attack;
 
 
@@ -416,10 +415,10 @@ public class PlayerController_yuzu : MonoBehaviour
         // アイテムのタグを持っている場合のみ、Eキーの入力をチェックする
         if (collision.CompareTag("Up") || collision.CompareTag("Speed") || collision.CompareTag("Tue") || collision.CompareTag("Ken") || collision.CompareTag("HP"))
         {
+            
             // 触れている間にEキーが押されたら取得
             if (Keyboard.current.eKey.isPressed)
             {
-                
 
                 if (collision.CompareTag("Up"))
                 {
