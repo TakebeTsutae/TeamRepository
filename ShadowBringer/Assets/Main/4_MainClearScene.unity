@@ -959,7 +959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2413d1de2864254bad2938f7d7f57c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClearSceneController
-  nextSceneName: Hirayama1
+  nextSceneName: 2_Main
 --- !u!114 &871249844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1696,7 +1696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2413d1de2864254bad2938f7d7f57c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClearSceneController
-  nextSceneName: TitleScene
+  nextSceneName: 1_MainTitleScene
 --- !u!114 &1668321344
 MonoBehaviour:
   m_ObjectHideFlags: 0
