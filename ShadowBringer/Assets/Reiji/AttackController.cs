@@ -13,7 +13,7 @@ public class AttackController : MonoBehaviour
     public LayerMask enemyLayer;
     public int attackDamage = 10;
     public float PlayerAttackCooldown = 0.5f;
-    private float PlayerAttackCooldownCounter;
+  //  private float PlayerAttackCooldownCounter;
   
     //bool canAttack = true;
     int time = 0;
@@ -28,6 +28,8 @@ public class AttackController : MonoBehaviour
     //---------------------------------------------------------------
     private void Start()
     {
+        PlayerAttackCooldown = 0.0f;
+
         kenattack = GetComponent<kenncontroller>();
         //tuecontroller = GetComponent<tuecontroller>();
 
@@ -37,26 +39,22 @@ public class AttackController : MonoBehaviour
     {
         //Debug.Log("Update動いてる");
         // canAttackをtrueにする
-        /*
-        time++;
-         if (time>= 50)
-         {
-             time -= attackCooldown;
-             time = 0;
-         }
-         if(attackCooldown<=0)
-         {
-             canAttack = true;
-         }
-         else
-         {
-             canAttack = false;
-         }
-        */
-        // 今攻撃できるか？
-        //bool canAttack =
-        //    Time.time >= lastAttackTime + attackCooldown;
+       
 
+        // 今攻撃できるか？
+        if(PlayerAttackCooldown > 0) 
+        {
+            PlayerAttackCooldown += Time.deltaTime;
+        }
+
+        if(PlayerAttackCooldown < 0)
+        {
+            canAttack = true;
+        }
+        else
+        {
+            canAttack= false;
+        }
 
 
         // J押し中 ＆ 攻撃可能
@@ -70,9 +68,7 @@ public class AttackController : MonoBehaviour
             Debug.Log("クリック検知！");
             Attack();
 
-            StartCoroutine(AttackRoutine());
-
-            canAttack = true;
+            PlayerAttackCooldown = 0.5f;
 
             //_playerController1.ChangeAnimation("Attack");
 
@@ -84,6 +80,11 @@ public class AttackController : MonoBehaviour
             // 攻撃した時間を保存
             
         }
+    }
+
+    void FixedUpdate()
+    {
+        PlayerAttackCooldown -= Time.deltaTime;
     }
 
     void Attack()
@@ -109,19 +110,11 @@ public class AttackController : MonoBehaviour
             }
         }
         Debug.Log("Attack実行");
+
+        PlayerAttackCooldown = 0.5f;
     }
 
-    private IEnumerator AttackRoutine()
-    {
-        canAttack = false;
-        Debug.Log("開始 canAttack=" + canAttack + "time=" + Time.time + "/ cooldown=" + PlayerAttackCooldown); ;
-
-        yield return new WaitForSeconds(PlayerAttackCooldown);
-
-          canAttack = true;
-
-        Debug.Log("終了 canAttack=" + canAttack + "time=" + Time.time);
-    }
+    
     /*
     private void FixedUpdate()
     {
