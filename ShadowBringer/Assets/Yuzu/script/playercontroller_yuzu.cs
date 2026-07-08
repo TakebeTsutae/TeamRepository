@@ -121,6 +121,7 @@ public class PlayerController_yuzu : MonoBehaviour
 
     void Update()
     {
+
         _attackTotal = _attackWeapon + _attack;
 
 
@@ -424,6 +425,7 @@ public class PlayerController_yuzu : MonoBehaviour
                 {
                     _arrayElement++;
                     currentItem = "Up";
+
                 }
                 else if (collision.CompareTag("Speed"))
                 {

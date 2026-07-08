@@ -225,7 +225,10 @@ public class PlayerController1 : MonoBehaviour
         }
 
         // 効果音追加中
-    //    if(Keyboard.current.dKey.isPressed && collision.gameObject.CompareTag("Ground"))
+        if(Keyboard.current.dKey.isPressed && isGrounded)
+        {
+            GetComponent<AudioSource>().Play();
+        }
 
         // --- タイマーの更新処理 ---
         // 1. コヨーテタイムの計算
