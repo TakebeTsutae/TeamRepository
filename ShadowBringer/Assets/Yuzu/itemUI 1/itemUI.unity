@@ -1392,7 +1392,7 @@ PrefabInstance:
     - target: {fileID: 1237850594849369954, guid: ab1a7a1845c28874c8e46c8ad8c6e615, type: 3}
       propertyPath: weaponSlot2
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1627294134}
     - target: {fileID: 3136006416087767938, guid: ab1a7a1845c28874c8e46c8ad8c6e615, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.132641

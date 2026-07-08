@@ -78,7 +78,6 @@ public class WeaponManager_yuzu : MonoBehaviour
         // 【1つ目のアクセサリー（weaponSlot1）の判定】
         if (playerScript._accessories[0] == "Up")
         {
-            Debug.Log("Up");
             weaponSlot1.sprite = _up;
         }
         else if (playerScript._accessories[0] == "Speed")
