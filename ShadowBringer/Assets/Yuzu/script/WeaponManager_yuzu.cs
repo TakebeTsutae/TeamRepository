@@ -55,7 +55,7 @@ public class WeaponManager_yuzu : MonoBehaviour
         GameObject obj = GameObject.Find("player");
         if (obj != null)
         {
-            PlayerController_yuzu playerScript = obj.GetComponent<PlayerController_yuzu>();
+            playerScript = obj.GetComponent<PlayerController_yuzu>();
         }
     }
     
