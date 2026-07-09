@@ -53,6 +53,9 @@ public class PlayerController1 : MonoBehaviour
     // 地面にいるか
     private bool isGrounded;
 
+    // 地面についてるうえで移動しているか
+    private bool isRunning;
+
     // リスト要素
     private int _arrayElement;
 
@@ -228,7 +231,19 @@ public class PlayerController1 : MonoBehaviour
         if(Keyboard.current.dKey.isPressed && isGrounded)
         {
             GetComponent<AudioSource>().Play();
+            isRunning=true;
         }
+        else
+        {
+            isRunning = false;
+        }
+
+        if(isRunning==false)
+        {
+            GetComponent<AudioSource>().Stop();
+            Debug.Log("tometayo"+isRunning);
+        }
+        
 
         // --- タイマーの更新処理 ---
         // 1. コヨーテタイムの計算

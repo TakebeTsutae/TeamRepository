@@ -41,7 +41,7 @@ public class WeaponManager1 : MonoBehaviour
     public Sprite _speed;
 
     // プレイヤーの参照を保存する変数（処理の軽量化用）
-    private PlayerOtamesi playerScript;
+    private PlayerController1 playerScript;
 
     void Start()
     {
@@ -55,7 +55,7 @@ public class WeaponManager1 : MonoBehaviour
         GameObject obj = GameObject.Find("player");
         if (obj != null)
         {
-            //PlayerController playerScript = obj.GetComponent<PlayerController>();
+            playerScript = obj.GetComponent<PlayerController1>();
         }
     }
     
