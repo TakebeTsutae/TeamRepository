@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using static UnityEditor.Progress;
 
-
 public class PlayerController_yuzu : MonoBehaviour
 {
     // アイテム所持判定のための変数
@@ -67,6 +66,8 @@ public class PlayerController_yuzu : MonoBehaviour
     private bool _item = false;
 
     private bool _GetKey=false;
+
+    private bool isGameOverTriggered = false;
 
     [Header("Jump Settings")]
     // --- 追加: コヨーテタイムの設定 (秒) ---
@@ -256,10 +257,11 @@ public class PlayerController_yuzu : MonoBehaviour
 
         if (isDashing) return;
 
-        if(isDead())
+        if(isDead()&&!isGameOverTriggered)
         {
             //_playerHp = kMaxHp;
-            SceneManager.LoadScene(gameover);
+            SceneManager.LoadScene("GameOver_1");
+
         }
 
     }
