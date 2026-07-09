@@ -7,8 +7,16 @@ public class GameOver : MonoBehaviour
     public GameObject click;
     private SpriteRenderer spriteRenderer;
 
+
     void Start()
     {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            Destroy(player);
+            Debug.Log("古いプレイヤーをゲームオーバーシーン側で削除しました。");
+        }
+
         click.SetActive(false);
         // 自身のSpriteRendererを取得
         spriteRenderer = GetComponent<SpriteRenderer>();
