@@ -52,7 +52,7 @@ public class BossElementCollider : MonoBehaviour
     {
         _hitCount += Time.deltaTime;
         // 色が変わる秒数
-        _hitChangeCount += Time.deltaTime;
+        //_hitChangeCount += Time.deltaTime;
         // ボスが死んだらシーンを移動する
         if (_currentBossHp <= 0)
         {
@@ -107,19 +107,17 @@ public class BossElementCollider : MonoBehaviour
     {
         // 途中
         // isHit = true;
+        //_hitChangeCount = 0;
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 3; i++)
         {
-            _hitChangeCount = 0;
-            if (_hitChangeCount == 0)
-            {
-                _spriteRenderer.color = Color.red;
-            }
-            if(_hitChangeCount > _deltWhiteChangeColor)
-            {
-                _spriteRenderer.color = Color.white;
-            }
+            _spriteRenderer.color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+          
+            _spriteRenderer.color = Color.white;
+            yield return new WaitForSeconds(0.1f);
         }
+
         yield return null;
     }
 
