@@ -21,6 +21,14 @@ public class BOSS : MonoBehaviour
     AudioSource _audioSource;
     [SerializeField, Header("突進前後退の効果音")]
     AudioClip _retraetSound;    // 突進前の後退の効果音
+    [SerializeField, Header("突進の効果音")]
+    AudioClip _dashAttackSound; // 突進の効果音
+    [SerializeField, Header("攻撃の効果音")]
+    AudioClip _attackSound; // 攻撃の効果音
+    [SerializeField, Header("ジャンプの効果音")]
+    AudioClip _jumpSound;   // ジャンプするときの効果音
+    [SerializeField, Header("着地した時の効果音")]
+    AudioClip _jumpStampSound;  // 着地した時の効果音
 
     // ゲーム中のボスの大きさ
     [SerializeField,Header("大きさ")]
