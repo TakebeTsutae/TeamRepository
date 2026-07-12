@@ -17,7 +17,18 @@ public class BOSS : MonoBehaviour
                          // 攻撃の度に無効化
     BossElementCollider _elementCollider;
 
-    
+    // 音を鳴らす変数
+    AudioSource _audioSource;
+    [SerializeField, Header("突進前後退の効果音")]
+    AudioClip _retraetSound;    // 突進前の後退の効果音
+    [SerializeField, Header("突進の効果音")]
+    AudioClip _dashAttackSound; // 突進の効果音
+    [SerializeField, Header("攻撃の効果音")]
+    AudioClip _attackSound; // 攻撃の効果音
+    [SerializeField, Header("ジャンプの効果音")]
+    AudioClip _jumpSound;   // ジャンプするときの効果音
+    [SerializeField, Header("着地した時の効果音")]
+    AudioClip _jumpStampSound;  // 着地した時の効果音
 
     // ゲーム中のボスの大きさ
     [SerializeField,Header("大きさ")]
@@ -78,6 +89,9 @@ public class BOSS : MonoBehaviour
         // Animationコンポーネントを取得
         GameObject bossAnim = GameObject.Find("BossAnimation");
         animator = bossAnim.GetComponent<Animator>();
+
+        // 音を鳴らすためのAudioSourceコンポーネントを取得
+        _audioSource = GetComponent<AudioSource>();
 
         // ボスの攻撃当たり判定を取得
         _bossColl = GameObject.Find("BossIdleAttack");
@@ -191,9 +205,11 @@ public class BOSS : MonoBehaviour
         _bossColl.SetActive(false);
         animator.SetTrigger("isDashPre");
         // 1.0f秒待つ
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1.0f); 
         // 攻撃判定を表示
         _retreatDash.SetActive(true);
+        // 攻撃音を鳴らす
+        _audioSource.PlayOneShot(_retraetSound);
         // 1.0f秒待つ
         yield return new WaitForSeconds(0.6f);
         _retreatDash.SetActive(false);
@@ -402,8 +418,6 @@ public class BOSS : MonoBehaviour
 
             yield return null;
         }
-
-        // プレイヤーへの着地ダメージ発生
 
     }
 }
