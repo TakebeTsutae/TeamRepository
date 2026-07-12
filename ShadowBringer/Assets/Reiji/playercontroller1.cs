@@ -228,7 +228,7 @@ public class PlayerController1 : MonoBehaviour
         }
 
         // 効果音追加中
-        if(Keyboard.current.dKey.isPressed || Keyboard.current.aKey.isPressed && isGrounded)
+        if(Keyboard.current.dKey.isPressed && isGrounded|| Keyboard.current.aKey.isPressed && isGrounded)
         {
          if(!isRunning)
             {
