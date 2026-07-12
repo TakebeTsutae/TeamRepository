@@ -816,7 +816,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 60243d0445237da4b9879f834e76bd84, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1472,7 +1472,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   attackDamage: 10
-  attackCooldown: 0
+  PlayerAttackCooldown: 0.5
   kenattack: {fileID: 0}
   _playerController1: {fileID: 0}
 --- !u!114 &1237850595263753061
@@ -1778,6 +1778,7 @@ MonoBehaviour:
   invincibleTime: 1
   gameover: GameOver
   _anim: {fileID: 0}
+  flashDuration: 0.2
 --- !u!61 &6895390730845291017
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2122,7 +2123,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   attackDamage: 10
-  attackCooldown: 10000
+  PlayerAttackCooldown: 0.5
   kenattack: {fileID: 0}
   _playerController1: {fileID: 0}
 --- !u!114 &9220060815304641722
