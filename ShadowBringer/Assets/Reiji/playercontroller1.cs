@@ -228,20 +228,21 @@ public class PlayerController1 : MonoBehaviour
         }
 
         // 効果音追加中
-        if(Keyboard.current.dKey.isPressed && isGrounded)
+        if(Keyboard.current.dKey.isPressed || Keyboard.current.aKey.isPressed && isGrounded)
         {
-            GetComponent<AudioSource>().Play();
-            isRunning=true;
+         if(!isRunning)
+            {
+                GetComponent<AudioSource>().Play();
+                isRunning = true;
+            }
         }
         else
         {
-            isRunning = false;
-        }
-
-        if(isRunning==false)
-        {
-            GetComponent<AudioSource>().Stop();
-            Debug.Log("tometayo"+isRunning);
+            if(isRunning)
+            {
+                GetComponent<AudioSource>().Stop();
+                isRunning = false;
+            }
         }
         
 
