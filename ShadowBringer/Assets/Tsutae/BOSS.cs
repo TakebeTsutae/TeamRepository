@@ -173,9 +173,8 @@ public class BOSS : MonoBehaviour
         if (_attackCounter >= _spawnerNum)
         {
             _attackCounter = 0;
-            animator.SetBool("isWalk", true);
+         
             yield return Retreat();
-            animator.SetBool("isWalk", false);
 
             yield return SummonSpawner();
         }
@@ -369,7 +368,9 @@ public class BOSS : MonoBehaviour
         float trackTime = 2.0f;
         float timer = 0f;
 
-        
+        // ジャンプの音を鳴らす
+        _audioSource.PlayOneShot(_jumpSound);
+
         // 真上へジャンプ
         float jumpHeight = 7.0f;
 
@@ -378,9 +379,9 @@ public class BOSS : MonoBehaviour
         Vector3 topPos =
             new Vector3(_player.position.x, startPos.y) + Vector3.up * jumpHeight;
 
-        while(Vector2.Distance(transform.position, topPos) > 1.0f)
+        while (Vector2.Distance(transform.position, topPos) > 1.0f)
         {
-            transform.position = 
+            transform.position =
                 Vector3.MoveTowards(
                     transform.position,
                     topPos,
@@ -388,7 +389,6 @@ public class BOSS : MonoBehaviour
 
             yield return null;
         }
-        // ジャンプの音を鳴らす
 
         // プレイヤー追尾
         //timer += Time.deltaTime;
@@ -418,6 +418,9 @@ public class BOSS : MonoBehaviour
                 startPos.y,
                 startPos.z);
         yield return new WaitForSeconds(1.0f);
+
+        // スタンプ時の音を鳴らす
+        _audioSource.PlayOneShot(_jumpStampSound);
 
         while (Vector2.Distance(transform.position, groundPos) > 0.05f)
         {

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Threading;
 using UnityEngine;
 
@@ -19,6 +19,9 @@ public class spawn : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // カメラの取得
+        Camera = GameObject.Find("Main Camera");
+
         // スポーンの座標
         _spawnCount = 0;
         _enemy1_x = this.transform.position.x - 5f;

@@ -1001,9 +1001,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1997772599}
     - target: {fileID: 9165691662165360421, guid: 9745d2eea26f6d74b8b131914b6c75a3, type: 3}
+      propertyPath: _jumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 4c1ea9efb59b379408ea45f609f7b438, type: 3}
+    - target: {fileID: 9165691662165360421, guid: 9745d2eea26f6d74b8b131914b6c75a3, type: 3}
+      propertyPath: _spawnerNum
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9165691662165360421, guid: 9745d2eea26f6d74b8b131914b6c75a3, type: 3}
       propertyPath: summonPoint
       value: 
       objectReference: {fileID: 1691099420}
+    - target: {fileID: 9165691662165360421, guid: 9745d2eea26f6d74b8b131914b6c75a3, type: 3}
+      propertyPath: _jumpStampSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 578212d543dba0d4a8da4e0d505bc28f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
