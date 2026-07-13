@@ -7,8 +7,11 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class BOSS : MonoBehaviour
 { 
     [Header("ボスHP")]
-    public int bossStartHp = 500;
-    public int _bossHp; // 現在のbossHpを入れる変数
+    public int bossStartHp = 500;   // シーン開始時のHP
+                                    // BossElementColliderで取得する。
+    // 現在のボスのHPをいれる変数
+    // public int _bossHp;
+    // HPの管理はBossElementColliderで行う。
 
     // ダメージ処理のスクリプトを取得
     GameObject _bossDamage; // ボスがダメージを受ける当たり判定のオブジェクト
@@ -126,7 +129,7 @@ public class BOSS : MonoBehaviour
         animator.SetBool("isWalk", false);
 
         // ボスの開始HPはbossStartHp
-        _bossHp = bossStartHp;
+        //_bossHp = bossStartHp;
       
 
     }
