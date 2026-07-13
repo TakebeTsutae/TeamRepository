@@ -44,9 +44,6 @@ public class spawn : MonoBehaviour
         Transform enemySpawnPos = this.transform;
         Transform cameraPos = Camera.gameObject.transform;
 
-        Debug.Log(cameraPos);
-
-        Debug.Log(cameraPos.position.x);
         
         if(cameraPos.position.x-10 <= enemySpawnPos.position.x && cameraPos.position.x +10 >= enemySpawnPos.position.x && cameraPos.position.y+5 >= enemySpawnPos.position.y && cameraPos.position.y - 5 <= enemySpawnPos.position.y)
         {

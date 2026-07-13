@@ -1,7 +1,5 @@
 ﻿
 using System.Collections;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class enemyotamesi : MonoBehaviour
@@ -10,6 +8,8 @@ public class enemyotamesi : MonoBehaviour
     // enemycollisionのスクリプトがついているオブジェクトをcheckcollisionの中にぶち込む
     [Header("接触判定")] public enemycollision checkcollision;
     [Header("接触判定")] public enemycollision checkcollision1;
+    [Header("DropItem")] public GameObject itemSpeed;
+                         public GameObject itemUp;
     //[Header("攻撃オブジェクト")] public GameObject attack;
 
     private float posx; // transformのx方向
@@ -18,9 +18,12 @@ public class enemyotamesi : MonoBehaviour
     private int _enemyHp;
     private int _playerAttack;
 
+    private int rand; // ランダム変数
+
     private bool rightTleftF = false; // 反転するかどうかのフラグ
     private bool isDame = false;
-    [SerializeField] private Animator animator;
+    //[SerializeField] 
+    private Animator animator;
     Vector2 pos;
 
     
@@ -35,6 +38,9 @@ public class enemyotamesi : MonoBehaviour
         animator.SetBool("jump", false);
         animator.SetBool("attack", false);
         //attack.SetActive(false);
+
+        itemSpeed.SetActive(false);
+        itemUp.SetActive(false);
 
         GameObject obj = GameObject.Find("player");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
         playerController1 = obj.GetComponent<PlayerController1>();  // 統合したときに使用（プレイヤーの攻撃力取得のためのやつ）
@@ -100,6 +106,15 @@ public class enemyotamesi : MonoBehaviour
             if (_enemyHp <= 0)
             {
                 this.gameObject.SetActive(false);
+                int rand = Random.Range(0, 2);
+                if(rand == 0)
+                {
+                    itemSpeed.SetActive(true);
+                }
+                else
+                {
+                    itemUp.SetActive(true);
+                }
             }
             else
             {
