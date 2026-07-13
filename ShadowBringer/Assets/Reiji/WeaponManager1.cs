@@ -45,6 +45,9 @@ public class WeaponManager1 : MonoBehaviour
 
     void Start()
     {
+        weaponSlot = GameObject.Find("WeaponAicon").GetComponent<Image>();
+        weaponSlot1 = GameObject.Find("AcceAicon1").GetComponent<Image>();
+        weaponSlot2 = GameObject.Find("AcceAicon2").GetComponent<Image>();
         /*
         // 最初は剣アイコン
         weaponSlot.sprite = swordSprite;
