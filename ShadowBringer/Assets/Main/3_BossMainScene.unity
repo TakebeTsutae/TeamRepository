@@ -269,6 +269,99 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 18673884}
   m_CullTransparentMesh: 1
+--- !u!1001 &22307074
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1516311090690673124, guid: 9745d2eea26f6d74b8b131914b6c75a3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516311090690673124, guid: 9745d2eea26f6d74b8b131914b6c75a3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516311090690673124, guid: 9745d2eea26f6d74b8b131914b6c75a3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516311090690673124, guid: 9745d2eea26f6d74b8b131914b6c75a3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516311090690673124, guid: 9745d2eea26f6d74b8b131914b6c75a3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516311090690673124, guid: 9745d2eea26f6d74b8b131914b6c75a3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516311090690673124, guid: 9745d2eea26f6d74b8b131914b6c75a3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516311090690673124, guid: 9745d2eea26f6d74b8b131914b6c75a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516311090690673124, guid: 9745d2eea26f6d74b8b131914b6c75a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516311090690673124, guid: 9745d2eea26f6d74b8b131914b6c75a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8159606223241570041, guid: 9745d2eea26f6d74b8b131914b6c75a3, type: 3}
+      propertyPath: m_Name
+      value: Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 8628335837146652073, guid: 9745d2eea26f6d74b8b131914b6c75a3, type: 3}
+      propertyPath: nextSceneName
+      value: 4_MainClearScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 9165691662165360421, guid: 9745d2eea26f6d74b8b131914b6c75a3, type: 3}
+      propertyPath: _bossHp
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9165691662165360421, guid: 9745d2eea26f6d74b8b131914b6c75a3, type: 3}
+      propertyPath: _jumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 637fb5c595754cc418d677490ba192e1, type: 3}
+    - target: {fileID: 9165691662165360421, guid: 9745d2eea26f6d74b8b131914b6c75a3, type: 3}
+      propertyPath: bossStartHp
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9165691662165360421, guid: 9745d2eea26f6d74b8b131914b6c75a3, type: 3}
+      propertyPath: summonPoint
+      value: 
+      objectReference: {fileID: 1396408116}
+    - target: {fileID: 9165691662165360421, guid: 9745d2eea26f6d74b8b131914b6c75a3, type: 3}
+      propertyPath: _attackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: aa5afae48f35c5f4183d4837e5be751f, type: 3}
+    - target: {fileID: 9165691662165360421, guid: 9745d2eea26f6d74b8b131914b6c75a3, type: 3}
+      propertyPath: _retraetSound
+      value: 
+      objectReference: {fileID: 8300000, guid: bd2c80b023c76e04c8aa9a1e6b3151f0, type: 3}
+    - target: {fileID: 9165691662165360421, guid: 9745d2eea26f6d74b8b131914b6c75a3, type: 3}
+      propertyPath: _jumpStampSound
+      value: 
+      objectReference: {fileID: 8300000, guid: aa5afae48f35c5f4183d4837e5be751f, type: 3}
+    - target: {fileID: 9165691662165360421, guid: 9745d2eea26f6d74b8b131914b6c75a3, type: 3}
+      propertyPath: _dashAttackSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 2487f6f40ab614b418e21e0d5c0687d4, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9745d2eea26f6d74b8b131914b6c75a3, type: 3}
 --- !u!1 &104989593
 GameObject:
   m_ObjectHideFlags: 0
@@ -1519,7 +1612,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1108145882
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1609,7 +1702,7 @@ MonoBehaviour:
   _jumpStampSound: {fileID: 0}
   _bossScale: 4
   dashSprite: {fileID: -4913155488674122577, guid: ac98c61adff7f4e4d8c0b7bdd074c1af, type: 3}
-  player: {fileID: 0}
+  _player: {fileID: 0}
   attackRenge: 20
   dashRetreatDistance: 0.5
   retreatSpeed: 3
@@ -2826,9 +2919,9 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1170039363}
   - {fileID: 519420032}
   - {fileID: 619394802}
-  - {fileID: 1170039363}
   - {fileID: 1946031597}
   - {fileID: 534407816}
   - {fileID: 2071017592}
@@ -2839,3 +2932,4 @@ SceneRoots:
   - {fileID: 1166521815}
   - {fileID: 2052992784}
   - {fileID: 2031583657}
+  - {fileID: 22307074}

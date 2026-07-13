@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class BOSS : MonoBehaviour
 { 
@@ -42,7 +43,7 @@ public class BOSS : MonoBehaviour
 
     // 攻撃の管理
     [SerializeField,Header("プレイヤーの座標")]
-    Transform player;
+    Transform _player;
     [SerializeField,Header("攻撃を始めるプレイヤーとの距離")]
     float attackRenge = 10.0f;
     private bool isActing;
@@ -86,6 +87,8 @@ public class BOSS : MonoBehaviour
 
     private void Start()
     {
+        _player = GameObject.Find("player").transform;
+
         // Animationコンポーネントを取得
         GameObject bossAnim = GameObject.Find("BossAnimation");
         animator = bossAnim.GetComponent<Animator>();
@@ -135,7 +138,7 @@ public class BOSS : MonoBehaviour
             return;
 
         float distance = 
-            Vector2.Distance(transform.position, player.position);
+            Vector2.Distance(transform.position, _player.position);
 
         // プレイヤーが近いとき
         if(distance <= attackRenge)
@@ -186,7 +189,7 @@ public class BOSS : MonoBehaviour
     // player方向を向く
     private void FacePlayer()
     {
-        if(player.position.x > transform.position.x)
+        if(_player.position.x > transform.position.x)
         {
             transform.localScale =
                 new Vector3(_bossScale, _bossScale, 1);
@@ -216,7 +219,7 @@ public class BOSS : MonoBehaviour
         _bossColl.SetActive(true);
 
         float dir =
-            player.position.x > transform.position.x
+            _player.position.x > transform.position.x
             ? -1.0f
             : 1.0f;
 
@@ -250,7 +253,7 @@ public class BOSS : MonoBehaviour
         _bossColl.SetActive(false);
 
         float dir =
-            player.position.x > transform.position.x
+            _player.position.x > transform.position.x
             ? 1.0f
             : -1.0f;
 
@@ -260,7 +263,10 @@ public class BOSS : MonoBehaviour
         animSr.enabled = false;
         baseSr.enabled = true;
 
-        while(Vector2.Distance(transform.position, targetPos) > 0.05f)
+        // 突進の音を鳴らす
+        _audioSource.PlayOneShot(_dashAttackSound);
+
+        while (Vector2.Distance(transform.position, targetPos) > 0.05f)
         {
             transform.position =
                 Vector3.MoveTowards(
@@ -270,6 +276,7 @@ public class BOSS : MonoBehaviour
 
             yield return null;
         }
+        
 
         // 攻撃判定を無効化、当たり判定を有効化
         _bossDashColl.SetActive(false);
@@ -293,7 +300,10 @@ public class BOSS : MonoBehaviour
         animator.SetTrigger("isAttack");
         attackSensorController.SetActive(true); // 攻撃判定
         _bossColl.SetActive(false);  　// ボスの当たり判定
+        
         yield return new WaitForSeconds(0.5f);
+        // 攻撃の音を鳴らす
+        _audioSource.PlayOneShot(_attackSound);
         attackSensorController.SetActive(false);    // 攻撃判定
         _bossColl.SetActive(true);  // ボスの当たり判定
 
@@ -327,7 +337,7 @@ public class BOSS : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
 
         float dir =
-            player.position.x > transform.position.x
+            _player.position.x > transform.position.x
             ? -1.0f
             : 1.0f;
 
@@ -366,7 +376,7 @@ public class BOSS : MonoBehaviour
         Vector3 startPos = transform.position;
 
         Vector3 topPos =
-            new Vector3(player.position.x, startPos.y) + Vector3.up * jumpHeight;
+            new Vector3(_player.position.x, startPos.y) + Vector3.up * jumpHeight;
 
         while(Vector2.Distance(transform.position, topPos) > 1.0f)
         {
@@ -378,6 +388,7 @@ public class BOSS : MonoBehaviour
 
             yield return null;
         }
+        // ジャンプの音を鳴らす
 
         // プレイヤー追尾
         //timer += Time.deltaTime;
@@ -386,7 +397,7 @@ public class BOSS : MonoBehaviour
             timer += Time.deltaTime;
             transform.position =
                new Vector3(
-                   player.position.x,
+                   _player.position.x,
                    transform.position.y,
                    transform.position.z
                    );

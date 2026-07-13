@@ -25,7 +25,7 @@ public class BossElementCollider : MonoBehaviour
     float _hitChangeCount = 0;
 
     // ボスが死んだときにシーン移動する
-    [SerializeField] string nextSceneName = "ClearScne";　// 移動するシーン
+    [SerializeField] string nextSceneName = "4_MainClearScne";　// 移動するシーン
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
