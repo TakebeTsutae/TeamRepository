@@ -1,6 +1,6 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class CameraControl : MonoBehaviour
 {
 
     // プレイヤーのゲームオブジェクトを保持
@@ -11,6 +11,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        player = GameObject.Find("player");
+
         // ゲームスタート時でのプレイヤーとカメラの位置関係を記憶
         offset = transform.position - player.transform.position;
     }
