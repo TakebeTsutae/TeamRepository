@@ -1,5 +1,6 @@
 ﻿
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class enemyotamesi : MonoBehaviour
@@ -106,14 +107,18 @@ public class enemyotamesi : MonoBehaviour
             if (_enemyHp <= 0)
             {
                 this.gameObject.SetActive(false);
-                int rand = Random.Range(0, 2);
+                int rand = Random.Range(0, 3);
                 if(rand == 0)
                 {
                     itemSpeed.SetActive(true);
                 }
-                else
+                else if (rand == 1)
                 {
                     itemUp.SetActive(true);
+                }
+                else
+                {
+                    return;
                 }
             }
             else
