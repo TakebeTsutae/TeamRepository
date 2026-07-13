@@ -2173,6 +2173,10 @@ PrefabInstance:
       propertyPath: _playerController1
       value: 
       objectReference: {fileID: 1167100236}
+    - target: {fileID: 1043943641910169229, guid: 421e64fce844fbb4b9d233353066b6c2, type: 3}
+      propertyPath: PlayerAttackCooldown
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1237850594849369954, guid: 421e64fce844fbb4b9d233353066b6c2, type: 3}
       propertyPath: weaponSlot
       value: 
