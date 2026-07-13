@@ -12,7 +12,7 @@ public class AttackController : MonoBehaviour
     public float attackRange = 0.5f;
     public LayerMask enemyLayer;
     public int attackDamage = 10;
-    public float PlayerAttackCooldown = 0.5f;
+    public float PlayerAttackCooldown = 0.1f;
   //  private float PlayerAttackCooldownCounter;
   
     //bool canAttack = true;
@@ -106,7 +106,7 @@ public class AttackController : MonoBehaviour
         }
         Debug.Log("Attack実行");
 
-        PlayerAttackCooldown = 0.5f;
+        PlayerAttackCooldown = 0.1f;
     }
 
     
