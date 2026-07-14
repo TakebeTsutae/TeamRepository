@@ -211,7 +211,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1455300779446357433}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a440bf12339d62d4bb06495c6d6a1f42, type: 3}
   m_Name: 
@@ -231,7 +231,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::enemyotamesi
   checkcollision: {fileID: 251146579222864880}
   checkcollision1: {fileID: 7164883036880032913}
-  animator: {fileID: 0}
+  itemSpeed: {fileID: 8433021518130000303, guid: c6fad08a7078b0449bcd870dc481e820, type: 3}
+  itemUp: {fileID: 2344300103156328748, guid: 31e8d308b3ca5a542b7d894bfae56ba6, type: 3}
 --- !u!114 &7355317748662724913
 MonoBehaviour:
   m_ObjectHideFlags: 0
