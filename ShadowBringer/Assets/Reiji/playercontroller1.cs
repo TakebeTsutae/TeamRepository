@@ -71,6 +71,8 @@ public class PlayerController1 : MonoBehaviour
     // tagを取得したか(ItemPickupにてtrueとfalseをいじる)
     public bool _Gettag = false;
 
+    private bool isGameOverTriggered = false;
+
     private bool _item = false;
 
     private bool _GetKey=false;
