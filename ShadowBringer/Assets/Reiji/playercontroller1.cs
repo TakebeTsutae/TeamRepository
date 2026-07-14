@@ -71,6 +71,8 @@ public class PlayerController1 : MonoBehaviour
     // tagを取得したか(ItemPickupにてtrueとfalseをいじる)
     public bool _Gettag = false;
 
+    private bool isGameOverTriggered = false;
+
     private bool _item = false;
 
     private bool _GetKey=false;
@@ -295,10 +297,11 @@ public class PlayerController1 : MonoBehaviour
 
         if (isDashing) return;
 
-        if(isDead())
+        if (isDead() && !isGameOverTriggered)
         {
             //_playerHp = kMaxHp;
-            SceneManager.LoadScene(gameover);
+            SceneManager.LoadScene("GameOver_1");
+
         }
 
     }
