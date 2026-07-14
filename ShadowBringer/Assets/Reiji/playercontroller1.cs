@@ -295,10 +295,11 @@ public class PlayerController1 : MonoBehaviour
 
         if (isDashing) return;
 
-        if(isDead())
+        if (isDead() && !isGameOverTriggered)
         {
             //_playerHp = kMaxHp;
-            SceneManager.LoadScene(gameover);
+            SceneManager.LoadScene("GameOver_1");
+
         }
 
     }

@@ -2064,6 +2064,10 @@ PrefabInstance:
       propertyPath: weaponSlot2
       value: 
       objectReference: {fileID: 2116086078}
+    - target: {fileID: 2988033006536955980, guid: 421e64fce844fbb4b9d233353066b6c2, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3136006416087767938, guid: 421e64fce844fbb4b9d233353066b6c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.072
