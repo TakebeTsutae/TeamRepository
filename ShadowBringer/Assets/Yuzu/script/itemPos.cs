@@ -14,6 +14,6 @@ public class itemPos : MonoBehaviour
     void Update()
     {
         playerPos = playerObj.transform.position;
-        this.transform.position = new Vector2 (playerPos.x, playerPos.y+0.3f);
+        this.transform.position =new(playerPos.x, playerPos.y);
     }
 }

@@ -16,6 +16,8 @@ public class enemyotamesi : MonoBehaviour
     private float posx; // transformのx方向
     private float posy; // transformのy方向
 
+   
+
     private int _enemyHp;
     private int _playerAttack;
 
@@ -32,7 +34,7 @@ public class enemyotamesi : MonoBehaviour
 
     private void Start()
     {
-
+        
         this._enemyHp = 8;
         animator = GetComponent<Animator>();
         StartCoroutine(MoveEnemy());
@@ -50,7 +52,7 @@ public class enemyotamesi : MonoBehaviour
 
     private void Update()
     {
-        
+        pos = this.transform.position;
     }
     void FixedUpdate()
     {
@@ -110,10 +112,12 @@ public class enemyotamesi : MonoBehaviour
                 int rand = Random.Range(0, 3);
                 if(rand == 0)
                 {
+                    itemSpeed.transform.position = new Vector2(pos.x,pos.y);
                     itemSpeed.SetActive(true);
                 }
                 else if (rand == 1)
                 {
+                    itemUp.transform.position = new Vector2(pos.x, pos.y);
                     itemUp.SetActive(true);
                 }
                 else
