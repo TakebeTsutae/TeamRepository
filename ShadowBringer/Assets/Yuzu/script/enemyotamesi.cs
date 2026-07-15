@@ -42,8 +42,6 @@ public class enemyotamesi : MonoBehaviour
         animator.SetBool("attack", false);
         //attack.SetActive(false);
 
-        itemSpeed.SetActive(false);
-        itemUp.SetActive(false);
 
         GameObject obj = GameObject.Find("player");    //　↓スクリプトがついてあるゲームオブジェクトを取得する
         playerController1 = obj.GetComponent<PlayerController1>();  // 統合したときに使用（プレイヤーの攻撃力取得のためのやつ）
@@ -108,22 +106,24 @@ public class enemyotamesi : MonoBehaviour
 
             if (_enemyHp <= 0)
             {
-                this.gameObject.SetActive(false);
-                int rand = Random.Range(0, 3);
+                
+                int rand = Random.Range(0, 2);
                 if(rand == 0)
                 {
-                    itemSpeed.transform.position = new Vector2(pos.x,pos.y);
-                    itemSpeed.SetActive(true);
+                    Instantiate(itemSpeed, pos, Quaternion.identity);
+                    //this.gameObject.SetActive(false);
                 }
                 else if (rand == 1)
                 {
-                    itemUp.transform.position = new Vector2(pos.x, pos.y);
-                    itemUp.SetActive(true);
+                    Instantiate(itemUp, pos, Quaternion.identity);
+                    //this.gameObject.SetActive(false);
                 }
                 else
                 {
                     return;
                 }
+
+                this.gameObject.SetActive(false);
             }
             else
             {

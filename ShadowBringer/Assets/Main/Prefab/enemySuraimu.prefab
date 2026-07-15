@@ -231,8 +231,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::enemyotamesi
   checkcollision: {fileID: 251146579222864880}
   checkcollision1: {fileID: 7164883036880032913}
-  itemSpeed: {fileID: 8433021518130000303, guid: c6fad08a7078b0449bcd870dc481e820, type: 3}
-  itemUp: {fileID: 2344300103156328748, guid: 31e8d308b3ca5a542b7d894bfae56ba6, type: 3}
+  itemSpeed: {fileID: 7781192854758548191, guid: fd0ddd3cbbe0a29459533c8b4bf4a037, type: 3}
+  itemUp: {fileID: 4886364999961632963, guid: 35ed25c0959d5ce409cafd593eaf6921, type: 3}
 --- !u!114 &7355317748662724913
 MonoBehaviour:
   m_ObjectHideFlags: 0
