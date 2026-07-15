@@ -98,6 +98,14 @@ public class PlayerController1 : MonoBehaviour
     [SerializeField] private float invincibleTime = 1.0f;
     private float invincibleCounter;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource _runAudioSource;
+    [SerializeField] private AudioSource _seAudioSource;
+
+    [SerializeField] private AudioClip _attackAudioSource;
+    [SerializeField] private AudioClip _jumpAudioSource;
+
+
     [SerializeField] private string gameover;
 
     public Animator _anim;
@@ -108,6 +116,7 @@ public class PlayerController1 : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public float flashDuration = 0.2f;  // 赤くなっている時間（秒）
 
+    
     // -----------------------------------------------------------------------
     private void Awake()
     {
@@ -234,7 +243,7 @@ public class PlayerController1 : MonoBehaviour
         {
          if(!isRunning)
             {
-                GetComponent<AudioSource>().Play();
+                _runAudioSource.Play();
                 isRunning = true;
             }
         }
@@ -242,7 +251,7 @@ public class PlayerController1 : MonoBehaviour
         {
             if(isRunning)
             {
-                GetComponent<AudioSource>().Stop();
+                _runAudioSource.Stop();
                 isRunning = false;
             }
         }
