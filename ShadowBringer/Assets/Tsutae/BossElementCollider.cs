@@ -9,7 +9,7 @@ public class BossElementCollider : MonoBehaviour
     int _playerAttack;
     PlayerController1 _playerController;
     BOSS _bossScript;
-    public int _currentBossHp;
+    public int currentBossHp;
 
     // 被弾処理の変数
     bool _isHitting;    // 攻撃が当たっている状態かどうか
@@ -40,7 +40,7 @@ public class BossElementCollider : MonoBehaviour
         // スクリプトを取得
         _playerController = _obj.GetComponent<PlayerController1>();
         _bossScript = _bossObj.GetComponent<BOSS>();
-        _currentBossHp = _bossScript.bossStartHp;
+        currentBossHp = _bossScript.bossStartHp;
         // 色を変えるためにスプライトレンダラーを取得
         _spriteRenderer = _bossAnim.gameObject.GetComponent<SpriteRenderer>();
         // 始めは攻撃が当たっていない
@@ -54,7 +54,7 @@ public class BossElementCollider : MonoBehaviour
         // 色が変わる秒数
         //_hitChangeCount += Time.deltaTime;
         // ボスが死んだらシーンを移動する
-        if (_currentBossHp <= 0)
+        if (currentBossHp <= 0)
         {
             OnMoveClearScene();
         }
@@ -74,8 +74,8 @@ public class BossElementCollider : MonoBehaviour
             _isHitting = true;
             // 統合したときに使用（プレイヤーの攻撃力取得のためのやつ）
             _playerAttack = _playerController._attackTotal;
-            _currentBossHp -= _playerAttack;
-            Debug.LogError(_currentBossHp);
+            currentBossHp -= _playerAttack;
+            Debug.LogError(currentBossHp);
             StartCoroutine(OnHit());
         }
         else
