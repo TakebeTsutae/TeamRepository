@@ -22,7 +22,27 @@ public class Ec : MonoBehaviour
             Text.SetActive(true);
             Time.timeScale = 0;
         }
+        if(Time.timeScale ==1)
+        {
+
+            Bg.SetActive(false);
+            Text.SetActive(false);
+        }
         
 
+    }
+    public void OnClick()
+    {
+        if (this.gameObject.name == "Yes")
+        {
+            Debug.Log("hai");
+            Bg.SetActive(false);
+            Text.SetActive(false);
+            UnityEditor.EditorApplication.isPlaying = false;
+        }
+        else if (this.gameObject.name == "No")
+        {
+            Time.timeScale = 1;
+        }
     }
 }

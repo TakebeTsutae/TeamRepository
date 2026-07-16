@@ -20,5 +20,9 @@ public class Buttom : MonoBehaviour
             Debug.Log("hai");
             UnityEditor.EditorApplication.isPlaying = false;
         }
+        else if(this.gameObject.name == "No")
+        {
+
+        }
     }
 }
