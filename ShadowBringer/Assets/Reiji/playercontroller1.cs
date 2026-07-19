@@ -102,8 +102,8 @@ public class PlayerController1 : MonoBehaviour
     [SerializeField] private AudioSource _runAudioSource;
     [SerializeField] private AudioSource _seAudioSource;
 
-    [SerializeField] private AudioClip _attackAudioSource;
-    [SerializeField] private AudioClip _jumpAudioSource;
+    [SerializeField] private AudioClip _attackAudioClip;
+    [SerializeField] private AudioClip _jumpAudioClip;
 
 
     [SerializeField] private string gameover;
@@ -283,6 +283,7 @@ public class PlayerController1 : MonoBehaviour
             // ジャンプ成功時の処理
             coyoteCounter = 0f; // 空中での連続ジャンプを防ぐため、猶予をゼロにする
             jumpCooldownCounter = jumpCooldown; // クールタイム(0.5秒)をセット
+
         }
 
         if (Mouse.current.rightButton.wasPressedThisFrame&&dashCooldownCounter<=0f)
