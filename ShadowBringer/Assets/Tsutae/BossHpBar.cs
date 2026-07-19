@@ -14,7 +14,7 @@ public class BossHpBar : MonoBehaviour
     {
         // スクリプトの取得
         _bossScript = this.GetComponent<BOSS>();
-        _bossElementScript = GameObject.Find("BossIdleDamage").GetComponent<BossElementCollider>();
+        
 
         // ボスのHpを代入
         _maxHp = _bossScript.bossStartHp;
@@ -25,6 +25,7 @@ public class BossHpBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _bossElementScript = GameObject.FindWithTag("BossElement").GetComponent<BossElementCollider>();
         _currentHp = _bossElementScript.currentBossHp;
     }
 

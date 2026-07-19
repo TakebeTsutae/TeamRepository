@@ -21,6 +21,7 @@ TagManager:
   - Ken
   - enemyAttack
   - HP
+  - BossElement
   layers:
   - Default
   - TransparentFX
