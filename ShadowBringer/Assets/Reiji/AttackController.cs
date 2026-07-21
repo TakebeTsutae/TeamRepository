@@ -37,49 +37,53 @@ public class AttackController : MonoBehaviour
     }
     void Update()
     {
-        //Debug.Log("Update動いてる");
-        // canAttackをtrueにする
-       
-
-        // 今攻撃できるか？
-        if(PlayerAttackCooldown > 0) 
+        if(Ec._isTime==false)
         {
-            PlayerAttackCooldown -= Time.deltaTime;
+            //Debug.Log("Update動いてる");
+            // canAttackをtrueにする
+
+
+            // 今攻撃できるか？
+            if (PlayerAttackCooldown > 0)
+            {
+                PlayerAttackCooldown -= Time.deltaTime;
+            }
+
+            if (PlayerAttackCooldown <= 0)
+            {
+                canAttack = true;
+            }
+            else
+            {
+                canAttack = false;
+            }
+
+
+            // J押し中 ＆ 攻撃可能
+            if (Mouse.current.leftButton.wasPressedThisFrame && canAttack)
+            {
+                //Debug.Log("ボタンゲット");
+                //if(playerController.weapon == "Ken")
+
+                //Debug.Log("剣ゲット");
+
+                Debug.Log("クリック検知！");
+                Attack();
+
+                PlayerAttackCooldown = 0.5f;
+
+                //_playerController1.ChangeAnimation("Attack");
+
+                //else if(playerController.weapon == "Tue")
+                //{
+                //    AttackTue();
+                //}
+
+                // 攻撃した時間を保存
+
+            }
         }
-
-        if(PlayerAttackCooldown <= 0)
-        {
-            canAttack = true;
-        }
-        else
-        {
-            canAttack= false;
-        }
-
-
-        // J押し中 ＆ 攻撃可能
-        if (Mouse.current.leftButton.wasPressedThisFrame&& canAttack)
-        {
-            //Debug.Log("ボタンゲット");
-            //if(playerController.weapon == "Ken")
-
-            //Debug.Log("剣ゲット");
-
-            Debug.Log("クリック検知！");
-            Attack();
-
-            PlayerAttackCooldown = 0.5f;
-
-            //_playerController1.ChangeAnimation("Attack");
-
-            //else if(playerController.weapon == "Tue")
-            //{
-            //    AttackTue();
-            //}
-
-            // 攻撃した時間を保存
-            
-        }
+        
     }
 
     void Attack()

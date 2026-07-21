@@ -151,7 +151,7 @@ public class PlayerController1 : MonoBehaviour
 
     void Update()
     {
-       if(Ec._isTime==false)
+       if(Ec._isTime == false)
         {
             _attackTotal = _attackWeapon + _attack;
 
