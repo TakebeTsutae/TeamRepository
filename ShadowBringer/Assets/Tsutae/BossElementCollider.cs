@@ -2,6 +2,7 @@
 using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class BossElementCollider : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class BossElementCollider : MonoBehaviour
     int _playerAttack;
     PlayerController1 _playerController;
     BOSS _bossScript;
+    private int _maxBossHp;
     public int currentBossHp;
 
     // 被弾処理の変数
@@ -17,6 +19,9 @@ public class BossElementCollider : MonoBehaviour
     // 攻撃が当たってから再び攻撃が当たるまでのクールタイム
     [SerializeField] float _deltHitCount = 1.0f;
     float _hitCount = 0;    // 攻撃が当たってからの秒数
+
+    BossHpBar _bossHpBar;
+
     GameObject _bossIdleAttack; // ダメージを与える当たり判定
     // 色を変えるための変数
     SpriteRenderer _spriteRenderer;
@@ -40,7 +45,10 @@ public class BossElementCollider : MonoBehaviour
         // スクリプトを取得
         _playerController = _obj.GetComponent<PlayerController1>();
         _bossScript = _bossObj.GetComponent<BOSS>();
-        currentBossHp = _bossScript.bossStartHp;
+        _bossHpBar = _bossObj.GetComponent<BossHpBar>();
+
+        _maxBossHp = _bossScript.bossStartHp;
+        currentBossHp = _maxBossHp;
         // 色を変えるためにスプライトレンダラーを取得
         _spriteRenderer = _bossAnim.gameObject.GetComponent<SpriteRenderer>();
         // 始めは攻撃が当たっていない
@@ -56,6 +64,7 @@ public class BossElementCollider : MonoBehaviour
         // ボスが死んだらシーンを移動する
         if (currentBossHp <= 0)
         {
+            currentBossHp = 0;
             OnMoveClearScene();
         }
         OnSetBossAttack();
@@ -75,7 +84,9 @@ public class BossElementCollider : MonoBehaviour
             // 統合したときに使用（プレイヤーの攻撃力取得のためのやつ）
             _playerAttack = _playerController._attackTotal;
             currentBossHp -= _playerAttack;
+            _bossHpBar.TakeDamage();
             Debug.LogError(currentBossHp);
+            // 点滅処理
             StartCoroutine(OnHit());
         }
         else
@@ -103,6 +114,7 @@ public class BossElementCollider : MonoBehaviour
         SceneManager.LoadScene(nextSceneName);
     }
 
+    // 点滅処理
     private IEnumerator OnHit()
     {
         // 途中
