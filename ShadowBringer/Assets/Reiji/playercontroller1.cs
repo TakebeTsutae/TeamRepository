@@ -342,7 +342,7 @@ public class PlayerController1 : MonoBehaviour
         ChangeAnimation("Attack");
         StartCoroutine(AttackAnimationEnd());
 
-        _attackAudioClip.Play();
+     //   _attackAudioClip.Play();
     }
 
     private IEnumerator AttackAnimationEnd()
