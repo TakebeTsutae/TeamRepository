@@ -389,8 +389,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9fca4a60236a0442abd6dec8650f9c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ec
-  Bg: {fileID: 0}
-  Text: {fileID: 0}
+  Bg: {fileID: 1695058148}
+  Text: {fileID: 1997795033}
 --- !u!1 &373793095 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1455300779446357433, guid: a57257c425f2c164ba4c845929b396cc, type: 3}
@@ -956,8 +956,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9fca4a60236a0442abd6dec8650f9c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ec
-  Bg: {fileID: 0}
-  Text: {fileID: 0}
+  Bg: {fileID: 1695058148}
+  Text: {fileID: 1997795033}
 --- !u!1 &825730648
 GameObject:
   m_ObjectHideFlags: 0

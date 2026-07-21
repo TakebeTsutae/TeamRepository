@@ -50,7 +50,10 @@ public class enemyotamesi : MonoBehaviour
 
     private void Update()
     {
-        pos = this.transform.position;
+        if (Ec._isTime == false)
+        {
+            pos = this.transform.position;
+        }
     }
     void FixedUpdate()
     {

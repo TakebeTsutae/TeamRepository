@@ -4,6 +4,8 @@ public class Ec : MonoBehaviour
 {
     public GameObject Bg;
     public GameObject Text;
+
+    public static bool _isTime;
     //public GameObject Yes;
     //public GameObject No;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -11,6 +13,7 @@ public class Ec : MonoBehaviour
     {
         Bg.SetActive(false);
         Text.SetActive(false);
+        _isTime = false;
     }
 
     // Update is called once per frame
@@ -18,13 +21,15 @@ public class Ec : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.Escape))
         {
+
             Bg.SetActive(true);
             Text.SetActive(true);
+            _isTime=true;
             Time.timeScale = 0;
         }
         if(Time.timeScale ==1)
         {
-
+            _isTime = false;
             Bg.SetActive(false);
             Text.SetActive(false);
         }
