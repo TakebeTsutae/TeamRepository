@@ -19,18 +19,21 @@ public class BossHpBar : MonoBehaviour
         // ボスのHpを代入
         _maxHp = _bossScript.bossStartHp;
 
-        slider.value = 1;
+        slider.maxValue = _maxHp;
+        slider.value = _currentHp;
     }
 
     // Update is called once per frame
     void Update()
     {
-        _bossElementScript = GameObject.FindWithTag("BossElement").GetComponent<BossElementCollider>();
-        _currentHp = _bossElementScript.currentBossHp;
+       
     }
 
     public void TakeDamage()
     {
+        Debug.LogError("ダメージを受けました");   // 呼ばれてる
+        _bossElementScript = GameObject.FindWithTag("BossElement").GetComponent<BossElementCollider>();
+        _currentHp = _bossElementScript.currentBossHp;
         // HPゲージを更新
         slider.value = (float)_currentHp / _maxHp;
     }
