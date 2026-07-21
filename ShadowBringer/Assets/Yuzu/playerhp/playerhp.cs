@@ -6,12 +6,16 @@ public class playerhp : MonoBehaviour
     public GameObject hp_Max1;
     public GameObject hp_Max2;
     public GameObject hp_Max3;
+    public GameObject hp_Max4;
+    public GameObject hp_Max5;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         hp_Max1.SetActive(true);
         hp_Max2.SetActive(true);
         hp_Max3.SetActive(true);
+        hp_Max4.SetActive(true);
+        hp_Max5.SetActive(true);
     }
 
     // Update is called once per frame
@@ -20,11 +24,20 @@ public class playerhp : MonoBehaviour
         GameObject obj = GameObject.Find("player");
         PlayerController1 hp = obj.GetComponent<PlayerController1>();
         _playerhp = PlayerController1.instance._playerHp;
+        if (_playerhp < 5)
+        {
+            hp_Max1.SetActive(true);
+            hp_Max2.SetActive(true);
+            hp_Max3.SetActive(true);
+            hp_Max4.SetActive(true);
+            hp_Max4.SetActive(false);
+        }
         if (_playerhp < 4)
         {
             hp_Max1.SetActive(true);
             hp_Max2.SetActive(true);
             hp_Max3.SetActive(true);
+            hp_Max4.SetActive(false);
         }
         if (_playerhp < 3)
         {
