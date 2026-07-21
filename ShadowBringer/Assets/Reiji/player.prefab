@@ -214,8 +214,8 @@ MonoBehaviour:
   invincibleTime: 1
   _runAudioSource: {fileID: 8020563351824293933, guid: cccb6f9b290348c4db6355c296e80f8f, type: 3}
   _seAudioSource: {fileID: 0}
-  _attackAudioSource: {fileID: 8300000, guid: 8c42b45a57f76b742801d14ec4376111, type: 3}
-  _jumpAudioSource: {fileID: 8300000, guid: a4de6ab95be294447b89849895eea44a, type: 3}
+  _attackAudioClip: {fileID: 8300000, guid: 8c42b45a57f76b742801d14ec4376111, type: 3}
+  _jumpAudioClip: {fileID: 8300000, guid: a4de6ab95be294447b89849895eea44a, type: 3}
   gameover: StaticTest
   _anim: {fileID: 0}
   flashDuration: 0.2

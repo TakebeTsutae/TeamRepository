@@ -16,7 +16,7 @@ public class PlayerController1 : MonoBehaviour
 
     private GameObject _itemManager;
 
-    private const int kMaxHp= 3;
+    private const int kMaxHp= 5;
 
     public static PlayerController1 instance;
     //  プレイヤーのHP
@@ -35,8 +35,8 @@ public class PlayerController1 : MonoBehaviour
     // アクセサリーによる追加移動速度
     private float _accessoriesMoveSpeed;
 
-    public int currentHP = 3;
-    public int maxHP = 3;
+    public int currentHP = 5;
+    public int maxHP = 5;
 
     
 
@@ -151,49 +151,74 @@ public class PlayerController1 : MonoBehaviour
 
     void Update()
     {
-       
-        _attackTotal = _attackWeapon + _attack;
-
-
-        if (Keyboard.current.eKey.isPressed)
+       if(Ec._isTime==false)
         {
-            _GetKey = true;
-        }
-        else
-        {
-            _GetKey = false;
-        }
+            _attackTotal = _attackWeapon + _attack;
 
 
-
-        if (_Gettag == true)
-        {
-            // 配列の範囲内に収まるように安全弁をつける
-            if (_arrayElement > 0 && _arrayElement <= _accessories.Length)
+            if (Keyboard.current.eKey.isPressed)
             {
-                _accessories[_arrayElement - 1] = currentItem;
-                Status(_accessories[_arrayElement - 1]);
+                _GetKey = true;
+            }
+            else
+            {
+                _GetKey = false;
             }
 
-            if (_arrayElement >= 3)
+
+
+            if (_Gettag == true)
             {
-                List(_accessories[0]);
-                _arrayElement = 2; // 古いものを捨てたので、現在の所持数を2に補正する
+                // 配列の範囲内に収まるように安全弁をつける
+                if (_arrayElement > 0 && _arrayElement <= _accessories.Length)
+                {
+                    _accessories[_arrayElement - 1] = currentItem;
+                    Status(_accessories[_arrayElement - 1]);
+                }
+
+                if (_arrayElement >= 3)
+                {
+                    List(_accessories[0]);
+                    _arrayElement = 2; // 古いものを捨てたので、現在の所持数を2に補正する
+                }
+
+                _Gettag = false;
             }
 
-            _Gettag = false;
-        }
+            if (isAttacking)
+            {
+                // A,Dキー / ←→キー
+                if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
+                {
+                    moveInput = -1f - _accessoriesMoveSpeed;
+                    isFacingRight = false;
+                    transform.localScale = new Vector3(-2, 2, 1);
 
-        if (isAttacking)
-        {
-            // A,Dキー / ←→キー
-            if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
+                    Debug.Log("左キーが押されました。");
+                }
+                else if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
+                {
+                    moveInput = 1f + _accessoriesMoveSpeed;
+                    isFacingRight = true;
+                    transform.localScale = new Vector3(2, 2, 1);
+
+                    Debug.Log("右キーが押されました。");
+                }
+                else
+                {
+                    moveInput = 0f;
+                }
+                // Attack実行中はほかのアニメーションが再生されないようにする
+            }
+            else if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
             {
                 moveInput = -1f - _accessoriesMoveSpeed;
                 isFacingRight = false;
                 transform.localScale = new Vector3(-2, 2, 1);
 
                 Debug.Log("左キーが押されました。");
+                // 【追加】左に動いているので「Walk」を再生
+                ChangeAnimation("Walk");
             }
             else if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
             {
@@ -202,117 +227,95 @@ public class PlayerController1 : MonoBehaviour
                 transform.localScale = new Vector3(2, 2, 1);
 
                 Debug.Log("右キーが押されました。");
+                // 【追加】右に動いているので「Walk」を再生
+                ChangeAnimation("Walk");
             }
             else
             {
                 moveInput = 0f;
+                if (isAttacking) return;
+                currentAnimation = "";
+                //   Debug.Log("止まりました！Idleを再生します");
+                ChangeAnimation("Idle");
             }
-            // Attack実行中はほかのアニメーションが再生されないようにする
-        }
-        else if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
-        {
-            moveInput = -1f - _accessoriesMoveSpeed;
-            isFacingRight = false;
-            transform.localScale = new Vector3(-2, 2, 1);
 
-            Debug.Log("左キーが押されました。");
-            // 【追加】左に動いているので「Walk」を再生
-            ChangeAnimation("Walk");
-        }
-        else if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
-        {
-            moveInput = 1f + _accessoriesMoveSpeed;
-            isFacingRight = true;
-            transform.localScale = new Vector3(2, 2, 1);
-
-            Debug.Log("右キーが押されました。");
-            // 【追加】右に動いているので「Walk」を再生
-            ChangeAnimation("Walk");
-        }
-        else
-        {
-            moveInput = 0f;
-            if (isAttacking) return;
-            currentAnimation = "";
-         //   Debug.Log("止まりました！Idleを再生します");
-            ChangeAnimation("Idle");
-        }
-
-        // 効果音追加中
-        if(Keyboard.current.dKey.isPressed && isGrounded|| Keyboard.current.aKey.isPressed && isGrounded)
-        {
-         if(!isRunning)
+            // 効果音追加中
+            if (Keyboard.current.dKey.isPressed && isGrounded || Keyboard.current.aKey.isPressed && isGrounded)
             {
-                _runAudioSource.Play();
-                isRunning = true;
+                if (!isRunning)
+                {
+                    _runAudioSource.Play();
+                    isRunning = true;
+                }
             }
-        }
-        else
-        {
-            if(isRunning)
+            else
             {
-                _runAudioSource.Stop();
-                isRunning = false;
+                if (isRunning)
+                {
+                    _runAudioSource.Stop();
+                    isRunning = false;
+                }
+            }
+
+
+            // --- タイマーの更新処理 ---
+            // 1. コヨーテタイムの計算
+            if (isGrounded)
+            {
+                coyoteCounter = coyoteTime; // 地面にいる間は常に満タン(0.2秒)
+            }
+            else
+            {
+                coyoteCounter -= Time.deltaTime; // 地面から離れたらカウントダウン
+            }
+
+            // 2. ジャンプのクールタイムの計算
+            if (jumpCooldownCounter > 0)
+            {
+                jumpCooldownCounter -= Time.deltaTime; // クールタイムを減らす
+            }
+
+            // --- ジャンプ処理 ---
+            // 条件：スペースが押された ＆ コヨーテタイム内 ＆ クールタイムが終わっている
+            if (Keyboard.current.spaceKey.wasPressedThisFrame && coyoteCounter > 0f && jumpCooldownCounter <= 0f)
+            {
+                this.rigid2D.AddForce(transform.up * this.jumpForce);
+
+                // ジャンプ成功時の処理
+                coyoteCounter = 0f; // 空中での連続ジャンプを防ぐため、猶予をゼロにする
+                jumpCooldownCounter = jumpCooldown; // クールタイム(0.5秒)をセット
+
+            }
+
+            if (Mouse.current.rightButton.wasPressedThisFrame && dashCooldownCounter <= 0f)
+            {
+                dashCooldownCounter = dashCooldown;
+                StartCoroutine(DashRoutine());
+            }
+
+            // ダッシュのクールタイムの計算
+            if (dashCooldownCounter > 0)
+            {
+                dashCooldownCounter -= Time.deltaTime; // タイマーが0になるまで毎フレーム減速する
+            }
+
+            if (isDashing) return;
+
+            if (invincibleCounter > 0)
+            {
+                invincibleCounter -= Time.deltaTime;
+            }
+
+            if (isDashing) return;
+
+            if (isDead() && !isGameOverTriggered)
+            {
+                //_playerHp = kMaxHp;
+                SceneManager.LoadScene("GameOver_1");
+
             }
         }
-        
-
-        // --- タイマーの更新処理 ---
-        // 1. コヨーテタイムの計算
-        if (isGrounded)
-        {
-            coyoteCounter = coyoteTime; // 地面にいる間は常に満タン(0.2秒)
-        }
-        else
-        {
-            coyoteCounter -= Time.deltaTime; // 地面から離れたらカウントダウン
-        }
-
-        // 2. ジャンプのクールタイムの計算
-        if (jumpCooldownCounter > 0)
-        {
-            jumpCooldownCounter -= Time.deltaTime; // クールタイムを減らす
-        }
-
-        // --- ジャンプ処理 ---
-        // 条件：スペースが押された ＆ コヨーテタイム内 ＆ クールタイムが終わっている
-        if (Keyboard.current.spaceKey.wasPressedThisFrame && coyoteCounter > 0f && jumpCooldownCounter <= 0f)
-        {
-            this.rigid2D.AddForce(transform.up * this.jumpForce);
-
-            // ジャンプ成功時の処理
-            coyoteCounter = 0f; // 空中での連続ジャンプを防ぐため、猶予をゼロにする
-            jumpCooldownCounter = jumpCooldown; // クールタイム(0.5秒)をセット
-
-        }
-
-        if (Mouse.current.rightButton.wasPressedThisFrame&&dashCooldownCounter<=0f)
-        {
-            dashCooldownCounter = dashCooldown;
-            StartCoroutine(DashRoutine());
-        }
-
-        // ダッシュのクールタイムの計算
-        if (dashCooldownCounter > 0)
-        {
-            dashCooldownCounter -= Time.deltaTime; // タイマーが0になるまで毎フレーム減速する
-        }
-
-        if (isDashing) return;
-
-        if(invincibleCounter>0)
-        {
-            invincibleCounter -= Time.deltaTime;
-        }
-
-        if (isDashing) return;
-
-        if (isDead() && !isGameOverTriggered)
-        {
-            //_playerHp = kMaxHp;
-            SceneManager.LoadScene("GameOver_1");
-
-        }
+       
 
     }
 
@@ -338,6 +341,8 @@ public class PlayerController1 : MonoBehaviour
         currentAnimation = "";
         ChangeAnimation("Attack");
         StartCoroutine(AttackAnimationEnd());
+
+        _attackAudioClip.Play();
     }
 
     private IEnumerator AttackAnimationEnd()
