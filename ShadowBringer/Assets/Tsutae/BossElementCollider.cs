@@ -84,8 +84,7 @@ public class BossElementCollider : MonoBehaviour
             // 統合したときに使用（プレイヤーの攻撃力取得のためのやつ）
             _playerAttack = _playerController._attackTotal;
             currentBossHp -= _playerAttack;
-            _bossHpBar.TakeDamage();
-            Debug.LogError(currentBossHp);
+            //Debug.LogError(currentBossHp);
             // 点滅処理
             StartCoroutine(OnHit());
         }
@@ -120,6 +119,8 @@ public class BossElementCollider : MonoBehaviour
         // 途中
         // isHit = true;
         //_hitChangeCount = 0;
+        //HPバーを動かす
+        _bossHpBar.TakeDamage();
 
         for (int i = 0; i < 3; i++)
         {
@@ -139,6 +140,7 @@ public class BossElementCollider : MonoBehaviour
         // ヒットクールタイム中はダメージを与える当たり判定を消す
         if (_isHitting)
         {
+            
             // 攻撃を食らったら点滅する
             OnHit();
             //_bossIdleAttack.SetActive(false);

@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 8628335837146652073}
   m_Layer: 0
   m_Name: BossIdleDamage
-  m_TagString: enemy
+  m_TagString: BossElement
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -439,7 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a5420108588b842ac4b0509f04912a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossElementCollider
-  _currentBossHp: 0
+  currentBossHp: 0
   _deltHitCount: 1
   nextSceneName: TkbClearScene
 --- !u!1 &7997678794676363324
@@ -534,6 +534,7 @@ GameObject:
   - component: {fileID: 9165691662165360421}
   - component: {fileID: 4241431693168488753}
   - component: {fileID: 5012711308763888864}
+  - component: {fileID: 9064868774149573948}
   m_Layer: 6
   m_Name: Boss
   m_TagString: enemy
@@ -661,21 +662,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BOSS
   bossStartHp: 30
-  _bossHp: 5
   _retraetSound: {fileID: 8300000, guid: 2d6b94713e2d6b94f96213f034740832, type: 3}
   _dashAttackSound: {fileID: 8300000, guid: 5e34fbcd944320b47b404d820f79cae0, type: 3}
   _attackSound: {fileID: 8300000, guid: 2487f6f40ab614b418e21e0d5c0687d4, type: 3}
-  _jumpSound: {fileID: 0}
-  _jumpStampSound: {fileID: 0}
+  _jumpSound: {fileID: 8300000, guid: 4c1ea9efb59b379408ea45f609f7b438, type: 3}
+  _jumpStampSound: {fileID: 8300000, guid: 578212d543dba0d4a8da4e0d505bc28f, type: 3}
   _bossScale: 4
   dashSprite: {fileID: -4913155488674122577, guid: ac98c61adff7f4e4d8c0b7bdd074c1af, type: 3}
-  player: {fileID: 0}
+  _player: {fileID: 0}
   attackRenge: 20
   dashRetreatDistance: 0.5
   retreatSpeed: 3
   dashDistance: 10
   dashSpeed: 15
-  _spawnerNum: 3
+  _spawnerNum: 1
   spawnerPre: {fileID: 3548656163119702788, guid: 0c9ad6182f410c64f96d2f742384fb85, type: 3}
   summonPoint: {fileID: 0}
 --- !u!95 &4241431693168488753
@@ -797,3 +797,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &9064868774149573948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8159606223241570041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b456e1820a5914e448590150e2807a57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossHpBar
+  slider: {fileID: 0}

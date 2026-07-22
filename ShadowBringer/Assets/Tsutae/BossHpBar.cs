@@ -20,7 +20,10 @@ public class BossHpBar : MonoBehaviour
         _maxHp = _bossScript.bossStartHp;
 
         slider.maxValue = _maxHp;
-        slider.value = _currentHp;
+        slider.minValue = 0;
+        slider.value = _maxHp;
+        //Debug.LogError("HPbar_slider.maxValue" + slider.maxValue);
+        //Debug.LogError("HPbar_slider.value" + slider.value);
     }
 
     // Update is called once per frame
@@ -31,10 +34,14 @@ public class BossHpBar : MonoBehaviour
 
     public void TakeDamage()
     {
-        Debug.LogError("ダメージを受けました");   // 呼ばれてる
+        //Debug.LogError("HPbar_slider.value" + slider.value);   // 呼ばれてる
         _bossElementScript = GameObject.FindWithTag("BossElement").GetComponent<BossElementCollider>();
         _currentHp = _bossElementScript.currentBossHp;
         // HPゲージを更新
-        slider.value = (float)_currentHp / _maxHp;
+        slider.value = _maxHp - (_maxHp - slider.maxValue * (float)_currentHp / _maxHp);
+        if(slider.value < slider.minValue)
+        {
+            slider.value = slider.minValue;
+        }
     }
 }
