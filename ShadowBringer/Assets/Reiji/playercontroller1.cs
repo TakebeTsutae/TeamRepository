@@ -351,6 +351,8 @@ public class PlayerController1 : MonoBehaviour
         yield return new WaitForSeconds(0.36f); // 攻撃アニメーションの長さに合わせて変更している
         isAttacking = false;
         ChangeAnimation("Idle");
+
+        _seAudioSource.PlayOneShot(_attackAudioClip);
     }
 
     // ダッシュ
