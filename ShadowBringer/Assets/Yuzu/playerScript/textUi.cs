@@ -33,8 +33,11 @@ public class SingleCharacterY : MonoBehaviour
         int mIndex = charInfo.materialReferenceIndex;
         Vector3[] vertices = textInfo.meshInfo[mIndex].vertices;
         Vector3 offset = new Vector3(0, offsetY, 0);
-
-        for (int i = 0; i < 4; i++) vertices[vIndex + i] += offset;
+        for(int a = 0; a < 32; a+=4)
+        {
+            for (int i = 0; i < 4; i++) vertices[a + i] += offset;
+        }
+        
 
         tmpText.UpdateVertexData(TMP_VertexDataUpdateFlags.Vertices); // 更新反映
     }
