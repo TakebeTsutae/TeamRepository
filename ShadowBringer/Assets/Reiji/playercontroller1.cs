@@ -16,7 +16,7 @@ public class PlayerController1 : MonoBehaviour
 
     private GameObject _itemManager;
 
-    private const int kMaxHp= 5;
+    private const int kMaxHp= 6;
 
     public static PlayerController1 instance;
     //  プレイヤーのHP
@@ -35,8 +35,8 @@ public class PlayerController1 : MonoBehaviour
     // アクセサリーによる追加移動速度
     private float _accessoriesMoveSpeed;
 
-    public int currentHP = 5;
-    public int maxHP = 5;
+    public int currentHP = 6;
+    public int maxHP = 6;
 
     
 
@@ -99,6 +99,8 @@ public class PlayerController1 : MonoBehaviour
     private float invincibleCounter;
 
     [Header("Audio")]
+    private AudioSource audioSource;
+
     [SerializeField] private AudioSource _runAudioSource;
     [SerializeField] private AudioSource _seAudioSource;
 
@@ -147,6 +149,10 @@ public class PlayerController1 : MonoBehaviour
 
         // 自分についているSpriteRendererを取得しておく
         spriteRenderer= GetComponent<SpriteRenderer>();
+
+        audioSource = GetComponent<AudioSource>();
+
+
     }
 
     void Update()
@@ -311,7 +317,7 @@ public class PlayerController1 : MonoBehaviour
             if (isDead() && !isGameOverTriggered)
             {
                 //_playerHp = kMaxHp;
-                SceneManager.LoadScene("GameOver_1");
+                SceneManager.LoadScene("GameOver");
 
             }
         }
@@ -342,7 +348,7 @@ public class PlayerController1 : MonoBehaviour
         ChangeAnimation("Attack");
         StartCoroutine(AttackAnimationEnd());
 
-     //   _attackAudioClip.Play();
+        audioSource.PlayOneShot(_attackAudioClip);
     }
 
     private IEnumerator AttackAnimationEnd()
@@ -351,8 +357,6 @@ public class PlayerController1 : MonoBehaviour
         yield return new WaitForSeconds(0.36f); // 攻撃アニメーションの長さに合わせて変更している
         isAttacking = false;
         ChangeAnimation("Idle");
-
-        _seAudioSource.PlayOneShot(_attackAudioClip);
     }
 
     // ダッシュ
