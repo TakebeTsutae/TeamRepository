@@ -30,7 +30,7 @@ public class playerhp : MonoBehaviour
             hp_Max2.SetActive(true);
             hp_Max3.SetActive(true);
             hp_Max4.SetActive(true);
-            hp_Max4.SetActive(false);
+            hp_Max5.SetActive(false);
         }
         if (_playerhp < 4)
         {

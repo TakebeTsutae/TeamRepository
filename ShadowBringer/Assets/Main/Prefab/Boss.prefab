@@ -532,7 +532,6 @@ GameObject:
   - component: {fileID: 3298668788822692902}
   - component: {fileID: 40758154818904524}
   - component: {fileID: 9165691662165360421}
-  - component: {fileID: 4241431693168488753}
   - component: {fileID: 5012711308763888864}
   - component: {fileID: 9064868774149573948}
   m_Layer: 6
@@ -661,7 +660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f343b227520f104f87c200f07d2d45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BOSS
-  bossStartHp: 30
+  bossStartHp: 100
   _retraetSound: {fileID: 8300000, guid: 2d6b94713e2d6b94f96213f034740832, type: 3}
   _dashAttackSound: {fileID: 8300000, guid: 5e34fbcd944320b47b404d820f79cae0, type: 3}
   _attackSound: {fileID: 8300000, guid: 2487f6f40ab614b418e21e0d5c0687d4, type: 3}
@@ -678,28 +677,6 @@ MonoBehaviour:
   _spawnerNum: 1
   spawnerPre: {fileID: 3548656163119702788, guid: 0c9ad6182f410c64f96d2f742384fb85, type: 3}
   summonPoint: {fileID: 0}
---- !u!95 &4241431693168488753
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8159606223241570041}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fa2264c00ecc00943af0bca36b1243d5, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!82 &5012711308763888864
 AudioSource:
   m_ObjectHideFlags: 0
