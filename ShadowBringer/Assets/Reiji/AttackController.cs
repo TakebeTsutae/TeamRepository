@@ -16,8 +16,8 @@ public class AttackController : MonoBehaviour
   //  private float PlayerAttackCooldownCounter;
   
     //bool canAttack = true;
-    int time = 0;
-    private float lastAttackTime = 0f;
+   
+    
     public kenncontroller kenattack;
     //public tuecontroller tuecontroller;
 

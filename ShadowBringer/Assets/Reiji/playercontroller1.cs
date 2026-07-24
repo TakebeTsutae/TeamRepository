@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using static UnityEditor.Progress;
+//using static UnityEditor.Progress;
 
 
 public class PlayerController1 : MonoBehaviour
@@ -72,8 +72,6 @@ public class PlayerController1 : MonoBehaviour
     public bool _Gettag = false;
 
     private bool isGameOverTriggered = false;
-
-    private bool _item = false;
 
     private bool _GetKey=false;
 

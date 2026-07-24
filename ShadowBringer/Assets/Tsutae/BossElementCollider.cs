@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -16,8 +15,7 @@ public class BossElementCollider : MonoBehaviour
     // 被弾処理の変数
     bool _isHitting;    // 攻撃が当たっている状態かどうか
     bool _isHit; // 仮
-    // 攻撃が当たってから再び攻撃が当たるまでのクールタイム
-    [SerializeField] float _deltHitCount = 1.0f;
+   
     float _hitCount = 0;    // 攻撃が当たってからの秒数
 
     BossHpBar _bossHpBar;
@@ -25,9 +23,6 @@ public class BossElementCollider : MonoBehaviour
     GameObject _bossIdleAttack; // ダメージを与える当たり判定
     // 色を変えるための変数
     SpriteRenderer _spriteRenderer;
-    float _deltRedChangeColor = 0.2f;
-    float _deltWhiteChangeColor = 0.2f;
-    float _hitChangeCount = 0;
 
     // ボスが死んだときにシーン移動する
     [SerializeField] string nextSceneName = "4_MainClearScne";　// 移動するシーン

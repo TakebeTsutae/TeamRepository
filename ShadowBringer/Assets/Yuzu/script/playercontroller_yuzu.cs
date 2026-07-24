@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using static UnityEditor.Progress;
+//using static UnityEditor.Progress;
 
 public class PlayerController_yuzu : MonoBehaviour
 {
@@ -62,8 +62,6 @@ public class PlayerController_yuzu : MonoBehaviour
 
     // tagを取得したか(ItemPickupにてtrueとfalseをいじる)
     public bool _Gettag = false;
-
-    private bool _item = false;
 
     private bool _GetKey=false;
 

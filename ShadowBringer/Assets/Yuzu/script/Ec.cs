@@ -43,7 +43,14 @@ public class Ec : MonoBehaviour
             Debug.Log("hai");
             Bg.SetActive(false);
             Text.SetActive(false);
+        #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
+
+        #else
+            Application.Quit();
+
+        #endif
+
         }
         else if (this.gameObject.name == "No")
         {

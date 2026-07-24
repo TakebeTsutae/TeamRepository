@@ -18,7 +18,14 @@ public class Buttom : MonoBehaviour
         if(this.gameObject.name =="Yes")
         {
             Debug.Log("hai");
+        #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
+
+        #else
+            Application.Quit();
+
+        #endif
+
         }
         else if(this.gameObject.name == "No")
         {

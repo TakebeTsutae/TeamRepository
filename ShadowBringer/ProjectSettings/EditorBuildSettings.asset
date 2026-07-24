@@ -5,22 +5,22 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Mitsuha/Scene/TitleScene.unity
     guid: ee51ac360cafa654697cc2f76618c31e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Mitsuha/Scene/Hirayama1.unity
     guid: 58c2e16bfd9d4074dbc8206908e1d1ad
-  - enabled: 1
+  - enabled: 0
     path: Assets/Mitsuha/Scene/BossScene.unity
     guid: 4c882cad2bffdbf429e659c4087fcb51
   - enabled: 1
     path: Assets/Main/1_MainTitleScene.unity
     guid: 67da86c71d87ee448a7a602f0a049ede
-  - enabled: 1
+  - enabled: 0
     path: Assets/Yuzu/sccene_yuzu/player.unity
     guid: c0dc4ee553482b741b910067f540553b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Yuzu/sccene_yuzu/enemy.unity
     guid: d84dbad329fabe54885c5799df05896d
   - enabled: 1
@@ -32,25 +32,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Main/4_MainClearScene.unity
     guid: 5116c74b3f3fa5344954cd32b3ef91eb
-  - enabled: 0
-    path: Assets/Main/4_MainGameOver.unity
-    guid: f8bb30cdb596b9742903deac66b8d9cf
   - enabled: 1
     path: Assets/Main/GameOver.unity
     guid: e2c445d165efb3a40a9ea886c17d97c3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Yuzu/GameOver/GameOver_1.unity
     guid: 9f65b519feb180d4985543728b2228e9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Mitsuha/Scene/ClearScene.unity
     guid: 605179636e22f934d899c4e8a49788a2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Tsutae/TkbClearScene.unity
     guid: c0ecffa43ccdada4b84d35d2780aa120
-  - enabled: 1
+  - enabled: 0
     path: Assets/Reiji/Reiji scene 1.unity
     guid: b270e4a6dd2877e4e95efa4ef02617d8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Reiji/StaticTest.unity
     guid: 4857b12aaf2e9154880128eb95d1771e
   m_configObjects:
